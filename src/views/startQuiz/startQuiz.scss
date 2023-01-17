@@ -1,0 +1,36 @@
+.quizStart {
+  border-radius: 20px;
+  padding: 20px;
+  width: 60%;
+  height: 60%;
+  background-color: #5c5470;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .row {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    h2 {
+      background: transparent;
+      margin-right: 30px;
+    }
+  }
+  .start {
+    border-radius: 8px;
+    justify-self: flex-end;
+    align-self: center;
+    background-color: #352f44;
+    color: #dbd8e3;
+    padding: 5px;
+    width: 40%;
+    cursor: pointer;
+    margin: 20px;
+
+    &:hover {
+      color: #352f44;
+      background-color: #dbd8e3;
+    }
+  }
+}

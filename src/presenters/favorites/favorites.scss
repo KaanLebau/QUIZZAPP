@@ -1,0 +1,30 @@
+.favorites {
+  background: transparent;
+  background-color: #5c547096;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 250px;
+  animation: mounth 1s ease-in 0s 1 normal forwards;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  .cards {
+    padding: 20px;
+    height: 200px;
+    background-color: transparent;
+    display: flex;
+    gap: 30px;
+  }
+  label {
+    background-color: transparent;
+    color: #dbd8e3;
+    position: absolute;
+    font-weight: bold;
+    top: -10px;
+    left: 40px;
+  }
+}

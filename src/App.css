@@ -1,0 +1,13 @@
+.App {
+
+}
+.head {
+  height: 10vh;
+}
+.page {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 80vh;
+  border: 1px solid blueviolet;
+}

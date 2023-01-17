@@ -1,0 +1,49 @@
+.quizInfo {
+  width: 95%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  .quiz {
+    border-right: 1px solid #dbd8e3;
+    flex: 2;
+    padding: 5px;
+    display: flex;
+    .left {
+      flex: 1;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: xx-large;
+    }
+    .right {
+      flex: 2;
+      background: transparent;
+      .row {
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        h5 {
+          background: transparent;
+        }
+      }
+    }
+  }
+  .process {
+    flex: 7;
+    border-radius: 0;
+    .bar {
+      color: #dbd8e3;
+      font-weight: bold;
+    }
+  }
+  .time {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #dbd8e3;
+    border-radius: 20px;
+  }
+}

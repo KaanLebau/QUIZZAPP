@@ -1,0 +1,15 @@
+.app {
+  background-color: white;
+  .page {
+    height: 89vh;
+    background-color: bisque;
+    .left {
+      flex: 1;
+    }
+    .right {
+      border: 1px solid greenyellow;
+      flex: 11;
+      background-color: aquamarine;
+    }
+  }
+}

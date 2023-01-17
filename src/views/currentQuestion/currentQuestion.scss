@@ -1,0 +1,48 @@
+.theQuestion {
+  width: 96%;
+  height: 98%;
+  background: transparent;
+  color: #dbd8e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px;
+  .questionInfo {
+    flex: 1;
+    background: transparent;
+    align-self: flex-end;
+    justify-self: flex-start;
+  }
+  .question {
+    flex: 3;
+    background: transparent;
+    font-weight: bold;
+  }
+  .alternative {
+    background: transparent;
+  }
+  .buttons {
+    width: 90%;
+    background: transparent;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    button {
+      border-radius: 8px;
+      justify-self: flex-end;
+      align-self: center;
+      background-color: #352f44;
+      color: #dbd8e3;
+      padding: 5px;
+      width: 40%;
+      cursor: pointer;
+      margin: 20px;
+
+      &:hover {
+        color: #352f44;
+        background-color: #dbd8e3;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.dataWidget {
+  display: flex;
+  flex-direction: column;
+  background-color: #5c5470;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 15px;
+  max-width: 100px;
+  min-height: 100px;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  .up {
+    flex: 1;
+    text-align: center;
+    background: transparent;
+    font-weight: bold;
+  }
+  .down {
+    flex: 4;
+    background: transparent;
+    text-align: center;
+    font-size: xx-large;
+    padding: 10px;
+  }
+}

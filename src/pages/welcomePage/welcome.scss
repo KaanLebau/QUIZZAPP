@@ -1,0 +1,21 @@
+.start {
+  background-color: #2a2438;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 10%;
+  cursor: pointer;
+  .text {
+    border: 1px solid #dbd8e3;
+    border-radius: 10px;
+
+    padding: 30px;
+    text-align: center;
+    max-width: 60%;
+    font-family: "Silkscreen";
+    color: #dbd8e3;
+  }
+}

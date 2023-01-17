@@ -1,0 +1,47 @@
+.topicCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .top {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #352f44;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+
+    .diff {
+      background: transparent;
+      display: flex;
+      border: 1px solid #dbd8e3;
+      border-radius: 20px;
+      padding: 10px;
+      position: relative;
+      .info {
+        background-color: #352f44;
+        border: 1px solid #dbd8e3;
+        border-radius: 10px;
+        padding: 5px;
+        position: absolute;
+        font-weight: bold;
+        top: -15px;
+        left: 20px;
+      }
+    }
+    -webkit-box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
+    box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #352f44;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    -webkit-box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
+    box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
+  }
+}

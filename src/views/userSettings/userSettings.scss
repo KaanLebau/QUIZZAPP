@@ -1,0 +1,135 @@
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 89vh;
+  .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #5c5470;
+    border-radius: 20px;
+    width: max-content;
+    height: max-content;
+    padding: 30px;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+    box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+    .type {
+      position: absolute;
+      color: #dbd8e3;
+      background-color: transparent;
+      border-radius: 10px;
+      padding: 3px;
+      top: -13px;
+      left: 20px;
+    }
+
+    .row {
+      margin: 3px;
+      align-self: flex-start;
+      width: 100%;
+      background-color: transparent;
+      padding: 5px;
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: transparent;
+        .right {
+          background-color: transparent;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          input {
+            aling-self: flex-end;
+            border-radius: 10px;
+            border-bottom: 1px solid #dbd8e3;
+            margin: 3px;
+            background-color: transparent;
+            color: #dbd8e3;
+            text-align: center;
+            &:focus {
+              border: none;
+              border-bottom: 1px solid #5c5470;
+              background-color: #dbd8e3;
+              color: #5c5470;
+            }
+            &::placeholder {
+              color: #dbd8e3;
+              text-align: center;
+              opacity: 40%;
+            }
+          }
+          .iconPass {
+            position: absolute;
+            background-color: transparent;
+            color: #dbd8e3;
+            top: 2px;
+            right: 8px;
+            cursor: pointer;
+          }
+        }
+        .left {
+          background-color: transparent;
+          margin: 15px;
+          label {
+            justify-self: flex-start;
+            background-color: transparent;
+            color: #dbd8e3;
+            margin-right: 40px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .info {
+        display: inline-block;
+        position: relative;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          color: red;
+          background-color: transparent;
+        }
+        .iconOk {
+          font-size: 26px;
+          position: absolute;
+          background-color: transparent;
+          color: rgb(39, 200, 39);
+          top: -47px;
+          right: -10px;
+        }
+      }
+    }
+
+    .buttons {
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      button {
+        border-radius: 10px;
+        justify-self: flex-end;
+        align-self: center;
+        background-color: #352f44;
+        color: #dbd8e3;
+        padding: 5px;
+        width: 40%;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button:hover {
+        color: #352f44;
+        background-color: #dbd8e3;
+      }
+      button:disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

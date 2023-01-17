@@ -1,0 +1,97 @@
+.quizSettings {
+  border-radius: 20px;
+  background-color: #5c547096;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  gap: 40px;
+  margin: 20px;
+  padding: 40px;
+  color: #dbd8e3;
+  position: relative;
+  animation: mounth 1s ease-in 0s 1 normal forwards;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  label {
+    font-weight: bold;
+    position: absolute;
+    background-color: transparent;
+    padding: 10px;
+    top: -20px;
+    left: 20px;
+  }
+  div {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #5c5470;
+    gap: 10px;
+    min-width: 150px;
+    min-height: 150px;
+
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(42, 36, 56, 0.24);
+    box-shadow: 5px 5px 22px 7px rgba(42, 36, 56, 0.24);
+
+    .icon {
+      background-color: transparent;
+      align-self: center;
+      font-size: 50px;
+    }
+    .number {
+      font-size: 85px;
+    }
+    h1 {
+      text-align: center;
+      background-color: transparent;
+    }
+    p {
+      text-align: center;
+      background-color: transparent;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: #2a2438;
+      -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+      box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    }
+  }
+  button {
+    border-radius: 10px;
+    justify-self: flex-end;
+    align-self: flex-end;
+    background-color: #352f44;
+    color: #dbd8e3;
+    padding: 5px;
+    width: 40%;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  button:hover {
+    color: #352f44;
+    background-color: #dbd8e3;
+  }
+  .hidden {
+    display: hidden;
+  }
+  @keyframes selector {
+    0% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  @keyframes mounth {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

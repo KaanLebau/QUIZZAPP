@@ -1,0 +1,159 @@
+.card {
+  background: transparent;
+  background-color: #5c5470;
+  border-radius: 20px;
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  &:hover {
+    background-color: #2a2438;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+  }
+  .empty {
+    display: none;
+  }
+  p {
+    align-self: flex-end;
+    background-color: transparent;
+    .icon {
+      background-color: transparent;
+      padding: 5px;
+      border-radius: 5px;
+      color: #dbd8e3;
+      font-size: small;
+      &:hover {
+        cursor: pointer;
+        background-color: #5c5470;
+      }
+    }
+  }
+  .buttons {
+    display: flex;
+    background-color: transparent;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .quizData {
+    background-color: transparent;
+    color: #dbd8e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+
+    p {
+      background-color: transparent;
+      flex: 1;
+    }
+    .selectC {
+      border-radius: 20px;
+      background-color: transparent;
+      color: #dbd8e3;
+      flex: 3;
+      text-align: center;
+      font-size: xx-large;
+    }
+    .selectD {
+      border-radius: 20px;
+      background-color: transparent;
+      color: #dbd8e3;
+      flex: 3;
+      text-align: center;
+      font-size: x-large;
+    }
+    .selectQ {
+      border-radius: 20px;
+      background-color: transparent;
+      color: #dbd8e3;
+      flex: 3;
+      text-align: center;
+      font-size: x-large;
+    }
+    h1 {
+      font-size: xx-large;
+      background-color: transparent;
+      border-bottom: 1px solid;
+      flex: 3;
+      text-align: center;
+    }
+    h2 {
+      font-size: x-large;
+      background-color: transparent;
+      border-bottom: 1px solid;
+      flex: 3;
+      text-align: center;
+    }
+    h3 {
+      font-size: large;
+      background-color: transparent;
+      border-bottom: 1px solid;
+      flex: 3;
+      text-align: center;
+    }
+  }
+
+  button {
+    border-radius: 10px;
+    justify-self: flex-end;
+    align-self: center;
+    background-color: #352f44;
+    color: #dbd8e3;
+    padding: 5px;
+    width: 40%;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  button:hover {
+    color: #352f44;
+    background-color: #dbd8e3;
+  }
+  .hidden {
+    display: hidden;
+  }
+}
+
+.emptyCard {
+  background-color: #5c5470;
+  border-radius: 20px;
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+  &:hover {
+    background-color: #2a2438;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+  }
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background-color: transparent;
+    .icon {
+      background-color: transparent;
+      color: #dbd8e3;
+      font-size: 100px;
+    }
+  }
+  p {
+    display: none;
+  }
+  .buttons {
+    display: none;
+  }
+  .quizData {
+    display: none;
+  }
+  button {
+    display: none;
+  }
+}

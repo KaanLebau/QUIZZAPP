@@ -1,0 +1,50 @@
+.questions {
+  display: flex;
+  height: 70%;
+  padding: 20px;
+  background: transparent;
+  gap: 30px;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .question {
+    border-radius: 20px;
+    background-color: #5c5470;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 80px;
+    .ansIcon {
+      background: transparent;
+      justify-self: flex-end;
+      align-self: flex-end;
+      font-size: x-large;
+      margin: 5px;
+    }
+
+    .questionIcon {
+      justify-self: flex-end;
+      align-self: flex-end;
+      font-size: x-large;
+      background: transparent;
+      margin-right: 5px;
+    }
+    .row {
+      background: transparent;
+      padding: 5px;
+      text-align: center;
+      justify-content: space-between;
+      align-items: center;
+      h5 {
+        background: transparent;
+      }
+      h2 {
+        background: transparent;
+      }
+    }
+  }
+}
