@@ -4,11 +4,12 @@ import TopicCardPresenter from "../../presenters/topicCardPresenter/TopicCardPre
 import { mockUser } from "../../models/MockUserData";
 
 function Dashboard(props) {
+  console.log(props.model);
   return (
     <div className="dashboard">
       <Head currentUser={true} />
       <div className="content">
-        <TopicCardPresenter data={mockUser} />
+        <TopicCardPresenter data={props.model} />
       </div>
     </div>
   );

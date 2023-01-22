@@ -311,11 +311,13 @@ function ActiveQuiz(props) {
       difficulty: "Medium",
     },
   ];
+
+  const q = props.quiz.addquestions(mockdata);
   return (
     <div className="activeQuiz">
       <Head currentUser={focus} />
       <div className="content">
-        <ActiveQuizPresenter quiz={mockdata} />
+        <ActiveQuizPresenter quiz={q} />
       </div>
     </div>
   );

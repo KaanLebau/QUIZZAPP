@@ -1,43 +1,25 @@
 import "./currentQuestion.scss";
-import React from "react";
+import React, { useState } from "react";
 import { Filter } from "@mui/icons-material";
 
 function CurrentQuestion(props) {
-  function alternatives(alt) {
-    const keys = Object.keys(props.question.answers);
-    const val = Object.values(props.question.answers);
+const [selected, setSelected] = useState()
 
-    return (
-      <div className="theAlt">
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />;
-        <label htmlFor="vehicle3">{alt}</label>
-      </div>
-    );
-  }
-  function validValue(value) {
-    if (value === null) return false;
-    return true;
-  }
-  function show() {
-    console.log(test);
-    /*
-    const keys = Object.keys(props.question.answers);
-    const val = Object.values(props.question.answers);
-    keys.map((k) => {
-      if (props.question.answers[k] !== null) console.log(k);
-    });
-    val.map((v) => {
-      if (validValue(v)) console.log(v);
-    });
-    */
-  }
+  function handleAnswer() {}
+
+  //console.log(props.question.answers[0].answer);
   return (
     <div className="theQuestion">
       <div className="questionInfo">{props.question.id}</div>
       <div className="question">{props.question.question}</div>
-      <div className="altenativ"></div>
+      <div className="altenativ">
+        {props.question?.answers.map((a) => (
+          <div className="alt" onClick={handleAnswer}>
+            {a.answer}
+          </div>
+        ))}
+      </div>
       <div className="buttons">
-        <button onClick={show}>show</button>
         <button onClick={props.prev}>Prev</button>
         <button onClick={props.next}>Next</button>
       </div>

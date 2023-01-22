@@ -1,7 +1,5 @@
 import "./app.scss";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Sidebar from "./components/sidebar/Sidebar";
-import Head from "./components/head/Head";
 import Welcome from "./pages/welcomePage/Welcome";
 import LoginPage from "./pages/loginPage/LoginPage";
 import Registration from "./pages/registration/Registration";
@@ -10,10 +8,13 @@ import GetQuizDataPage from "./pages/getQuiz/GetQuizDataPage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
+import UserQuiz from "./models/UserQuiz";
+import Test from "./pages/testPage/Test";
 
 function App() {
   const registred = true;
   const model = new UserModel();
+  const quiz = new UserQuiz();
   return (
     <div className="app">
       <div className="content">
@@ -22,7 +23,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<Welcome />} />
+                <Route index element={<Test model={model} />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="registration" element={<Registration />} />
                 <Route path="/user">
@@ -30,7 +31,7 @@ function App() {
                   <Route path="edit" element={<EditUser />} />
                   <Route path="quiz">
                     <Route index element={<GetQuizDataPage model={model} />} />
-                    <Route path="active" element={<ActiveQuiz />} />
+                    <Route path="active" element={<ActiveQuiz quiz={quiz} />} />
                   </Route>
                 </Route>
               </Route>

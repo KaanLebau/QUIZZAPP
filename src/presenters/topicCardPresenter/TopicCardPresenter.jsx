@@ -9,7 +9,6 @@ function TopicCardPresenter(props) {
   function handleshow(input) {
     switch (input) {
       case "linux":
-        console.log(input);
         setData(props.data.linux);
         reRender({});
         break;

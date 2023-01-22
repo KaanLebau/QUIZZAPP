@@ -81,6 +81,7 @@ function Registration() {
         userInit.email,
         userInit.password
       );
+      setUserInit({ ...userInit, "uid": res.user.uid });
       await setDoc(doc(db, "users", res.user.uid), {
         ...userInit,
       });

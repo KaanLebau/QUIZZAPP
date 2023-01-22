@@ -44,10 +44,14 @@ function ActiveQuizPresenter(props) {
     );
     setPregress((answerd / props.quiz.length).toFixed(2) * 100);
   }
+  function handleAnswer(){
+    active.answered = true;
+  }
   useEffect(() => {
     calculateProgress();
     setActive(props.quiz[index]);
   }, [index, answerd]);
+
   return (
     <div className="activePresenter">
       <div className="top">
@@ -68,6 +72,7 @@ function ActiveQuizPresenter(props) {
         {start ? (
           <CurrentQuestion
             question={active}
+            answered = {handleAnswer}
             next={handleNext}
             prev={handlePrev}
           />
