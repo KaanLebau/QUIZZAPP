@@ -23,7 +23,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<Test model={model} />} />
+                <Route index element={<Welcome model={model} />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="registration" element={<Registration />} />
                 <Route path="/user">

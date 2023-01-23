@@ -7,7 +7,7 @@ import CurrentQuestion from "../../views/currentQuestion/CurrentQuestion";
 
 function ActiveQuizPresenter(props) {
   const [start, setStart] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(5);
   const [active, setActive] = useState({});
   const [progress, setPregress] = useState(0);
   const [answerd, setAnswerd] = useState(0);
@@ -44,7 +44,7 @@ function ActiveQuizPresenter(props) {
     );
     setPregress((answerd / props.quiz.length).toFixed(2) * 100);
   }
-  function handleAnswer(){
+  function handleAnswer() {
     active.answered = true;
   }
   useEffect(() => {
@@ -72,7 +72,7 @@ function ActiveQuizPresenter(props) {
         {start ? (
           <CurrentQuestion
             question={active}
-            answered = {handleAnswer}
+            answered={handleAnswer}
             next={handleNext}
             prev={handlePrev}
           />

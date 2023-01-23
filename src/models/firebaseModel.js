@@ -1,23 +1,18 @@
 import { db } from "../firebase";
-import { updateDoc, increment } from "firebase/firestore";
+import { doc, increment, updateDoc } from "firebase/firestore";
 
 function updateFirebase(model) {
+  const theUser = doc(db, "users", model.uid);
   async function updatedModel(payload) {
     if (payload) {
       switch (payload.type) {
         case "displayNameChanged":
+          await updateDoc(theUser, { dispalyName: model.dispalyName });
           break;
         case "favoritesChanged":
+          await updateDoc(theUser, { favorites: model.favorites });
           break;
         case "sqlEasyChanged":
-            const toUpdate = doc(db,)
-          await updateDoc(easy, {
-            wrong: increment(result.wrong),
-            correct: increment(result.correct),
-            noAnswer: increment(result.noAnswer),
-            pass: increment(result.pass),
-            faild: increment(result.faild),
-          });
           break;
         case "sqlMediumChanged":
           break;

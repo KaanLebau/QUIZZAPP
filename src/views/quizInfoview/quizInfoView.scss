@@ -6,11 +6,14 @@
   justify-content: center;
   gap: 20px;
   padding: 10px;
+
+  animation: mounth 1s ease-in 0s 1 normal forwards;
   .quiz {
     border-right: 1px solid #dbd8e3;
     flex: 2;
     padding: 5px;
     display: flex;
+    background: transparent;
     .left {
       flex: 1;
       background: transparent;

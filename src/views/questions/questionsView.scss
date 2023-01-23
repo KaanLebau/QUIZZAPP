@@ -5,7 +5,7 @@
   background: transparent;
   gap: 30px;
   justify-content: center;
-
+  animation: mounth 1s ease-in 0s 1 normal forwards;
   &:hover {
     cursor: pointer;
   }

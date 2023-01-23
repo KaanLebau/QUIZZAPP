@@ -6,7 +6,7 @@ export const InitialUserData = {
   difficultie: ["Easy", "Medium", "Hard"],
   topic: ["linux", "SQL", "Code", "Docker"],
   favorites: [{}, {}, {}, {}, {}],
-  SQL: {
+  sql: {
     easy: {
       correct: 0,
       wrong: 0,
@@ -101,7 +101,7 @@ export const InitialUserData = {
       difficultie: "Hard",
     },
   },
-  Docker: {
+  docker: {
     easy: {
       correct: 0,
       wrong: 0,

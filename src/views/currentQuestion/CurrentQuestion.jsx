@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { Filter } from "@mui/icons-material";
 
 function CurrentQuestion(props) {
-const [selected, setSelected] = useState()
+  const [selected, setSelected] = useState();
 
-  function handleAnswer() {}
+  function handleAnswer(a) {
+    console.log(a.targetr.value);
+    console.log(props.question);
+  }
 
   //console.log(props.question.answers[0].answer);
   return (
@@ -14,7 +17,13 @@ const [selected, setSelected] = useState()
       <div className="question">{props.question.question}</div>
       <div className="altenativ">
         {props.question?.answers.map((a) => (
-          <div className="alt" onClick={handleAnswer}>
+          <div
+            className="alt"
+            value={a.isCorrect}
+            onClick={(e) => {
+              handleAnswer(e);
+            }}
+          >
             {a.answer}
           </div>
         ))}
