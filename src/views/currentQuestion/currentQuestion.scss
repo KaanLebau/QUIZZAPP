@@ -26,6 +26,12 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    min-height: 300px;
+
+    .alt .selected {
+      background-color: #dbd8e3;
+      color: #5c5470;
+    }
     .alt {
       background-color: #5c5470;
       border-radius: 10px;

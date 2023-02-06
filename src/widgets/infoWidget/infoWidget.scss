@@ -1,0 +1,21 @@
+.info {
+  padding: 20px;
+  width: max-content;
+  border-radius: 20px;
+  background-color: #5c5470;
+  text-align: center;
+  label {
+    background: transparent;
+    padding: 5px;
+  }
+  .data {
+    display: flex;
+    background: transparent;
+    p {
+      padding: 5px;
+      font-size: larger;
+      font-weight: bolder;
+      background: transparent;
+    }
+  }
+}

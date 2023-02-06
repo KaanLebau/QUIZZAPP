@@ -1,0 +1,37 @@
+import React, { useEffect } from "react";
+import LoadPage from "../loadPage/LoadPage";
+import Head from "../../components/head/Head";
+import ResultPresenter from "../../presenters/resultPresenter/ResultPresenter";
+import { useState } from "react";
+
+function Result() {
+  const mockRes = {
+    category: "SQL",
+    difficultie: "Medium",
+    correct: 12,
+    wrong: 22,
+    noAnswer: 5,
+    pass: 0,
+    failed: 1,
+  };
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(setLoading, 800, true);
+  }, []);
+
+  return (
+    <div className="dashboard">
+      <Head currentUser={true} />
+      <div className="content">
+        {!loading ? (
+          <LoadPage info={"Calculating result"} />
+        ) : (
+          <ResultPresenter result={mockRes} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Result;

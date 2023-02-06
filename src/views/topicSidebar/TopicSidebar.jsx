@@ -9,7 +9,7 @@ function TopicSidebar(props) {
         id="user"
         title="User"
         onClick={(e) => {
-          console.log(e.target.id);
+          props.setCategory("user");
         }}
       >
         <FaCode className="mini" id="user" />

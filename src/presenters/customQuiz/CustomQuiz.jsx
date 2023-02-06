@@ -1,5 +1,7 @@
 import { useState } from "react";
 import QuizSettings from "../../views/quizSettings/QuizSettings";
+import getQuestions from "../../api/QuizSource";
+import { useNavigate } from "react-router-dom";
 
 function CustomQuiz(props) {
   const [customQuiz, setCustomQuiz] = useState({
@@ -18,10 +20,12 @@ function CustomQuiz(props) {
   const [numberOfQuestion, setNumberOfQuestions] = useState(
     numberOfQuestions[question]
   );
+  const navigate = useNavigate();
 
   function handleQuestions() {
     question !== 3 ? setQuestion(question + 1) : setQuestion(0);
     setNumberOfQuestions(numberOfQuestions[question]);
+    setCustomQuiz({ ...customQuiz, numberOfQuestions: numberOfQuestion });
   }
 
   function handleDificultie() {
@@ -40,9 +44,24 @@ function CustomQuiz(props) {
     setCustomQuiz({ ...customQuiz, category: props.model.topic[theTopic] });
   }
 
-  function handleSearch() {
-    console.log(customQuiz);
+  async function handleSearch() {
+    //const quiz = await getQuestions({ customQuiz });
+    //navigate("./active", { state: { quiz } });
   }
+  function update() {
+    handleDificultie();
+    handleQuestions();
+    handleTopic();
+    setCustomQuiz({
+      category: props.model.topic[theTopic],
+      dificultie: props.model.difficultie[theDificultie],
+      numberOfQuestions: numberOfQuestion,
+    });
+  }
+
+  useState(() => {
+    update();
+  }, []);
 
   return (
     <QuizSettings

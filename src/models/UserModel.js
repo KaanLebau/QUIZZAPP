@@ -1,7 +1,7 @@
 class UserModel {
   constructor(name, displayName) {
-    this.name = name;
-    this.displayName = displayName;
+    this.name = "Kaan"; //TODO remove
+    this.displayName = "LebaU"; //TODO remove
     this.correct = 0;
     this.wrong = 0;
     this.noAnswer = 0;
@@ -11,36 +11,36 @@ class UserModel {
     this.topic = ["linux", "SQL", "Code", "Docker"];
     this.favorites = [
       { category: "SQL", difficultie: "Easy", numberOfQuestions: 10 },
-      {},
-      {},
-      {},
-      {},
+      { category: "", difficultie: "", numberOfQuestions: 0 },
+      { category: "", difficultie: "", numberOfQuestions: 0 },
+      { category: "", difficultie: "", numberOfQuestions: 0 },
+      { category: "", difficultie: "", numberOfQuestions: 0 },
     ];
     this.observers = [];
     this.sql = {
       easy: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        correct: 56,
+        wrong: 12,
+        pass: 20,
+        noAnswer: 10,
+        failed: 1,
         category: "SQL",
         difficultie: "Easy",
       },
       medium: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
+        correct: 12,
+        wrong: 2,
+        pass: 2,
         noAnswer: 0,
-        failed: 0,
+        failed: 12,
         category: "SQL",
         difficultie: "Medium",
       },
       hard: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
+        correct: 8,
+        wrong: 1,
+        pass: 1,
+        noAnswer: 1,
         failed: 0,
         category: "SQL",
         difficultie: "Hard",
@@ -48,57 +48,57 @@ class UserModel {
     };
     this.docker = {
       easy: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        correct: 30,
+        wrong: 5,
+        pass: 3,
+        noAnswer: 5,
+        failed: 1,
         category: "Docker",
         difficultie: "Easy",
       },
       medium: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        correct: 13,
+        wrong: 4,
+        pass: 1,
+        noAnswer: 3,
+        failed: 1,
         category: "Docker",
         difficultie: "Medium",
       },
       hard: {
         correct: 0,
-        wrong: 0,
+        wrong: 6,
         pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        noAnswer: 4,
+        failed: 1,
         category: "Docker",
         difficultie: "Hard",
       },
     };
     this.linux = {
       easy: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        correct: 72,
+        wrong: 6,
+        pass: 7,
+        noAnswer: 2,
+        failed: 1,
         category: "Linux",
         difficultie: "Easy",
       },
       medium: {
-        correct: 0,
+        correct: 10,
         wrong: 0,
         pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        noAnswer: 5,
+        failed: 1,
         category: "Linux",
         difficultie: "Medium",
       },
       hard: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
+        correct: 6,
+        wrong: 2,
+        pass: 1,
+        noAnswer: 1,
         failed: 0,
         category: "Linux",
         difficultie: "Hard",
@@ -106,29 +106,29 @@ class UserModel {
     };
     this.code = {
       easy: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        correct: 30,
+        wrong: 6,
+        pass: 3,
+        noAnswer: 4,
+        failed: 1,
         category: "Code",
         difficultie: "Easy",
       },
       medium: {
-        correct: 0,
-        wrong: 0,
+        correct: 3,
+        wrong: 2,
         pass: 0,
-        noAnswer: 0,
-        failed: 0,
+        noAnswer: 5,
+        failed: 5,
         category: "Code",
         difficultie: "Medium",
       },
       hard: {
-        correct: 0,
-        wrong: 0,
-        pass: 0,
+        correct: 14,
+        wrong: 5,
+        pass: 1,
         noAnswer: 0,
-        failed: 0,
+        failed: 1,
         category: "Code",
         difficultie: "Hard",
       },
@@ -185,7 +185,6 @@ class UserModel {
     this.notifyObservers({ newUserStats: result });
   }
 
-  updateTotalfail;
   updateSqlEasy(result) {
     this.sql.easy.correct += result.correct;
     this.sql.easy.wrong += result.wrong;
@@ -295,6 +294,265 @@ class UserModel {
     this.docker.hard.failed += result.failed;
     this.updateTotalUserState(result);
     this.notifyObservers({ dockerHardChanged: this.docker.hard });
+  }
+
+  categorySummery(topic) {
+    var theTopic = topic.easy.category;
+    var numberOfEasyPass = topic.easy.pass;
+    var numberOfMediumPass = topic.medium.pass;
+    var numberOfHardPass = topic.hard.pass;
+    var numberOfEasy = topic.easy.pass + topic.easy.failed;
+    var numberOfMedium = topic.medium.pass + topic.medium.failed;
+    var numberOfHard = topic.hard.pass + topic.hard.faild;
+    var numberOfPass = topic.easy.pass + topic.medium.pass + topic.hard.pass;
+    var numberOfFaild =
+      topic.easy.failed + topic.medium.failed + topic.hard.failed;
+    var numberOfCorrect =
+      topic.easy.correct + topic.medium.correct + topic.hard.correct;
+    var numberOfWrong =
+      topic.easy.wrong + topic.medium.wrong + topic.hard.wrong;
+    var numberOfNoAnswer =
+      topic.easy.noAnswer + topic.medium.noAnswer + topic.hard.noAnswer;
+    return {
+      topic: theTopic,
+      numberOfEasyPass: numberOfEasyPass,
+      numberOfEasy: numberOfEasy,
+      numberOfMediumPass: numberOfMediumPass,
+      numberOfMedium: numberOfMedium,
+      numberOfHardPass: numberOfHardPass,
+      numberOfHard: numberOfHard,
+      numberOfPass: numberOfPass,
+      numberOfFaild: numberOfFaild,
+      numberOfCorrect: numberOfCorrect,
+      numberOfWrong: numberOfWrong,
+      numberOfNoAnswer: numberOfNoAnswer,
+      resultData: {
+        title: "Result distribution",
+        data: {
+          pass: numberOfPass,
+          failed: numberOfFaild,
+        },
+      },
+      answerData: {
+        title: "Answers distribution",
+        data: {
+          correct: numberOfCorrect,
+          wrong: numberOfWrong,
+          noAnswer: numberOfNoAnswer,
+        },
+      },
+    };
+  }
+
+  userEasy() {
+    return {
+      correct:
+        this.sql.easy.correct +
+        this.linux.easy.correct +
+        this.docker.easy.correct +
+        this.code.easy.correct,
+      wrong:
+        this.sql.easy.wrong +
+        this.linux.easy.wrong +
+        this.docker.easy.wrong +
+        this.code.easy.wrong,
+      pass:
+        this.sql.easy.pass +
+        this.linux.easy.pass +
+        this.docker.easy.pass +
+        this.code.easy.pass,
+      noAnswer:
+        this.sql.easy.noAnswer +
+        this.linux.easy.noAnswer +
+        this.docker.easy.noAnswer +
+        this.code.easy.noAnswer,
+      failed:
+        this.sql.easy.failed +
+        this.linux.easy.failed +
+        this.docker.easy.failed +
+        this.code.easy.failed,
+      category: "Linux",
+      difficultie: "Easy",
+    };
+  }
+  userMedium() {
+    return {
+      correct:
+        this.sql.medium.correct +
+        this.linux.medium.correct +
+        this.docker.medium.correct +
+        this.code.medium.correct,
+      wrong:
+        this.sql.medium.wrong +
+        this.linux.medium.wrong +
+        this.docker.medium.wrong +
+        this.code.medium.wrong,
+      pass:
+        this.sql.medium.pass +
+        this.linux.medium.pass +
+        this.docker.medium.pass +
+        this.code.medium.pass,
+      noAnswer:
+        this.sql.medium.noAnswer +
+        this.linux.medium.noAnswer +
+        this.docker.medium.noAnswer +
+        this.code.medium.noAnswer,
+      failed:
+        this.sql.medium.failed +
+        this.linux.medium.failed +
+        this.docker.medium.failed +
+        this.code.medium.failed,
+      category: "Linux",
+      difficultie: "medium",
+    };
+  }
+  userHard() {
+    return {
+      correct:
+        this.sql.hard.correct +
+        this.linux.hard.correct +
+        this.docker.hard.correct +
+        this.code.hard.correct,
+      wrong:
+        this.sql.hard.wrong +
+        this.linux.hard.wrong +
+        this.docker.hard.wrong +
+        this.code.hard.wrong,
+      pass:
+        this.sql.hard.pass +
+        this.linux.hard.pass +
+        this.docker.hard.pass +
+        this.code.hard.pass,
+      noAnswer:
+        this.sql.hard.noAnswer +
+        this.linux.hard.noAnswer +
+        this.docker.hard.noAnswer +
+        this.code.hard.noAnswer,
+      failed:
+        this.sql.hard.failed +
+        this.linux.hard.failed +
+        this.docker.hard.failed +
+        this.code.hard.failed,
+      category: "Linux",
+      difficultie: "hard",
+    };
+  }
+  userSummary() {
+    const sql = this.categorySummery(this.sql);
+    const code = this.categorySummery(this.code);
+    const docker = this.categorySummery(this.docker);
+    const linux = this.categorySummery(this.linux);
+    return {
+      name: this.name,
+      displayName: this.displayName,
+      numberOfEasyPass:
+        sql.numberOfEasyPass +
+        code.numberOfEasyPass +
+        linux.numberOfEasyPass +
+        docker.numberOfEasyPass,
+
+      numberOfMediumPass:
+        sql.numberOfMediumPass +
+        code.numberOfMediumPass +
+        linux.numberOfMediumPass +
+        docker.numberOfMediumPass,
+
+      numberOfHardPass:
+        sql.numberOfHardPass +
+        code.numberOfHardPass +
+        linux.numberOfHardPass +
+        docker.numberOfHardPass,
+
+      numberOfPass:
+        sql.numberOfPass +
+        code.numberOfPass +
+        linux.numberOfPass +
+        docker.numberOfPass,
+      numberOffaild:
+        sql.numberOffaild +
+        code.numberOffaild +
+        linux.numberOffaild +
+        docker.numberOffaild,
+      numberOfCorrect:
+        sql.numberOfCorrect +
+        code.numberOfCorrect +
+        linux.numberOfCorrect +
+        docker.numberOfCorrect,
+      numberOfWrong:
+        sql.numberOfWrong +
+        code.numberOfWrong +
+        linux.numberOfWrong +
+        docker.numberOfWrong,
+      numberOfNoAnswer:
+        sql.numberOfNoAnswer +
+        code.numberOfNoAnswer +
+        linux.numberOfNoAnswer +
+        docker.numberOfNoAnswer,
+      resultData: {
+        title: "Result distribution",
+        data: {
+          pass:
+            sql.numberOfPass +
+            code.numberOfPass +
+            linux.numberOfPass +
+            docker.numberOfPass,
+          failed:
+            sql.numberOffaild +
+            code.numberOffaild +
+            linux.numberOffaild +
+            docker.numberOffaild,
+        },
+      },
+      answerData: {
+        title: "Answers distribution",
+        data: {
+          correct:
+            sql.numberOfCorrect +
+            code.numberOfCorrect +
+            linux.numberOfCorrect +
+            docker.numberOfCorrect,
+          wrong:
+            sql.numberOfWrong +
+            code.numberOfWrong +
+            linux.numberOfWrong +
+            docker.numberOfWrong,
+          noAnswer:
+            sql.numberOfNoAnswer +
+            code.numberOfNoAnswer +
+            linux.numberOfNoAnswer +
+            docker.numberOfNoAnswer,
+        },
+      },
+      topicDistributionData: {
+        title: "Topic distribution",
+        data: {
+          sql: sql.numberOfPass + sql.numberOfFaild,
+          code: code.numberOfPass + code.numberOfFaild,
+          linux: linux.numberOfPass + linux.numberOfFaild,
+          docker: docker.numberOfPass + docker.numberOfFaild,
+        },
+      },
+      difficultieDistributionData: {
+        title: "Dificultie distribution",
+        data: {
+          easy:
+            sql.numberOfEasy +
+            code.numberOfEasy +
+            linux.numberOfEasy +
+            docker.numberOfEasy,
+          medium:
+            sql.numberOfMedium +
+            code.numberOfMedium +
+            linux.numberOfMedium +
+            docker.numberOfMedium,
+          hard:
+            sql.numberOfHard +
+            code.numberOfHard +
+            linux.numberOfHard +
+            docker.numberOfHard,
+        },
+      },
+    };
   }
 }
 export default UserModel;

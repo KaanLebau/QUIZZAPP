@@ -4,6 +4,7 @@ import QuizCardView from "../../views/quizCardView/QuizCardView";
 function QuizCard(props) {
   const [edit, setEdit] = useState(true);
   const [theCard, setTheCard] = useState(props.card);
+  const [empty, setEmpty] = useState(true);
 
   function handleSaveFavorite() {
     setEdit(true);
@@ -13,10 +14,13 @@ function QuizCard(props) {
     setTheCard({ ...theCard, [input.id]: input.value });
   }
   function handleTakeQuiz() {
-    console.log(theCard);
+    props.selectedCard(theCard);
   }
   function handleRemove() {
     setTheCard({});
+  }
+  function emptyCard() {
+    return theCard === {};
   }
 
   return (

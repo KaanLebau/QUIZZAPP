@@ -10,11 +10,12 @@ import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
 import UserQuiz from "./models/UserQuiz";
 import Test from "./pages/testPage/Test";
+import Result from "./pages/result/Result";
 
 function App() {
   const registred = true;
   const model = new UserModel();
-  const quiz = new UserQuiz();
+  const quiz = new UserQuiz();  
   return (
     <div className="app">
       <div className="content">
@@ -32,6 +33,7 @@ function App() {
                   <Route path="quiz">
                     <Route index element={<GetQuizDataPage model={model} />} />
                     <Route path="active" element={<ActiveQuiz quiz={quiz} />} />
+                    <Route path="result" element={<Result />} />
                   </Route>
                 </Route>
               </Route>

@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "../../components/head/Head";
 import ActiveQuizPresenter from "../../presenters/activeQuizPresenter/ActiveQuizPresenter";
 import "./activeQuiz.scss";
+import { useLocation } from "react-router-dom";
+import LoadPage from "../loadPage/LoadPage";
 
 function ActiveQuiz(props) {
+  const location = useLocation();
   const [focus, setFocus] = useState(false);
+  const [loading, setLoading] = useState(false);
   const mockdata = [
     {
       id: 741,
@@ -311,13 +315,20 @@ function ActiveQuiz(props) {
       difficulty: "Medium",
     },
   ];
+  useEffect(() => {
+    setTimeout(setLoading, 800, true);
+  }, [props.quiz]);
 
   const q = props.quiz.addquestions(mockdata);
   return (
     <div className="activeQuiz">
       <Head currentUser={focus} />
       <div className="content">
-        <ActiveQuizPresenter quiz={q} />
+        {!loading ? (
+          <LoadPage info={"Loading quiz"} />
+        ) : (
+          <ActiveQuizPresenter quiz={q} />
+        )}
       </div>
     </div>
   );

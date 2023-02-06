@@ -11,6 +11,7 @@ function ActiveQuizPresenter(props) {
   const [active, setActive] = useState({});
   const [progress, setPregress] = useState(0);
   const [answerd, setAnswerd] = useState(0);
+
   function handleNext() {
     if (index === props.quiz.length - 1) {
       setIndex(0);
@@ -47,6 +48,7 @@ function ActiveQuizPresenter(props) {
   function handleAnswer() {
     active.answered = true;
   }
+
   useEffect(() => {
     calculateProgress();
     setActive(props.quiz[index]);

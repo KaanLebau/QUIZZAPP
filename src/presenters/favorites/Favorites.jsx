@@ -1,8 +1,12 @@
 import "./favorites.scss";
 
 import QuizCard from "../quizCard/QuizCard";
+import getQuestions from "../../api/QuizSource";
 
 function Favorites(props) {
+  function theQuiz(query) {
+    getQuestions(query);
+  }
   return (
     <div className="favorites">
       <label htmlFor="">Favorites</label>
@@ -13,6 +17,7 @@ function Favorites(props) {
             card={theCard}
             update={(card) => props.model.updateFavorite(index, card)}
             key={index}
+            selectedCard={theQuiz}
           />
         ))}
       </div>
