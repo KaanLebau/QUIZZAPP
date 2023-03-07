@@ -9,19 +9,19 @@ function DiffifultieSummaryView(props) {
       </label>
       <RateWidget
         info={"Succes Rate"}
-        data={
-          (props.data.pass / (props.data.pass + props.failed)).toFixed(2) * 100
-        }
+        data={(
+          (props.data.pass / (props.data.pass + props.data.failed)) *
+          100
+        ).toFixed(0)}
         noData={isNaN(props.data.pass / (props.data.pass + props.data.failed))}
       />
       <RateWidget
         info={"Question Rate"}
-        data={
-          (
-            props.data.correct /
-            (props.data.correct + props.data.wrong + props.data.noAnswer)
-          ).toFixed(2) * 100
-        }
+        data={(
+          (props.data.correct /
+            (props.data.correct + props.data.wrong + props.data.noAnswer)) *
+          100
+        ).toFixed(0)}
         noData={isNaN(
           props.data.correct /
             (props.data.correct + props.data.wrong + props.data.noAnswer)

@@ -3,11 +3,11 @@ import Head from "../../components/head/Head";
 import ActiveQuizPresenter from "../../presenters/activeQuizPresenter/ActiveQuizPresenter";
 import "./activeQuiz.scss";
 import { useLocation } from "react-router-dom";
-import LoadPage from "../loadPage/LoadPage";
+import LoadPage from "../../presenters/loadPagePresenter/LoadPagePresenter";
 
 function ActiveQuiz(props) {
   const location = useLocation();
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(true);
   const [loading, setLoading] = useState(false);
   const mockdata = [
     {

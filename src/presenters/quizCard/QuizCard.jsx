@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import QuizCardView from "../../views/quizCardView/QuizCardView";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 function QuizCard(props) {
   const [edit, setEdit] = useState(true);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import LoadPage from "../loadPage/LoadPage";
+import LoadPage from "../../presenters/loadPagePresenter/LoadPagePresenter";
 import Head from "../../components/head/Head";
 import ResultPresenter from "../../presenters/resultPresenter/ResultPresenter";
 import { useState } from "react";

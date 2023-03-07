@@ -1,6 +1,6 @@
 import "./userCardView.scss";
 import React, { useEffect } from "react";
-import PieChart from "../../components/pieChart/PieChart";
+import PieChartView from "../pieChartView/PieChartView";
 import { useState } from "react";
 import InfoWidget from "../../widgets/infoWidget/InfoWidget";
 
@@ -77,7 +77,10 @@ function UserCardView(props) {
           </span>
         </div>
         <div className="chart">
-          <PieChart chartData={chartData.data} chartTitle={chartData.title} />
+          <PieChartView
+            chartData={chartData.data}
+            chartTitle={chartData.title}
+          />
         </div>
         <div className="theTab"></div>
       </div>

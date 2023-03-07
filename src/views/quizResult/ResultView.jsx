@@ -5,7 +5,7 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
-import PieChart from "../../components/pieChart/PieChart";
+import PieChart from "../pieChartView/PieChartView";
 
 function ResultView(props) {
   function topicIcon(topic) {
@@ -58,7 +58,7 @@ function ResultView(props) {
         )}
       </div>
       <div className="middle">
-        <PieChart chartData={props.chartData} chartTitle={props.chartTitle}/>
+        <PieChart chartData={props.chartData} chartTitle={props.chartTitle} />
       </div>
       <div className="bottom">
         <button title="To Dashboard" onClick={props.submit}>

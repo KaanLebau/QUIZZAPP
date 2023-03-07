@@ -1,5 +1,5 @@
 import React from "react";
-import Spinner from "../../components/spiner/Spinner";
+import Spinner from "../../views/loadpageView/LoadpageView";
 import { ImSpinner10 } from "react-icons/im";
 
 function LoadPage(props) {

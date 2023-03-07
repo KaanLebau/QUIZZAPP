@@ -1,31 +1,13 @@
 .topicCard {
+  border-color: 4px solid lightcyan;
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: 20px;
   animation: mounth 1s ease-in 0s 1 normal forwards;
-  .top {
-    width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
-    background-color: #352f44;
-    padding: 15px;
-    border-radius: 20px;
-
-    .diff {
-      background: transparent;
-    }
-    -webkit-box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
-    box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
-  }
-  .bottom {
+  .cardData {
     border: 3px solid blueviolet;
-    display: flex;
-    justify-content: space-around;
-
+    height: 500px;
     background-color: #352f44;
     padding: 10px;
     border-radius: 20px;
@@ -33,6 +15,8 @@
     -webkit-box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
     box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
     .charts {
+      background: transparent;
+      width: 100%;
       display: flex;
       padding: 10px;
       align-items: center;
@@ -40,11 +24,13 @@
       gap: 20px;
 
       .chart {
+        border-radius: 20px;
         padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid red;
+        border: 2px solid red;
+        width: 50%;
       }
     }
   }

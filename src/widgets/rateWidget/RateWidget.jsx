@@ -12,7 +12,7 @@ function RateWidget(props) {
       <div className="up">{props.info}</div>
       {props.data < 50 ? (
         <div className="down">
-          <div className="left">{props.data}%</div>
+          <div className="left">{props.data} %</div>
           <div className="right">
             <BsGraphDown className="icon" />
           </div>

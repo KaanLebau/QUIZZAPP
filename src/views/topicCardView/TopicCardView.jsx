@@ -1,25 +1,22 @@
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
-import PieChart from "../../components/pieChart/PieChart";
-import DataWidget from "../../widgets/dataWidget/DataWidget";
-import RateWidget from "../../widgets/rateWidget/RateWidget";
-import DiffifultieSummaryView from "../difficultieSummaryView/DiffifultieSummaryView";
+import PieChartView from "../pieChartView/PieChartView";
 
 import "./topicCardView.scss";
 
 function TopicCardView(props) {
   return (
     <div className="topicCard">
-      <div className="bottom">
+      <div className="cardData">
         <h1>{props.data.topic}</h1>
         <div className="charts">
           <div className="chart">
-            <PieChart
+            <PieChartView
               chartData={props.data.resultData.data}
               chartTitle={props.data.resultData.title}
             />
           </div>
           <div className="chart">
-            <PieChart
+            <PieChartView
               chartData={props.data.answerData.data}
               chartTitle={props.data.answerData.title}
             />

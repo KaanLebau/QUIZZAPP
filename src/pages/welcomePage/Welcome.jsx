@@ -14,7 +14,7 @@ function Welcome() {
         using an alias, email and password to be able take different quizzes
         about different programming languages. Results from quizzes will saved
         to firebase and shown at a specific statistics page. Questions for each
-        quiz are fetched from the API QuizAPI.
+        quiz are fetched from the API QuizAPI. //--Continue to App-->
       </p>
     </div>
   );

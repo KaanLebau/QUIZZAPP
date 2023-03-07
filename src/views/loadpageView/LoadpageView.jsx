@@ -1,5 +1,5 @@
 import React from "react";
-import "./spinner.scss";
+import "./loadpageView.scss";
 
 function Spinner(props) {
   return (
