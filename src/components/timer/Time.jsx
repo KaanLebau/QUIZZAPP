@@ -27,7 +27,7 @@ function Time(props) {
         }
       }, 1000);
     }
-  }, [sec]);
+  }, [sec, props.start]);
   return (
     <div className="timer">
       <h2>{tentMin}</h2>

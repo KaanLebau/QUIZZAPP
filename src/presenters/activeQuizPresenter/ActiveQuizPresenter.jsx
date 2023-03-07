@@ -13,6 +13,7 @@ function ActiveQuizPresenter(props) {
   const [answerd, setAnswerd] = useState(0);
 
   function handleNext() {
+    console.log("next");
     if (index === props.quiz.length - 1) {
       setIndex(0);
     } else {
