@@ -12,9 +12,8 @@ import UserQuiz from "./models/UserQuiz";
 import DemoPage from "./pages/demoPage/DemoPage";
 
 import Result from "./pages/result/Result";
-
 function App() {
-  const registred = true;
+  const registred = false;
   const model = new UserModel();
   const quiz = new UserQuiz();
   return (
