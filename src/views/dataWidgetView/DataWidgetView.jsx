@@ -1,7 +1,7 @@
 import "./dataWidget.scss";
 import { MdHideSource } from "react-icons/md";
 
-function DataWidget(props) {
+function DataWidgetView(props) {
   return (
     <div className={props.noData ? "noData" : "rateWidget"}>
       <div className="noDataIcon">
@@ -14,4 +14,4 @@ function DataWidget(props) {
   );
 }
 
-export default DataWidget;
+export default DataWidgetView;

@@ -2,7 +2,7 @@ import "./userCardView.scss";
 import React, { useEffect } from "react";
 import PieChartView from "../pieChartView/PieChartView";
 import { useState } from "react";
-import InfoWidget from "../../widgets/infoWidget/InfoWidget";
+import InfoWidget from "../infoWidgetView/InfoWidgetView";
 
 function UserCardView(props) {
   const [active, setActive] = useState(0);

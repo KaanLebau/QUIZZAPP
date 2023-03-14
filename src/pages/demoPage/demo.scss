@@ -1,0 +1,57 @@
+.Demo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+  gap: 20px;
+  .info {
+    border: 1px solid #dbd8e3;
+    border-radius: 20px;
+    color: #dbd8e3;
+    width: 70%;
+    gap: 30px;
+    .demoTitle {
+      background-color: transparent;
+    }
+    p {
+      padding: 30px;
+      background-color: transparent;
+    }
+  }
+
+  .content {
+    border: 1px solid #dbd8e3;
+    border-radius: 20px;
+    color: #dbd8e3;
+    width: 30%;
+    gap: 30px;
+    padding: 20px;
+    background-color: #352f44;
+
+    .pages {
+      background-color: transparent;
+      margin: 5px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .pageName {
+        margin-left: 20%;
+      }
+      .pageLink {
+        width: 120px;
+        border-radius: 20px;
+        margin-right: 20%;
+        color: #dbd8e3;
+        background-color: #5c5470;
+
+        &:hover {
+          color: #5c5470;
+          background-color: #dbd8e3;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,9 @@
-import Login from "../../components/login/Login";
+import LoginPresenter from "../../presenters/loginPresenter/LoginPresenter";
 
 function LoginPage() {
   return (
     <div>
-      <Login />
+      <LoginPresenter />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "./rateWidget.scss";
 import { BsGraphDown, BsGraphUp } from "react-icons/bs";
 import { MdHideSource } from "react-icons/md";
 
-function RateWidget(props) {
+function RateWidgetView(props) {
   return (
     <div className={props.noData ? "noData" : "rateWidget"}>
       <div className="noDataIcon">
@@ -29,4 +29,4 @@ function RateWidget(props) {
   );
 }
 
-export default RateWidget;
+export default RateWidgetView;

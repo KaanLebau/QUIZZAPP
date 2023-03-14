@@ -9,13 +9,14 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
 import UserQuiz from "./models/UserQuiz";
-import Test from "./pages/testPage/Test";
+import DemoPage from "./pages/demoPage/DemoPage";
+
 import Result from "./pages/result/Result";
 
 function App() {
   const registred = true;
   const model = new UserModel();
-  const quiz = new UserQuiz();  
+  const quiz = new UserQuiz();
   return (
     <div className="app">
       <div className="content">
@@ -24,7 +25,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<Welcome model={model} />} />
+                <Route index element={<DemoPage />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="registration" element={<Registration />} />
                 <Route path="/user">

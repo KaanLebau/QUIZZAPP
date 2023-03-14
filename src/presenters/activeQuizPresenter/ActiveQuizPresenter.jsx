@@ -1,7 +1,7 @@
 import "./activeQuizPresenter.scss";
 import React, { useEffect, useState } from "react";
-import QuestionsView from "../../views/questions/QuestionsView";
-import QuizInfoView from "../../views/quizInfoview/QuizInfoView";
+import QuestionsView from "../../views/questionsView/QuestionsView";
+import QuizInfoView from "../../views/quizInfoView/QuizInfoView";
 import StartQuiz from "../../views/startQuiz/StartQuiz";
 import CurrentQuestion from "../../views/currentQuestion/CurrentQuestion";
 

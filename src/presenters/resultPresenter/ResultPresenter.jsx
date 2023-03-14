@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ResultView from "../../views/quizResult/ResultView";
+import ResultView from "../../views/resultView/ResultView";
 
 function ResultPresenter(props) {
   const answerDistribution = {

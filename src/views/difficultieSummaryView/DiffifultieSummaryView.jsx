@@ -1,5 +1,5 @@
-import RateWidget from "../../widgets/rateWidget/RateWidget";
-import DataWidget from "../../widgets/dataWidget/DataWidget";
+import RateWidget from "../rateWidgetView/RateWidgetView";
+import DataWidget from "../dataWidgetView/DataWidgetView";
 import "./difficultieSummaryView.scss";
 function DiffifultieSummaryView(props) {
   return (

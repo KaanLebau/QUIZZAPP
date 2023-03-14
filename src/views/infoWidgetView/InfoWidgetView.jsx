@@ -1,5 +1,5 @@
 import "./infoWidget.scss";
-function InfoWidget(props) {
+function InfoWidgetView(props) {
   return (
     <div className="info">
       <label htmlFor="">{props.title}</label>
@@ -10,4 +10,4 @@ function InfoWidget(props) {
   );
 }
 
-export default InfoWidget;
+export default InfoWidgetView;

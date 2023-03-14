@@ -1,6 +1,6 @@
 import "./quizInfoView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
-import Time from "../../components/timer/Time";
+import Time from "../timerView/TimeView";
 import { LinearProgress } from "@mui/material";
 function QuizInfoView(props) {
   function topicIcon(topic) {
