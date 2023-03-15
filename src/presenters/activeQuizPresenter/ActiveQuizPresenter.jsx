@@ -1,7 +1,6 @@
 import "./activeQuizPresenter.scss";
 import React, { useEffect, useState } from "react";
 import QuestionsView from "../../views/questionsView/QuestionsView";
-import QuizInfoView from "../../views/quizInfoView/QuizInfoView";
 import StartQuiz from "../../views/startQuiz/StartQuiz";
 import CurrentQuestion from "../../views/currentQuestion/CurrentQuestion";
 
@@ -13,28 +12,33 @@ function ActiveQuizPresenter(props) {
   const [answerd, setAnswerd] = useState(0);
 
   function handleNext() {
-    console.log("next");
     if (index === props.quiz.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
     }
+    setActive(props.quiz[index])
   }
+
   function handlePrev() {
     if (index === 0) {
       setIndex(props.quiz.length - 1);
     } else {
       setIndex(index - 1);
     }
+    setActive(props.quiz[index])
   }
+
   function newQuestion(e) {
-    setIndex(e.target.id);
+    setIndex(Number.parseInt(e.target.id));
     setActive(props.quiz[index]);
   }
+
   function beginQuiz() {
     setStart(true);
     setActive(props.quiz[index]);
   }
+
   function calculateProgress() {
     function count(q) {
       return q.answered ? 1 : 0;
@@ -49,33 +53,23 @@ function ActiveQuizPresenter(props) {
   function handleAnswer() {
     active.answered = true;
   }
-
+  function activateAnswer(e) {
+    console.log(e)
+    console.log("Answer '" + e.target.textContent + "' was chosen")
+  }
   useEffect(() => {
     calculateProgress();
     setActive(props.quiz[index]);
-  }, [index, answerd]);
+  }, [index]);
 
   return (
     <div className="activePresenter">
-      <div className="top">
-        <label htmlFor="" className="containerLabel">
-          Quiz info
-        </label>
-        <QuizInfoView
-          quiz={props.quiz}
-          current={active}
-          takeQuiz={start}
-          progress={progress}
-        />
-      </div>
-      <div className="middle">
-        <label htmlFor="" className="containerLabel">
-          Question
-        </label>
+      <div className="activeQuestion">
         {start ? (
           <CurrentQuestion
             question={active}
             answered={handleAnswer}
+            chooseAnswer={activateAnswer}
             next={handleNext}
             prev={handlePrev}
           />
@@ -83,10 +77,7 @@ function ActiveQuizPresenter(props) {
           <StartQuiz begin={beginQuiz} quizData={props.quiz} />
         )}
       </div>
-      <div className="bottom">
-        <label className="containerLabel">Questions</label>
-        <QuestionsView questions={props.quiz} questionSelection={newQuestion} />
-      </div>
+      <QuestionsView questions={props.quiz} questionSelection={newQuestion} />
     </div>
   );
 }

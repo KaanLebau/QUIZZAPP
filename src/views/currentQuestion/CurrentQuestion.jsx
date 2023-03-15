@@ -3,15 +3,13 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 function CurrentQuestion(props) {
-  const [question, setQuestion] = useState(props.question);
-
   return (
     <div className="theQuestion">
-      <div className="questionInfo">{question.id}</div>
-      <div className="question">{question.question}</div>
+      <div className="questionInfo">{props.question.category}</div>
+      <div className="question">{props.question.question}</div>
       <div className="altenativ">
-        {question?.answers.map((a, key) => (
-          <div className="alt" id={key}>
+        {props.question.answers.map((a, key) => (
+          <div className="alt" id={key} onClick={props.chooseAnswer}>
             {a.answer}
           </div>
         ))}

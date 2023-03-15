@@ -1,4 +1,13 @@
 .questions {
+  padding: 5px;
+  background-color: #352f44;
+  border-radius: 20px;
+  width: 90%;
+  flex: 3;
+  background: transparent;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  position: relative;
   display: flex;
   height: 70%;
   padding: 20px;
@@ -6,10 +15,13 @@
   gap: 30px;
   justify-content: center;
   animation: mounth 1s ease-in 0s 1 normal forwards;
-  &:hover {
-    cursor: pointer;
+ 
+  label {
+    background: transparent;
+    position: absolute;
+    top: 3px;
+    left: 15px;
   }
-
   .question {
     border-radius: 20px;
     background-color: #5c5470;
@@ -18,20 +30,28 @@
     justify-content: center;
     gap: 5px;
     width: 80px;
+    &:hover {
+      cursor: pointer;
+    }
     .ansIcon {
       background: transparent;
       justify-self: flex-end;
-      align-self: flex-end;
-      font-size: x-large;
+      align-self: center;
+      font-size: 50px;
       margin: 5px;
+      pointer-events: none;
     }
-
+    .submitButton {
+      background-color: green;
+      display: block;
+    }
     .questionIcon {
       justify-self: flex-end;
       align-self: flex-end;
       font-size: x-large;
       background: transparent;
       margin-right: 5px;
+      pointer-events: none;
     }
     .row {
       background: transparent;
