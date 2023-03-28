@@ -19,7 +19,7 @@
     background: transparent;
     font-weight: bold;
   }
-  .altenativ {
+  .alternatives {
     flex: 3;
     background: transparent;
     display: flex;
@@ -28,9 +28,13 @@
     justify-content: center;
     min-height: 300px;
 
-    .alt .selected {
-      background-color: #dbd8e3;
-      color: #5c5470;
+    .selected {
+      background-color: green;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
     }
     .alt {
       background-color: #5c5470;
@@ -45,8 +49,6 @@
         background-color: #dbd8e3;
         color: #5c5470;
       }
-    }
-    .alt .selected {
     }
   }
   .buttons {
@@ -69,6 +71,7 @@
       &:hover {
         color: #352f44;
         background-color: #dbd8e3;
+        transition: 0.5s;
       }
     }
   }

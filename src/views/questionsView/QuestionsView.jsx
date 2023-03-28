@@ -11,7 +11,7 @@ function QuestionsView(props) {
       {props.questions.map((question, index) => {
         return (
           <div
-            className="question"
+            className={props.activeIndex === index && props.quizActive? "activeQuestion" : "question"}
             id={index}
             key={index}
             onClick={selection}
