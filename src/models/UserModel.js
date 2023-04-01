@@ -303,7 +303,7 @@ class UserModel {
     var numberOfHardPass = topic.hard.pass;
     var numberOfEasy = topic.easy.pass + topic.easy.failed;
     var numberOfMedium = topic.medium.pass + topic.medium.failed;
-    var numberOfHard = topic.hard.pass + topic.hard.faild;
+    var numberOfHard = topic.hard.pass + topic.hard.failed;
     var numberOfPass = topic.easy.pass + topic.medium.pass + topic.hard.pass;
     var numberOfFaild =
       topic.easy.failed + topic.medium.failed + topic.hard.failed;
@@ -314,33 +314,61 @@ class UserModel {
     var numberOfNoAnswer =
       topic.easy.noAnswer + topic.medium.noAnswer + topic.hard.noAnswer;
     return {
-      topic: theTopic,
-      numberOfEasyPass: numberOfEasyPass,
-      numberOfEasy: numberOfEasy,
-      numberOfMediumPass: numberOfMediumPass,
-      numberOfMedium: numberOfMedium,
-      numberOfHardPass: numberOfHardPass,
-      numberOfHard: numberOfHard,
-      numberOfPass: numberOfPass,
-      numberOfFaild: numberOfFaild,
-      numberOfCorrect: numberOfCorrect,
-      numberOfWrong: numberOfWrong,
-      numberOfNoAnswer: numberOfNoAnswer,
-      resultData: {
-        title: "Result distribution",
-        data: {
-          pass: numberOfPass,
-          failed: numberOfFaild,
-        },
+      basicData: {
+        topic: theTopic,
+        numberOfEasyPass: numberOfEasyPass,
+        numberOfEasy: numberOfEasy,
+        numberOfMediumPass: numberOfMediumPass,
+        numberOfMedium: numberOfMedium,
+        numberOfHardPass: numberOfHardPass,
+        numberOfHard: numberOfHard,
+        numberOfPass: numberOfPass,
+        numberOfFaild: numberOfFaild,
+        numberOfCorrect: numberOfCorrect,
+        numberOfWrong: numberOfWrong,
+        numberOfNoAnswer: numberOfNoAnswer,
       },
-      answerData: {
-        title: "Answers distribution",
-        data: {
-          correct: numberOfCorrect,
-          wrong: numberOfWrong,
-          noAnswer: numberOfNoAnswer,
+      chartData: [
+        //resultData:
+        {
+          chartType: "pie",
+          title: "Result distribution",
+          data: {
+            pass: numberOfPass,
+            failed: numberOfFaild,
+          },
         },
-      },
+        //resultByDifficultieDistribution:
+        {
+          chartType: "bar",
+          title: "Dificultie result distribution",
+          data: {
+            easy: [numberOfEasy - numberOfEasyPass, numberOfEasyPass],
+            medium: [numberOfMedium - numberOfMediumPass, numberOfMediumPass],
+            hard: [numberOfHard - numberOfHardPass, numberOfHardPass],
+          },
+        },
+        //answerData:
+        {
+          chartType: "pie",
+          title: "Answers distribution",
+          data: {
+            correct: numberOfCorrect,
+            wrong: numberOfWrong,
+            noAnswer: numberOfNoAnswer,
+          },
+        },
+        //difficultieDistributionData:
+        {
+          chartType: "pie",
+          title: "Dificultie distribution",
+          data: {
+            easy: numberOfEasy,
+            medium: numberOfMedium,
+            hard: numberOfHard,
+          },
+        },
+      ],
     };
   }
 
@@ -429,130 +457,144 @@ class UserModel {
         this.docker.hard.noAnswer +
         this.code.hard.noAnswer,
       failed:
-        this.sql.hard.failed +
-        this.linux.hard.failed +
-        this.docker.hard.failed +
-        this.code.hard.failed,
+        this.sql.hard.Failed +
+        this.linux.hard.Failed +
+        this.docker.hard.Failed +
+        this.code.hard.Failed,
       category: "Linux",
       difficultie: "hard",
     };
   }
   userSummary() {
-    const sql = this.categorySummery(this.sql);
-    const code = this.categorySummery(this.code);
-    const docker = this.categorySummery(this.docker);
-    const linux = this.categorySummery(this.linux);
+    var sql = this.categorySummery(this.sql);
+    var code = this.categorySummery(this.code);
+    var docker = this.categorySummery(this.docker);
+    var linux = this.categorySummery(this.linux);
     return {
-      name: this.name,
-      displayName: this.displayName,
-      numberOfEasyPass:
-        sql.numberOfEasyPass +
-        code.numberOfEasyPass +
-        linux.numberOfEasyPass +
-        docker.numberOfEasyPass,
+      basicData: {
+        name: this.name,
+        displayName: this.displayName,
+        numberOfEasyPass:
+          sql.numberOfEasyPass +
+          code.numberOfEasyPass +
+          linux.numberOfEasyPass +
+          docker.numberOfEasyPass,
 
-      numberOfMediumPass:
-        sql.numberOfMediumPass +
-        code.numberOfMediumPass +
-        linux.numberOfMediumPass +
-        docker.numberOfMediumPass,
+        numberOfMediumPass:
+          sql.numberOfMediumPass +
+          code.numberOfMediumPass +
+          linux.numberOfMediumPass +
+          docker.numberOfMediumPass,
 
-      numberOfHardPass:
-        sql.numberOfHardPass +
-        code.numberOfHardPass +
-        linux.numberOfHardPass +
-        docker.numberOfHardPass,
+        numberOfHardPass:
+          sql.numberOfHardPass +
+          code.numberOfHardPass +
+          linux.numberOfHardPass +
+          docker.numberOfHardPass,
 
-      numberOfPass:
-        sql.numberOfPass +
-        code.numberOfPass +
-        linux.numberOfPass +
-        docker.numberOfPass,
-      numberOffaild:
-        sql.numberOffaild +
-        code.numberOffaild +
-        linux.numberOffaild +
-        docker.numberOffaild,
-      numberOfCorrect:
-        sql.numberOfCorrect +
-        code.numberOfCorrect +
-        linux.numberOfCorrect +
-        docker.numberOfCorrect,
-      numberOfWrong:
-        sql.numberOfWrong +
-        code.numberOfWrong +
-        linux.numberOfWrong +
-        docker.numberOfWrong,
-      numberOfNoAnswer:
-        sql.numberOfNoAnswer +
-        code.numberOfNoAnswer +
-        linux.numberOfNoAnswer +
-        docker.numberOfNoAnswer,
-      resultData: {
-        title: "Result distribution",
-        data: {
-          pass:
-            sql.numberOfPass +
-            code.numberOfPass +
-            linux.numberOfPass +
-            docker.numberOfPass,
-          failed:
-            sql.numberOffaild +
-            code.numberOffaild +
-            linux.numberOffaild +
-            docker.numberOffaild,
-        },
+        numberOfPass:
+          sql.numberOfPass +
+          code.numberOfPass +
+          linux.numberOfPass +
+          docker.numberOfPass,
+        numberOfFaild:
+          sql.numberOfFaild +
+          code.numberOfFaild +
+          linux.numberOfFaild +
+          docker.numberOfFaild,
+        numberOfCorrect:
+          sql.numberOfCorrect +
+          code.numberOfCorrect +
+          linux.numberOfCorrect +
+          docker.numberOfCorrect,
+        numberOfWrong:
+          sql.numberOfWrong +
+          code.numberOfWrong +
+          linux.numberOfWrong +
+          docker.numberOfWrong,
+        numberOfNoAnswer:
+          sql.numberOfNoAnswer +
+          code.numberOfNoAnswer +
+          linux.numberOfNoAnswer +
+          docker.numberOfNoAnswer,
       },
-      answerData: {
-        title: "Answers distribution",
-        data: {
-          correct:
-            sql.numberOfCorrect +
-            code.numberOfCorrect +
-            linux.numberOfCorrect +
-            docker.numberOfCorrect,
-          wrong:
-            sql.numberOfWrong +
-            code.numberOfWrong +
-            linux.numberOfWrong +
-            docker.numberOfWrong,
-          noAnswer:
-            sql.numberOfNoAnswer +
-            code.numberOfNoAnswer +
-            linux.numberOfNoAnswer +
-            docker.numberOfNoAnswer,
+      chartData: [
+        //resultData:
+        {
+          chartType: "pie",
+          title: "Result distribution",
+          data: {
+            pass:
+              sql.numberOfPass +
+              code.numberOfPass +
+              linux.numberOfPass +
+              docker.numberOfPass,
+            failed:
+              sql.numberOffaild +
+              code.numberOffaild +
+              linux.numberOffaild +
+              docker.numberOffaild,
+          },
         },
-      },
-      topicDistributionData: {
-        title: "Topic distribution",
-        data: {
-          sql: sql.numberOfPass + sql.numberOfFaild,
-          code: code.numberOfPass + code.numberOfFaild,
-          linux: linux.numberOfPass + linux.numberOfFaild,
-          docker: docker.numberOfPass + docker.numberOfFaild,
+        //resultByDifficultieDistribution:
+        {
+          chartType: "pie",
+          title: "Answers distribution",
+          data: {
+            correct:
+              sql.numberOfCorrect +
+              code.numberOfCorrect +
+              linux.numberOfCorrect +
+              docker.numberOfCorrect,
+            wrong:
+              sql.numberOfWrong +
+              code.numberOfWrong +
+              linux.numberOfWrong +
+              docker.numberOfWrong,
+            noAnswer:
+              sql.numberOfNoAnswer +
+              code.numberOfNoAnswer +
+              linux.numberOfNoAnswer +
+              docker.numberOfNoAnswer,
+          },
         },
-      },
-      difficultieDistributionData: {
-        title: "Dificultie distribution",
-        data: {
-          easy:
-            sql.numberOfEasy +
-            code.numberOfEasy +
-            linux.numberOfEasy +
-            docker.numberOfEasy,
-          medium:
-            sql.numberOfMedium +
-            code.numberOfMedium +
-            linux.numberOfMedium +
-            docker.numberOfMedium,
-          hard:
-            sql.numberOfHard +
-            code.numberOfHard +
-            linux.numberOfHard +
-            docker.numberOfHard,
+
+        //answerData:
+        {
+          chartType: "pie",
+          title: "Topic distribution",
+          data: {
+            sql: sql.numberOfPass + sql.numberOfFaild,
+            code: code.numberOfPass + code.numberOfFaild,
+            linux: linux.numberOfPass + linux.numberOfFaild,
+            docker: docker.numberOfPass + docker.numberOfFaild,
+          },
         },
-      },
+        //difficultieDistributionData:
+        {
+          chartType: "pie",
+          title: "Dificultie distribution",
+          data: {
+            easy:
+              sql.numberOfEasy +
+              code.numberOfEasy +
+              linux.numberOfEasy +
+              docker.numberOfEasy,
+            medium:
+              sql.numberOfMedium +
+              code.numberOfMedium +
+              linux.numberOfMedium +
+              docker.numberOfMedium,
+            hard:
+              sql.numberOfHard +
+              code.numberOfHard +
+              linux.numberOfHard +
+              docker.numberOfHard,
+          },
+        },
+      ],
     };
   }
 }
 export default UserModel;
+

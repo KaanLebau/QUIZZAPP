@@ -45,6 +45,7 @@ function CustomQuiz(props) {
   }
 
   async function handleSearch() {
+    console.log(customQuiz);
     //const quiz = await getQuestions({ customQuiz });
     //navigate("./active", { state: { quiz } });
   }

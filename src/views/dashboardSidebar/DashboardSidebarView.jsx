@@ -1,4 +1,4 @@
-import "./topicSidebar.scss";
+import "./dashboardSidebarView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 
 function TopicSidebar(props) {

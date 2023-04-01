@@ -1,9 +1,8 @@
 import "./dashboard.scss";
 import Head from "../../components/head/Head";
-import TopicCardPresenter from "../../presenters/topicCardPresenter/TopicCardPresenter";
 import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
-import { mockUser } from "../../models/MockUserData";
 import { useState, useEffect } from "react";
+import DashboardPresenter from "../../presenters/dashboardPresenter/DashboardPresenter";
 
 function Dashboard(props) {
   const [loading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ function Dashboard(props) {
         {!loading ? (
           <LoadPagePresenter info={"Loading user"} />
         ) : (
-          <TopicCardPresenter model={props.model} />
+          <DashboardPresenter model={props.model} />
         )}
       </div>
     </div>
