@@ -10,7 +10,8 @@ import TabPanelPresenter from "../tabPanelPresenter/TabPanelPresenter";
 function DashboardPresenter(props) {
   var user = props.model.userSummary();
   const [selectedData, setSelectedData] = useState("User");
-  const [theTopic, setTheTopic] = useState(user);
+  const [theTopic, setTheTopic] = useState(props.model.userSummary());
+  console.log(theTopic);
 
   function handleshow(input) {
     setSelectedData(input);

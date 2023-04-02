@@ -39,9 +39,9 @@ class UserModel {
       hard: {
         correct: 8,
         wrong: 1,
-        pass: 1,
+        pass: 2,
         noAnswer: 1,
-        failed: 0,
+        failed: 1,
         category: "SQL",
         difficultie: "Hard",
       },
@@ -341,11 +341,23 @@ class UserModel {
         //resultByDifficultieDistribution:
         {
           chartType: "bar",
-          title: "Dificultie result distribution",
+          title: "Dificultie result distribution V1",
           data: {
-            easy: [numberOfEasy - numberOfEasyPass, numberOfEasyPass],
-            medium: [numberOfMedium - numberOfMediumPass, numberOfMediumPass],
-            hard: [numberOfHard - numberOfHardPass, numberOfHardPass],
+            easy: [numberOfEasyPass, numberOfEasy - numberOfEasyPass],
+            medium: [numberOfMediumPass, numberOfMedium - numberOfMediumPass],
+            hard: [numberOfHardPass, numberOfHard - numberOfHardPass],
+          },
+        },
+        {
+          chartType: "bar",
+          title: "Dificultie result distribution V2",
+          data: {
+            pass: [numberOfEasyPass, numberOfMediumPass, numberOfHardPass],
+            failed: [
+              numberOfEasy - numberOfEasyPass,
+              numberOfMedium - numberOfMediumPass,
+              numberOfHard - numberOfHardPass,
+            ],
           },
         },
         //difficultieDistributionData:
@@ -475,48 +487,48 @@ class UserModel {
         name: this.name,
         displayName: this.displayName,
         numberOfEasyPass:
-          sql.numberOfEasyPass +
-          code.numberOfEasyPass +
-          linux.numberOfEasyPass +
-          docker.numberOfEasyPass,
+          sql.basicData.numberOfEasyPass +
+          code.basicData.numberOfEasyPass +
+          linux.basicData.numberOfEasyPass +
+          docker.basicData.numberOfEasyPass,
 
         numberOfMediumPass:
-          sql.numberOfMediumPass +
-          code.numberOfMediumPass +
-          linux.numberOfMediumPass +
-          docker.numberOfMediumPass,
+          sql.basicData.numberOfMediumPass +
+          code.basicData.numberOfMediumPass +
+          linux.basicData.numberOfMediumPass +
+          docker.basicData.numberOfMediumPass,
 
         numberOfHardPass:
-          sql.numberOfHardPass +
-          code.numberOfHardPass +
-          linux.numberOfHardPass +
-          docker.numberOfHardPass,
+          sql.basicData.numberOfHardPass +
+          code.basicData.numberOfHardPass +
+          linux.basicData.numberOfHardPass +
+          docker.basicData.numberOfHardPass,
 
         numberOfPass:
-          sql.numberOfPass +
-          code.numberOfPass +
-          linux.numberOfPass +
-          docker.numberOfPass,
+          sql.basicData.numberOfPass +
+          code.basicData.numberOfPass +
+          linux.basicData.numberOfPass +
+          docker.basicData.numberOfPass,
         numberOfFaild:
-          sql.numberOfFaild +
-          code.numberOfFaild +
-          linux.numberOfFaild +
-          docker.numberOfFaild,
+          sql.basicData.numberOfFaild +
+          code.basicData.numberOfFaild +
+          linux.basicData.numberOfFaild +
+          docker.basicData.numberOfFaild,
         numberOfCorrect:
-          sql.numberOfCorrect +
-          code.numberOfCorrect +
-          linux.numberOfCorrect +
-          docker.numberOfCorrect,
+          sql.basicData.numberOfCorrect +
+          code.basicData.numberOfCorrect +
+          linux.basicData.numberOfCorrect +
+          docker.basicData.numberOfCorrect,
         numberOfWrong:
-          sql.numberOfWrong +
-          code.numberOfWrong +
-          linux.numberOfWrong +
-          docker.numberOfWrong,
+          sql.basicData.numberOfWrong +
+          code.basicData.numberOfWrong +
+          linux.basicData.numberOfWrong +
+          docker.basicData.numberOfWrong,
         numberOfNoAnswer:
-          sql.numberOfNoAnswer +
-          code.numberOfNoAnswer +
-          linux.numberOfNoAnswer +
-          docker.numberOfNoAnswer,
+          sql.basicData.numberOfNoAnswer +
+          code.basicData.numberOfNoAnswer +
+          linux.basicData.numberOfNoAnswer +
+          docker.basicData.numberOfNoAnswer,
       },
       chartData: [
         //resultdistributionData:
@@ -525,15 +537,15 @@ class UserModel {
           title: "Result distribution",
           data: {
             pass:
-              sql.numberOfPass +
-              code.numberOfPass +
-              linux.numberOfPass +
-              docker.numberOfPass,
+              sql.basicData.numberOfPass +
+              code.basicData.numberOfPass +
+              linux.basicData.numberOfPass +
+              docker.basicData.numberOfPass,
             failed:
-              sql.numberOffaild +
-              code.numberOffaild +
-              linux.numberOffaild +
-              docker.numberOffaild,
+              sql.basicData.numberOfFaild +
+              code.basicData.numberOfFaild +
+              linux.basicData.numberOfFaild +
+              docker.basicData.numberOfFaild,
           },
         },
         //topicdistributionData:
@@ -541,10 +553,11 @@ class UserModel {
           chartType: "pie",
           title: "Topic distribution",
           data: {
-            sql: sql.numberOfPass + sql.numberOfFaild,
-            code: code.numberOfPass + code.numberOfFaild,
-            linux: linux.numberOfPass + linux.numberOfFaild,
-            docker: docker.numberOfPass + docker.numberOfFaild,
+            sql: sql.basicData.numberOfPass + sql.basicData.numberOfFaild,
+            code: code.basicData.numberOfPass + code.basicData.numberOfFaild,
+            linux: linux.basicData.numberOfPass + linux.basicData.numberOfFaild,
+            docker:
+              docker.basicData.numberOfPass + docker.basicData.numberOfFaild,
           },
         },
         //difficultieDistributionData:
@@ -553,20 +566,20 @@ class UserModel {
           title: "Dificultie distribution",
           data: {
             easy:
-              sql.numberOfEasy +
-              code.numberOfEasy +
-              linux.numberOfEasy +
-              docker.numberOfEasy,
+              sql.basicData.numberOfEasy +
+              code.basicData.numberOfEasy +
+              linux.basicData.numberOfEasy +
+              docker.basicData.numberOfEasy,
             medium:
-              sql.numberOfMedium +
-              code.numberOfMedium +
-              linux.numberOfMedium +
-              docker.numberOfMedium,
+              sql.basicData.numberOfMedium +
+              code.basicData.numberOfMedium +
+              linux.basicData.numberOfMedium +
+              docker.basicData.numberOfMedium,
             hard:
-              sql.numberOfHard +
-              code.numberOfHard +
-              linux.numberOfHard +
-              docker.numberOfHard,
+              sql.basicData.numberOfHard +
+              code.basicData.numberOfHard +
+              linux.basicData.numberOfHard +
+              docker.basicData.numberOfHard,
           },
         },
         //answerdistributionData:
@@ -575,20 +588,20 @@ class UserModel {
           title: "Answers distribution",
           data: {
             correct:
-              sql.numberOfCorrect +
-              code.numberOfCorrect +
-              linux.numberOfCorrect +
-              docker.numberOfCorrect,
+              sql.basicData.numberOfCorrect +
+              code.basicData.numberOfCorrect +
+              linux.basicData.numberOfCorrect +
+              docker.basicData.numberOfCorrect,
             wrong:
-              sql.numberOfWrong +
-              code.numberOfWrong +
-              linux.numberOfWrong +
-              docker.numberOfWrong,
+              sql.basicData.numberOfWrong +
+              code.basicData.numberOfWrong +
+              linux.basicData.numberOfWrong +
+              docker.basicData.numberOfWrong,
             noAnswer:
-              sql.numberOfNoAnswer +
-              code.numberOfNoAnswer +
-              linux.numberOfNoAnswer +
-              docker.numberOfNoAnswer,
+              sql.basicData.numberOfNoAnswer +
+              code.basicData.numberOfNoAnswer +
+              linux.basicData.numberOfNoAnswer +
+              docker.basicData.numberOfNoAnswer,
           },
         },
       ],

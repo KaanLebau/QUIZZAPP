@@ -2,8 +2,6 @@ import "./cardView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 
 function CardView(props) {
-  console.log(props.data);
-
   function topicIcon(topic) {
     switch (topic) {
       case "SQL":

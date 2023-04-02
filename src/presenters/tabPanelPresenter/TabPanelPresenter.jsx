@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import TabView from "../../views/tabView/TabView";
 import TabsView from "../../views/tabs/TabsView";
 import ChartPresenter from "../chartPresenter/ChartPresenter";
+import ChartInfoPresenter from "../chartInfoPresenter/ChartInfoPresenter";
 import { useState } from "react";
 function TabPanelPresenter(props) {
   const [activeTab, SetActiveTab] = useState(0);
@@ -27,7 +28,9 @@ function TabPanelPresenter(props) {
         />
       </div>
       <div className="chart">
-        <div className="chartInfo">here is some text info about chart</div>
+        <div className="chartInfo">
+          <ChartInfoPresenter info={chartData} />
+        </div>
         <div className="theChart">
           <ChartPresenter chartData={chartData} />
         </div>
