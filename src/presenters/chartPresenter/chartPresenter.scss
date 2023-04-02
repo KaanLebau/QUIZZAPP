@@ -1,24 +1,25 @@
 .chartpresenter {
+  background-color: #5c5470;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  height: 200px;
-  widows: 200px;
   .chartTitle {
     padding: 10px;
     font-size: larger;
     font-weight: bolder;
+    background: transparent;
   }
-  .chart {
+  .theChart {
     border: 3px solid #5c5470;
-    height: 500px;
 
     .pieChart {
       background-color: #5c5470;
-      height: 500px;
-      border: 2px solid greenyellow;
+      min-width: 400px;
+    }
+    .barChart {
+      background-color: #5c5470;
+      min-height: 400px;
     }
   }
 }

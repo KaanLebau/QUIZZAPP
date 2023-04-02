@@ -22,13 +22,11 @@ function CardView(props) {
     <div className="cardView">
       <div className="theData">
         <div className="bild">{topicIcon(props.data.basicData.topic)}</div>
-        <div className="title">
-          <p>
-            {props.data.basicData.topic === "user"
-              ? props.data.basicData.name
-              : props.data.basicData.topic}
-          </p>
-        </div>
+        <p className="title">
+          {props.data.basicData.topic === "user"
+            ? props.data.basicData.name
+            : props.data.basicData.topic}
+        </p>
       </div>
       <div className="theData">
         <p className="title">Passed: </p>

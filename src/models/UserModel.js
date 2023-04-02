@@ -329,7 +329,7 @@ class UserModel {
         numberOfNoAnswer: numberOfNoAnswer,
       },
       chartData: [
-        //resultData:
+        //resultdistributionData:
         {
           chartType: "pie",
           title: "Result distribution",
@@ -348,16 +348,6 @@ class UserModel {
             hard: [numberOfHard - numberOfHardPass, numberOfHardPass],
           },
         },
-        //answerData:
-        {
-          chartType: "pie",
-          title: "Answers distribution",
-          data: {
-            correct: numberOfCorrect,
-            wrong: numberOfWrong,
-            noAnswer: numberOfNoAnswer,
-          },
-        },
         //difficultieDistributionData:
         {
           chartType: "pie",
@@ -366,6 +356,16 @@ class UserModel {
             easy: numberOfEasy,
             medium: numberOfMedium,
             hard: numberOfHard,
+          },
+        },
+        //answerData:
+        {
+          chartType: "pie",
+          title: "Answers distribution",
+          data: {
+            correct: numberOfCorrect,
+            wrong: numberOfWrong,
+            noAnswer: numberOfNoAnswer,
           },
         },
       ],
@@ -519,7 +519,7 @@ class UserModel {
           docker.numberOfNoAnswer,
       },
       chartData: [
-        //resultData:
+        //resultdistributionData:
         {
           chartType: "pie",
           title: "Result distribution",
@@ -536,7 +536,40 @@ class UserModel {
               docker.numberOffaild,
           },
         },
-        //resultByDifficultieDistribution:
+        //topicdistributionData:
+        {
+          chartType: "pie",
+          title: "Topic distribution",
+          data: {
+            sql: sql.numberOfPass + sql.numberOfFaild,
+            code: code.numberOfPass + code.numberOfFaild,
+            linux: linux.numberOfPass + linux.numberOfFaild,
+            docker: docker.numberOfPass + docker.numberOfFaild,
+          },
+        },
+        //difficultieDistributionData:
+        {
+          chartType: "bar",
+          title: "Dificultie distribution",
+          data: {
+            easy:
+              sql.numberOfEasy +
+              code.numberOfEasy +
+              linux.numberOfEasy +
+              docker.numberOfEasy,
+            medium:
+              sql.numberOfMedium +
+              code.numberOfMedium +
+              linux.numberOfMedium +
+              docker.numberOfMedium,
+            hard:
+              sql.numberOfHard +
+              code.numberOfHard +
+              linux.numberOfHard +
+              docker.numberOfHard,
+          },
+        },
+        //answerdistributionData:
         {
           chartType: "pie",
           title: "Answers distribution",
@@ -558,43 +591,8 @@ class UserModel {
               docker.numberOfNoAnswer,
           },
         },
-
-        //answerData:
-        {
-          chartType: "pie",
-          title: "Topic distribution",
-          data: {
-            sql: sql.numberOfPass + sql.numberOfFaild,
-            code: code.numberOfPass + code.numberOfFaild,
-            linux: linux.numberOfPass + linux.numberOfFaild,
-            docker: docker.numberOfPass + docker.numberOfFaild,
-          },
-        },
-        //difficultieDistributionData:
-        {
-          chartType: "pie",
-          title: "Dificultie distribution",
-          data: {
-            easy:
-              sql.numberOfEasy +
-              code.numberOfEasy +
-              linux.numberOfEasy +
-              docker.numberOfEasy,
-            medium:
-              sql.numberOfMedium +
-              code.numberOfMedium +
-              linux.numberOfMedium +
-              docker.numberOfMedium,
-            hard:
-              sql.numberOfHard +
-              code.numberOfHard +
-              linux.numberOfHard +
-              docker.numberOfHard,
-          },
-        },
       ],
     };
   }
 }
 export default UserModel;
-

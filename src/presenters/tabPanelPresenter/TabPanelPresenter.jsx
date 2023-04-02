@@ -27,8 +27,10 @@ function TabPanelPresenter(props) {
         />
       </div>
       <div className="chart">
-        <ChartPresenter chartData={chartData} />
-        <div>{/*console.log(chartData)*/}</div>
+        <div className="chartInfo">here is some text info about chart</div>
+        <div className="theChart">
+          <ChartPresenter chartData={chartData} />
+        </div>
       </div>
     </div>
   );

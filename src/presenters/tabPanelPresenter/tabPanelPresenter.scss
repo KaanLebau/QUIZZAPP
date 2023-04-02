@@ -1,9 +1,26 @@
 .tabPanelPresenter {
+  margin: 10px;
+  background: transparent;
+  animation: mounth 1s ease-in 0s 1 normal forwards;
+ 
   .tabs {
-    border-bottom: 1px solid white;
+    background: transparent;
   }
   .chart {
-    margin: 5px;
-    border: 1px solid rebeccapurple;
+    border: 1px solid dbd8e3;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #5c5470;
+
+    .chartInfo {
+      background: transparent;
+      min-width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px;
+    }
   }
 }

@@ -8,8 +8,9 @@ import CardView from "../../views/cardView/CardView";
 import TabPanelPresenter from "../tabPanelPresenter/TabPanelPresenter";
 
 function DashboardPresenter(props) {
+  var user = props.model.userSummary();
   const [selectedData, setSelectedData] = useState("User");
-  const [theTopic, setTheTopic] = useState(props.model.userSummary());
+  const [theTopic, setTheTopic] = useState(user);
 
   function handleshow(input) {
     setSelectedData(input);
@@ -34,7 +35,7 @@ function DashboardPresenter(props) {
         setTheTopic(props.model.categorySummery(props.model.docker));
         break;
       case "user":
-        setTheTopic(props.model.userSummary());
+        setTheTopic(user);
         break;
       default:
         break;

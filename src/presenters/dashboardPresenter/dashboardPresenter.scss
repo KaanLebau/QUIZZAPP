@@ -9,8 +9,10 @@
     flex: 1;
   }
   .dashContent {
+    background: transparent;
     padding: 10px;
     flex: 10;
     gap: 20px;
+    height: fit-content;
   }
 }

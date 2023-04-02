@@ -1,19 +1,26 @@
 import "./chartPresenter.scss";
-import { Pie } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
 function ChartPresenter(props) {
   const chartLabel = Object.keys(props.chartData.data);
   const data = Object.values(props.chartData.data);
+  console.log(chartLabel);
   const input = {
     labels: chartLabel,
     datasets: [
       {
         data: data,
-        borderColor: ["#00fff5", "#393e46", "#222831", "#00ADb5"],
+        borderColor: [
+          "rgba(75, 192, 192)",
+          "rgba(255, 99, 132)",
+          "rgba(255, 159, 64)",
+          "#00ADb5",
+        ],
         backgroundColor: [
-          "rgb(60,185,159,0.1)",
-          "rgb(196,88,80,0.1)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
           "rgb(255,165,0,0.1)",
         ],
         borderWidth: 2,
@@ -24,7 +31,7 @@ function ChartPresenter(props) {
     plugins: {
       legend: {
         display: true,
-        position: "right",
+        position: "bottom",
         labels: {
           color: "#dbd8e3",
           font: {
@@ -38,11 +45,11 @@ function ChartPresenter(props) {
   return (
     <div className="chartpresenter">
       <div className="chartTitle">{props.chartData.title}</div>
-      <div className="chart">
+      <div className="theChart">
         {props.chartData.chartType === "pie" ? (
           <Pie className="pieChart" data={input} options={options} />
         ) : (
-          <p>Bar chart</p>
+          <Bar className="barChart" data={input} options={options} />
         )}
       </div>
     </div>
