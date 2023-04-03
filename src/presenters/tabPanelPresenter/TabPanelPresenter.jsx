@@ -8,6 +8,7 @@ import { useState } from "react";
 function TabPanelPresenter(props) {
   const [activeTab, SetActiveTab] = useState(0);
   const [chartData, setChartData] = useState(props.data.chartData[activeTab]);
+  const [, reRender] = useState();
   function selectedTab(e) {
     SetActiveTab(e);
   }
@@ -16,7 +17,8 @@ function TabPanelPresenter(props) {
   }
   useEffect(() => {
     update();
-  }, [activeTab]);
+    reRender({});
+  }, []);
 
   return (
     <div className="tabPanelPresenter">
