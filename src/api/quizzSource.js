@@ -303,23 +303,3 @@ const mockdata = [
     difficulty: "Medium",
   },
 ];
-
-function question(
-  id,
-  question,
-  answers,
-  correct_answers,
-  category,
-  difficulty
-) {
-  this.id = id;
-  this.question = question;
-  this.answers = answers;
-  this.correct_answers = correct_answers;
-  this.category = category;
-  this.difficulty = difficulty;
-  this.answered = false;
-
-}
-
-async function quizzSource(querry) {}

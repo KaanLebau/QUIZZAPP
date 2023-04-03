@@ -7,11 +7,11 @@ function QuestionsView(props) {
   }
   return (
     <div className="questions">
+      <label className="containerLabel">Questions</label>
       {props.questions.map((question, index) => {
         return (
           <div
-            className="question"
-            title={question.id}
+            className={props.activeIndex === index && props.quizActive? "activeQuestion" : "question"}
             id={index}
             key={index}
             onClick={selection}
@@ -29,7 +29,7 @@ function QuestionsView(props) {
             )}
             <div className="row" id={index}>
               <h2 className="data" id={index}>
-                #{question.id}
+                {index + 1}
               </h2>
             </div>
           </div>

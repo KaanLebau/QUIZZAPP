@@ -9,27 +9,7 @@
   gap: 20px;
   padding: 20px;
   height: 650px; //TODO this must be dynamic
-  .top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    padding: 5px;
-    background-color: #352f44;
-    border-radius: 20px;
-    width: 80%;
-    flex: 2;
-    background: transparent;
-    -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
-    box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
-    position: relative;
-    .containerLabel {
-      position: absolute;
-      top: -8px;
-      left: 15px;
-    }
-  }
-  .middle {
+  .activeQuestion {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,26 +22,5 @@
     -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
     box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
     position: relative;
-    label {
-      position: absolute;
-      top: -8px;
-      left: 15px;
-    }
-  }
-  .bottom {
-    padding: 5px;
-    background-color: #352f44;
-    border-radius: 20px;
-    width: 90%;
-    flex: 3;
-    background: transparent;
-    -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
-    box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
-    position: relative;
-    label {
-      position: absolute;
-      top: -8px;
-      left: 15px;
-    }
   }
 }
