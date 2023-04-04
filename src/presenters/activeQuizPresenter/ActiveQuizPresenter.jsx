@@ -65,7 +65,6 @@ function ActiveQuizPresenter(props) {
   }
   function handleSubmit() {
     let result = props.quiz.correctQuiz()
-    console.log(typeof(result))
     console.log(result)
   }
   useEffect(() => {

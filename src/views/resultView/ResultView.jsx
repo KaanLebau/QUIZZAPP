@@ -48,12 +48,12 @@ function ResultView(props) {
         {props.result.pass === 1 ? (
           <div className="main" title="Pass">
             <TrendingUpIcon className="icon" />
-            <h1>Pass</h1>
+            <h1>Passed</h1>
           </div>
         ) : (
-          <div className="main" title="Faild">
+          <div className="main" title="Failed">
             <TrendingDownIcon className="icon" />
-            <h1>Faild</h1>
+            <h1>Failed</h1>
           </div>
         )}
       </div>

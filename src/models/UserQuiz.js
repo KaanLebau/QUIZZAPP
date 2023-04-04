@@ -67,7 +67,7 @@ class UserQuiz {
       }
     });
 
-    ratio = correct / (correct + wrong + noAnswer)
+    ratio = correct / this.appQuestions.length
     if (ratio >= 0.8) {
       passedQuiz = true;
     }
