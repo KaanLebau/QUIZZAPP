@@ -1,5 +1,6 @@
 import "./cardView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 function CardView(props) {
   function topicIcon(topic) {
@@ -12,6 +13,8 @@ function CardView(props) {
         return <FaCode className="icon" />;
       case "Linux":
         return <FaLinux className="icon" />;
+      case "user":
+        return <AccountCircleOutlinedIcon className="icon" />;
       default:
         break;
     }
@@ -22,7 +25,7 @@ function CardView(props) {
         <div className="bild">{topicIcon(props.data.basicData.topic)}</div>
         <p className="title">
           {props.data.basicData.topic === "user"
-            ? props.data.basicData.name
+            ? props.data.basicData.displayName
             : props.data.basicData.topic}
         </p>
       </div>

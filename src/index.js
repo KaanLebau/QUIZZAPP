@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import UserModel from "./models/UserModel";
 import UserQuiz from "./models/UserQuiz";
+import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const model = new UserModel();
 const quiz = new UserQuiz();
+
 root.render(
   <React.StrictMode>
-    <App model={model} quiz={quiz} />
+    <RecoilRoot>
+      <App quiz={quiz} />
+    </RecoilRoot>
   </React.StrictMode>
 );

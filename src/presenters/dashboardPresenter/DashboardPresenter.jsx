@@ -12,22 +12,15 @@ function DashboardPresenter(props) {
   var user = props.model.userSummary();
   const [selectedData, setSelectedData] = useState("User");
   const [theTopic, setTheTopic] = useState(props.model.userSummary());
-  const [, reRender] = useState();
-  const [loading, setLoading] = useState(false);
-
+ 
   function handleshow(input) {
     setSelectedData(input);
-    setLoading(true);
-    console.log(loading);
-  }
-  function sendData() {
-    setTimeout(setLoading, 800, true);
-    console.log(loading);
+
   }
 
   useEffect(() => {
     update();
-    sendData();
+    
   }, [selectedData]);
 
   function update() {
@@ -57,15 +50,11 @@ function DashboardPresenter(props) {
       <div className="dashSidebar">
         <DashboardSidebarView setCategory={handleshow} />
       </div>
-      {!loading ? (
-        <LoadPagePresenter info={"rerender"} />
-      ) : (
-        <div className="dashContent">
-          {}
-          <CardView data={theTopic} />
-          <TabPanelPresenter data={theTopic} />
-        </div>
-      )}
+      <div className="dashContent">
+        {}
+        <CardView data={theTopic} />
+        <TabPanelPresenter data={theTopic} />
+      </div>
     </div>
   );
 }

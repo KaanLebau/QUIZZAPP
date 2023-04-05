@@ -2,8 +2,11 @@ import "./favorites.scss";
 
 import QuizCard from "../quizCard/QuizCard";
 import getQuestions from "../../api/QuizSource";
+import { useRecoilState } from "recoil";
+import { favoritesState } from "../../models/atoms";
 
 function Favorites(props) {
+  const [favorites, setFavorites] = useRecoilState(favoritesState);
   function theQuiz(query) {
     getQuestions(query);
   }

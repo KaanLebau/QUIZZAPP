@@ -1,7 +1,10 @@
 import "./dashboardSidebarView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
-
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useRecoilValue } from "recoil";
+import { activeUser } from "../../models/atoms";
 function TopicSidebar(props) {
+  const user = useRecoilValue(activeUser);
   return (
     <div className="sidebar">
       <div
@@ -12,10 +15,8 @@ function TopicSidebar(props) {
           props.setCategory("user");
         }}
       >
-        <FaCode className="mini" id="user" />
-        <FaLinux className="mini" id="user" />
-        <FaDatabase className="mini" id="user" />
-        <FaDocker className="mini" id="user" />
+        <AccountCircleOutlinedIcon className="icon" />
+        <h3>{user.displayName}</h3>
       </div>
       <div
         className="button"

@@ -331,8 +331,9 @@ class UserModel {
       chartData: [
         //resultdistributionData:
         {
-          chartType: "pie",
+          chartType: "doughnut",
           title: "Result distribution",
+          labels: ["Pass", "Failed"],
           data: {
             pass: numberOfPass,
             failed: numberOfFaild,
@@ -340,17 +341,9 @@ class UserModel {
         },
         //resultByDifficultieDistribution:
         {
-          chartType: "bar",
-          title: "Dificultie result distribution V1",
-          data: {
-            easy: [numberOfEasyPass, numberOfEasy - numberOfEasyPass],
-            medium: [numberOfMediumPass, numberOfMedium - numberOfMediumPass],
-            hard: [numberOfHardPass, numberOfHard - numberOfHardPass],
-          },
-        },
-        {
-          chartType: "bar",
-          title: "Dificultie result distribution V2",
+          chartType: "radar",
+          title: "Dificultie result distribution",
+          labels: ["Easy", "Medium", "Hard"],
           data: {
             pass: [numberOfEasyPass, numberOfMediumPass, numberOfHardPass],
             failed: [
@@ -364,6 +357,7 @@ class UserModel {
         {
           chartType: "pie",
           title: "Dificultie distribution",
+          labels: ["Easy", "Medium", "Hard"],
           data: {
             easy: numberOfEasy,
             medium: numberOfMedium,
@@ -374,6 +368,7 @@ class UserModel {
         {
           chartType: "pie",
           title: "Answers distribution",
+          labels: ["Correct", "Wrong", "No answer"],
           data: {
             correct: numberOfCorrect,
             wrong: numberOfWrong,
@@ -484,6 +479,7 @@ class UserModel {
     var linux = this.categorySummery(this.linux);
     return {
       basicData: {
+        topic: "user",
         name: this.name,
         displayName: this.displayName,
         numberOfEasyPass:
@@ -535,6 +531,7 @@ class UserModel {
         {
           chartType: "pie",
           title: "Result distribution",
+          labels: ["Pass", "Failed"],
           data: {
             pass:
               sql.basicData.numberOfPass +
@@ -552,6 +549,7 @@ class UserModel {
         {
           chartType: "pie",
           title: "Topic distribution",
+          labels: ["Sql", "Code", "Linux", "Docker"],
           data: {
             sql: sql.basicData.numberOfPass + sql.basicData.numberOfFaild,
             code: code.basicData.numberOfPass + code.basicData.numberOfFaild,
@@ -564,6 +562,7 @@ class UserModel {
         {
           chartType: "bar",
           title: "Dificultie distribution",
+          labels: ["Easy", "Medium", "Hard"],
           data: {
             easy:
               sql.basicData.numberOfEasy +

@@ -9,11 +9,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import { registredState, toggleRegistredState } from "../../models/atoms";
+import { useSetRecoilState } from "recoil";
 
 function Head(props) {
   const [logged, setLoged] = useState(props.currentUser);
   const navigate = useNavigate();
+  //const logingout = useSetRecoilState(toggleRegistredState);
   async function handleLogout() {
+    //logingout();
+    /*
     signOut(auth)
       .then(() => {
         navigate("/");
@@ -22,7 +27,7 @@ function Head(props) {
         // An error happened.
       });
     //setLoged(!logged);
-    console.log("Log out user");
+    */
   }
   function handleLogin() {
     setLoged(!logged);
