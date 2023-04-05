@@ -1,7 +1,7 @@
 import "./topicCardPresenter.scss";
 import TopicCardView from "../../views/topicCardView/TopicCardView";
 import { useEffect, useState } from "react";
-import TopicSidebar from "../../views/topicSidebar/TopicSidebar";
+import TopicSidebar from "../../views/dashboardSidebar/DashboardSidebarView";
 import DiffifultieSummaryView from "../../views/difficultieSummaryView/DiffifultieSummaryView";
 //import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 import UserCardView from "../../views/userCardView/UserCardView";

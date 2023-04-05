@@ -4,7 +4,6 @@ import { BreakfastDiningRounded } from "@mui/icons-material";
 function DemoPage() {
   const navigate = useNavigate();
   function handleSelection(e) {
-    console.log(e.id);
     switch (e.id) {
       case "registration":
         navigate("../registration");

@@ -7,7 +7,6 @@ import InfoWidget from "../infoWidgetView/InfoWidgetView";
 function UserCardView(props) {
   const [active, setActive] = useState(0);
   const [chartData, setChartData] = useState(props.data.topicDistributionData);
-
   function update(input) {
     switch (input) {
       case "0":
