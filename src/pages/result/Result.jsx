@@ -7,12 +7,11 @@ import { useState } from "react";
 function Result() {
   const mockRes = {
     category: "SQL",
-    difficultie: "Medium",
+    difficulty: "Medium",
     correct: 12,
     wrong: 22,
     noAnswer: 5,
-    pass: 0,
-    failed: 1,
+    passed: false
   };
   const [loading, setLoading] = useState(false);
 

@@ -30,9 +30,11 @@ class Question {
   }
 }
 class UserQuiz {
+  
   constructor() {
     this.appQuestions = [];
   }
+
   addquestions(apiResponse) {
     this.appQuestions = apiResponse.map((theQ) => {
       const { id, question, answers, correct_answers, category, difficulty } =
@@ -71,12 +73,14 @@ class UserQuiz {
     if (ratio >= 0.8) {
       passedQuiz = true;
     }
-
+    console.log(this.appQuestions)
     return {
-              correctAnswers: correct,
-              wrongAnswers: wrong,
+              category: this.appQuestions[0].category,
+              difficulty: this.appQuestions[0].difficulty,
+              correct: correct,
+              wrong: wrong,
               noAnswers: noAnswer,
-              passedQuiz: passedQuiz,
+              passed: passedQuiz,
               successRatio: ratio
     }
   }
