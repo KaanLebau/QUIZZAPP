@@ -66,7 +66,7 @@
   }
   .activeQuestion {
     @extend .question; 
-    background-color: rgba(114, 252, 0, 0.447);
+    background-color: lightgoldenrodyellow;
     max-width: 50px;
   }
 }

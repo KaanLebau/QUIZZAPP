@@ -319,7 +319,7 @@ function ActiveQuiz(props) {
     setTimeout(setLoading, 800, true);
   }, [props.quiz]);
 
-  const q = props.quiz.addquestions(mockdata);
+  props.quiz.addquestions(mockdata);
   return (
     <div className="activeQuiz">
       <Head currentUser={focus} />
@@ -327,7 +327,7 @@ function ActiveQuiz(props) {
         {!loading ? (
           <LoadPage info={"Loading quiz"} />
         ) : (
-          <ActiveQuizPresenter quiz={q} />
+          <ActiveQuizPresenter quiz={props.quiz} />
         )}
       </div>
     </div>

@@ -5,16 +5,15 @@ import UserQuiz from "../models/UserQuiz";
 //https://quizapi.io/api/v1/questions?apiKey=YOUR_API_KEY&category=linux&difficulty=Easy&limit=10
 
 async function getQuestions(query) {
-  const category = query.category === undefined ? "" : query.category;
+  let {category, dificultie, numberOfQuestions} = query.customQuiz
   const q = new UserQuiz();
-  console.log(query);
   Axios.get(
-    `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&category=${category}&difficulty=${query.difficultie}&limit=${query.numberOfQuestions}`
-  )
-    .then((response) => {
+    `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&category=${category}&difficulty=${dificultie}&limit=${numberOfQuestions}`
+  ).then((response) => {
       let data = response.data;
       let res = q.addquestions(data);
       console.log(res);
+      console.log(data)
     })
     .catch(console.error);
 }

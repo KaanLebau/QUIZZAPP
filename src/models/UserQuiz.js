@@ -6,7 +6,7 @@ class Question {
     this.difficulty = difficulty;
     this.answered = false;
     this.correct = false;
-    this.answer = null;
+    this.answer = -1;
     this.answers = this.copyAnswers(answers, correct_answers);
   }
   copyAnswers(answers, correct_answers) {
@@ -25,15 +25,20 @@ class Question {
     }
     return appQuestion;
   }
+  setAnswer(index) {
+    this.answer = index;
+  }
 }
 class UserQuiz {
+  
   constructor() {
-    this.appquestions = [];
+    this.appQuestions = [];
   }
+
   addquestions(apiResponse) {
-    this.appquestions = apiResponse.map((theQ) => {
+    this.appQuestions = apiResponse.map((theQ) => {
       const { id, question, answers, correct_answers, category, difficulty } =
-        theQ;
+      theQ;
       return new Question(
         id,
         question,
@@ -41,34 +46,43 @@ class UserQuiz {
         correct_answers,
         category,
         difficulty
-      );
-    });
-    return this.appquestions;
-  }
-  coutCorrect() {
+        );
+      });
+    }
+    
+    correctQuiz() {
     let correct = 0;
     let wrong = 0;
     let noAnswer = 0;
-    let pass = 0;
-    let faild = 0;
-    this.appquestions.map((theQ) => {
-      if (theQ.answer) {
-        correct += 1;
-      } else if (!theQ.answer) {
-        wrong += 1;
+    let passedQuiz = false;
+    let ratio = 0.0;
+
+    this.appQuestions.forEach(q => {
+      if (q.answered) {
+        if (q.answers[q.answer].isCorrect === "true") {
+          correct += 1;
+        } else {
+          wrong += 1;
+        }
       } else {
         noAnswer += 1;
       }
     });
-    correct / this.appquestions.length < 0.8 ? (faild = 1) : (pass = 1);
 
+    ratio = correct / this.appQuestions.length
+    if (ratio >= 0.8) {
+      passedQuiz = true;
+    }
+    console.log(this.appQuestions)
     return {
-      corrext: correct,
-      wrong: wrong,
-      noAnswer: noAnswer,
-      pass: pass,
-      faild: faild,
-    };
+              category: this.appQuestions[0].category,
+              difficulty: this.appQuestions[0].difficulty,
+              correct: correct,
+              wrong: wrong,
+              noAnswers: noAnswer,
+              passed: passedQuiz,
+              successRatio: ratio
+    }
   }
 }
 export default UserQuiz;

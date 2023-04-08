@@ -15,7 +15,7 @@ function CurrentQuestion(props) {
       </div>
       <div className="buttons">
         <button onClick={props.prev}>Prev</button>
-        <button onClick={() => console.log("User wants to submit!")}>Submit</button>
+        <button onClick={props.submit}>Submit</button>
         <button onClick={props.next}>Next</button>
       </div>
     </div>

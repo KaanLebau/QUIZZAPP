@@ -45,10 +45,11 @@ function CustomQuiz(props) {
   }
 
   async function handleSearch() {
-    console.log(customQuiz);
-    //const quiz = await getQuestions({ customQuiz });
-    //navigate("./active", { state: { quiz } });
+    const quiz = await getQuestions({ customQuiz });
+    console.log(quiz)
+    navigate("./active", { state: { quiz } });
   }
+  
   function update() {
     handleDificultie();
     handleQuestions();

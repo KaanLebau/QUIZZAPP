@@ -41,19 +41,19 @@ function ResultView(props) {
           {topicIcon(props.result.category)}
           <h1>{props.result.category}</h1>
         </div>
-        <div className="main" title={props.result.difficultie}>
-          {Diff(props.result.difficultie)}
-          <h1>{props.result.difficultie}</h1>
+        <div className="main" title={props.result.difficulty}>
+          {Diff(props.result.difficulty)}
+          <h1>{props.result.difficulty}</h1>
         </div>
-        {props.result.pass === 1 ? (
+        {props.result.passed ? (
           <div className="main" title="Pass">
             <TrendingUpIcon className="icon" />
-            <h1>Pass</h1>
+            <h1>Passed</h1>
           </div>
         ) : (
-          <div className="main" title="Faild">
+          <div className="main" title="Failed">
             <TrendingDownIcon className="icon" />
-            <h1>Faild</h1>
+            <h1>Failed</h1>
           </div>
         )}
       </div>
