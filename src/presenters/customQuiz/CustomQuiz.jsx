@@ -49,6 +49,7 @@ function CustomQuiz(props) {
     console.log(quiz)
     navigate("./active", { state: { quiz } });
   }
+  
   function update() {
     handleDificultie();
     handleQuestions();

@@ -12,6 +12,7 @@ function LoginPresenter() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
+
   function handleInput(e) {
     const id = e.id;
     const value = e.value;
@@ -33,7 +34,6 @@ function LoginPresenter() {
       .then(setLoading(true))
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
       })
       .catch((error) => {
         setErr(true);

@@ -1,0 +1,18 @@
+.parentPresenter {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  gap: 10px;
+  justify-content: flex-start;
+
+  .dashSidebar {
+    flex: 1;
+  }
+  .dashContent {
+    background: transparent;
+    padding: 10px;
+    flex: 10;
+    gap: 20px;
+    height: fit-content;
+  }
+}
