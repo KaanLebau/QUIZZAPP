@@ -10,13 +10,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { registredState, toggleRegistredState } from "../../models/atoms";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 function Head(props) {
+  const regi = useRecoilValue(registredState);
+  const [registred, setRegistred] = useRecoilState(registredState);
+  console.log(regi);
   const [logged, setLoged] = useState(props.currentUser);
   const navigate = useNavigate();
   //const logingout = useSetRecoilState(toggleRegistredState);
   async function handleLogout() {
+    setRegistred(false);
+    console.log(regi);
     //logingout();
     /*
     signOut(auth)
@@ -47,7 +52,7 @@ function Head(props) {
       >
         <h2 className="appName">QuizIt</h2>
       </Link>
-      {logged ? (
+      {registred ? (
         <div className="navigation">
           <div className="appAlt">
             <Link
