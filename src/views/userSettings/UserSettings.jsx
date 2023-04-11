@@ -17,6 +17,9 @@ function UserSettings(props) {
 
   return (
     <div className="settings">
+      <div className="webapp" onClick={props.cancel} title={"To welcome page"}>
+        QuizIt
+      </div>
       <div className="form">
         <span className="type">Basic info</span>
         <div className="row">
