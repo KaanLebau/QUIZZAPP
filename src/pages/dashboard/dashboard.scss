@@ -1,12 +1,12 @@
 .dashboard {
   color: #dbd8e3;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  background: transparent;
   .content {
     width: 100%;
     display: flex;
+    background: transparent;
     justify-content: center;
     align-items: flex-start;
     height: 100%;

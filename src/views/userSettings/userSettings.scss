@@ -4,6 +4,19 @@
   align-items: center;
   height: 89vh;
   animation: mounth 1s ease-in 0s 1 normal forwards;
+  .webapp {
+    justify-self: flex-start;
+    margin: 50px;
+    padding: 50px;
+
+    text-align: center;
+    background-color: transparent;
+    font-family: "Silkscreen", cursive;
+    color: #dbd8e3;
+    font-size: 40px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
   .form {
     position: relative;
     display: flex;
