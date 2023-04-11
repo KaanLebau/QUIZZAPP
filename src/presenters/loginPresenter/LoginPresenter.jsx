@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 function LoginPresenter() {
   const [user, setUser] = useState({});
@@ -34,11 +34,18 @@ function LoginPresenter() {
       .then(setLoading(true))
       .then((userCredential) => {
         const user = userCredential.user;
+        getData(user.uid);
       })
       .catch((error) => {
         setErr(true);
       })
       .finally(navigate("/user"));
+  }
+
+  async function getData(id) {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data());
   }
   function handleSignup() {
     navigate("../registration");

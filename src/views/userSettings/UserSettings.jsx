@@ -231,9 +231,6 @@ function UserSettings(props) {
           <button onClick={props.cancel} title="Cancel">
             Cancel
           </button>
-          <button onClick={props.test} title="Cancel">
-            test
-          </button>
         </div>
       </div>
     </div>
