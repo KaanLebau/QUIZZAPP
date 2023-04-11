@@ -1,9 +1,14 @@
 .dashboard {
   color: #dbd8e3;
   display: flex;
+ 
+  background: transparent;
+  flex-direction: column;
+ 
   align-items: center;
   background: transparent;
   .content {
+    background: transparent;
     width: 100%;
     display: flex;
     background: transparent;

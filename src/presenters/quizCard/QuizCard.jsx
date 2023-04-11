@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import QuizCardView from "../../views/quizCardView/QuizCardView";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import {
+  topicAlternatives,
+  difficultieAlternatives,
+  questionAternatives,
+} from "../../models/utilities";
 
 function QuizCard(props) {
   const [edit, setEdit] = useState(true);
@@ -26,9 +31,9 @@ function QuizCard(props) {
 
   return (
     <QuizCardView
-      category={props.model.topic}
-      difficultie={props.model.difficultie}
-      numberOfQuestions={[5, 10, 15, 20]}
+      category={topicAlternatives}
+      difficultie={difficultieAlternatives}
+      numberOfQuestions={difficultieAlternatives}
       edit={edit}
       mode={() => setEdit(!edit)}
       card={theCard}

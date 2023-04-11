@@ -1,10 +1,26 @@
 import { atom, selector } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
-const model = new UserModel();
+//const model = new UserModel();
 export const activeUser = atom({
   key: "activeUser",
-  default: model,
+  default: {
+    displayName: "",
+    email: "",
+    name: "",
+    password: "",
+  },
+});
+
+export const activeUserSetter = selector({
+  key: "activeUserSetter",
+  set: ({ set }, basic) => {
+    set((activeUser.displayName = basic.displayName));
+    set((activeUser.name = basic.name));
+    set((activeUser.email = basic.email));
+    set((activeUser.password = basic.password));
+  },
+  get: ({ get }) => {},
 });
 
 export const favoritesState = atom({

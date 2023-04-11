@@ -4,7 +4,6 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 
 import "./quizSettings.scss";
-import React, { useEffect, useState } from "react";
 
 function QuizSettings(props) {
   function topicIcon(topic) {
@@ -37,15 +36,19 @@ function QuizSettings(props) {
   return (
     <div className="quizSettings">
       <label htmlFor="">Quiz settings</label>
-      <div title="Select category" onClick={props.topicSelect}>
+      <div
+        title="Select category"
+        onClick={(e) => props.topicSelect(e)}
+        id="category"
+      >
         {topicIcon(props.topic)}
         <h1>{props.topic}</h1>
         <p>Category</p>
       </div>
       <div
         title="Select dificulty"
-        id={"dificultie"}
-        onClick={props.dificultieSelect}
+        id="dificultie"
+        onClick={(e) => props.dificultieSelect(e)}
       >
         {Diff(props.difficultie)}
         <h1>{props.difficultie}</h1>
@@ -54,10 +57,8 @@ function QuizSettings(props) {
       </div>
       <div
         title="Select nuber of questions"
-        id={props.question}
-        onClick={(e) => {
-          props.questionsSelect(e.target.id);
-        }}
+        id="numberOfQuestions"
+        onClick={(e) => props.questionsSelect(e)}
       >
         <h1 className="number">{props.question}</h1>
         <p>Questions</p>

@@ -1,8 +1,50 @@
 import { db } from "../firebase";
-import { doc, increment, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import UserModel from "./UserModel";
+import { useRecoilState } from "recoil";
+import { activeUser } from "./atoms";
 
 function updateFirebase(model) {
   const theUser = doc(db, "users", model.uid);
+
+  /*
+  async function firebaseModelPromise(id) {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+
+
+
+
+    function makeBigPromiseACB(docSnap) {
+      if (!docSnap.exists()) {
+        return new UserModel();
+      }
+
+
+
+      function makeDishPromiseACB(id) {
+        return getDishDetails(id);
+      }
+      const dishesInFirebasePromise = Object.keys(
+        firebaseData.val().dishes || []
+      ).map(makeDishPromiseACB);
+
+      function createModelACB(dishes) {
+        return new DinnerModel(firebaseData.val().numberOfGuests || 2, dishes);
+      }
+      return Promise.all(dishesInFirebasePromise).then(createModelACB);
+    }
+
+    return firebase.database().ref(REF).once("value").then(makeBigPromiseACB);
+  }
+
+*/
+  function updateModelFromFirebase(user) {
+    const [userBasic, setUserBasic] = useRecoilState(activeUser);
+
+    setUserBasic(user.userBasic);
+  }
+
   async function updatedModel(payload) {
     if (payload) {
       switch (payload.type) {

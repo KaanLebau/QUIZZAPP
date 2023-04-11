@@ -12,15 +12,13 @@ function DashboardPresenter(props) {
   var user = props.model.userSummary();
   const [selectedData, setSelectedData] = useState("User");
   const [theTopic, setTheTopic] = useState(props.model.userSummary());
- 
+
   function handleshow(input) {
     setSelectedData(input);
-
   }
 
   useEffect(() => {
     update();
-    
   }, [selectedData]);
 
   function update() {

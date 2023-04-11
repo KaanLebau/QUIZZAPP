@@ -14,11 +14,10 @@ function Favorites(props) {
     <div className="favorites">
       <label htmlFor="">Favorites</label>
       <div className="cards">
-        {props.model.favorites.map((theCard, index) => (
+        {favorites.map((theCard, index) => (
           <QuizCard
-            model={props.model}
             card={theCard}
-            update={(card) => props.model.updateFavorite(index, card)}
+            update={(card) => setFavorites(...favorites, card)}
             key={index}
             selectedCard={theQuiz}
           />

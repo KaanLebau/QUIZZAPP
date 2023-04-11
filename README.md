@@ -44,10 +44,4 @@ This project consists of building and deploying a webpage being an online quiz a
   - [] user/quiz/result
   - [] user/edit (optional)
 
-
 #### File structure:
-
-- /src/models
-  - /atoms.js 
-  - /UserModel.js 
-  - /UserQuiz.js 
