@@ -15,6 +15,7 @@ function RegistrationPresenter() {
   const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [err, setErr] = useState(false);
 
+  const [basic, setBasic] = useState({});
   const [userInit, setUserInit] = useState(InitialUserData);
   function handleCancel() {
     navigate("../");
@@ -27,21 +28,21 @@ function RegistrationPresenter() {
       case "name":
         if (value.length > 0) {
           setNameControll(true);
-          setUserInit({ ...userInit, [id]: value });
+          setBasic({ ...basic, [id]: value });
         }
         if (value.length === 0) setNameControll(false);
         break;
       case "displayName":
         if (input.value.length > 0) {
           setDisplayNameControll(true);
-          setUserInit({ ...userInit, [id]: value });
+          setBasic({ ...basic, [id]: value });
         }
         if (input.value.length === 0) setDisplayNameControll(false);
         break;
       case "email":
         if (input.value.includes("@") && input.value.includes(".com")) {
           setEmailControll(true);
-          setUserInit({ ...userInit, [id]: value });
+          setBasic({ ...basic, [id]: value });
         }
         if (
           !input.value.includes("@") ||
@@ -51,37 +52,37 @@ function RegistrationPresenter() {
           setEmailControll(false);
         break;
       case "password":
-        if (input.value.length >= 8) {
+        if (input.value.length >= 6) {
           setPasswordControll(true);
-          if (input.value === userInit.passwordValidation)
+          if (input.value === basic.passwordValidation)
             setPasswordConfirm(true);
-          setUserInit({ ...userInit, [id]: value });
+          setBasic({ ...basic, [id]: value });
         }
 
-        if (input.value.length < 8) {
+        if (input.value.length < 6) {
           setPasswordControll(false);
         }
         break;
       case "passwordValidation":
-        if (input.value === userInit.password) {
+        if (input.value === basic.password) {
           setPasswordConfirm(true);
-          setUserInit({ ...userInit, [id]: value });
         }
-        if (input.value !== userInit.password) setPasswordConfirm(false);
+        if (input.value !== basic.password) setPasswordConfirm(false);
         break;
 
       default:
         break;
     }
   }
+
   async function handleCreate() {
+    userInit.basic = basic;
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
-        userInit.email,
-        userInit.password
+        userInit.basic.email,
+        userInit.basic.password
       );
-      setUserInit({ ...userInit, uid: res.user.uid });
       await setDoc(doc(db, "users", res.user.uid), {
         ...userInit,
       });

@@ -1,10 +1,5 @@
 export const InitialUserData = {
-  rank: 0,
-  correct: 0,
-  wrong: 0,
-  pass: 0,
-  difficultie: ["Easy", "Medium", "Hard"],
-  topic: ["linux", "SQL", "Code", "Docker"],
+  basic: {},
   favorites: [{}, {}, {}, {}, {}],
   sql: {
     easy: {

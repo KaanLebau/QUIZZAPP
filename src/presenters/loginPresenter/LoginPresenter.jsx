@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { useRecoilState } from "recoil";
+import { activeUser } from "../../models/atoms";
 
 function LoginPresenter() {
+  const [currentUser, setCurentUser] = useRecoilState(activeUser);
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
   const [passwordControll, setPasswordControll] = useState(false);
@@ -34,6 +37,7 @@ function LoginPresenter() {
       .then(setLoading(true))
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         getData(user.uid);
       })
       .catch((error) => {
@@ -45,6 +49,7 @@ function LoginPresenter() {
   async function getData(id) {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
+    setCurentUser(docSnap.data().basic);
     console.log(docSnap.data());
   }
   function handleSignup() {

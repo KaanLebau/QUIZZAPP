@@ -1,77 +1,73 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuizSettings from "../../views/quizSettings/QuizSettings";
 import getQuestions from "../../api/QuizSource";
 import { useNavigate } from "react-router-dom";
+import {
+  topicAlternatives,
+  difficultieAlternatives,
+  questionAternatives,
+} from "../../models/utilities";
 
 function CustomQuiz(props) {
+  const difficulties = difficultieAlternatives();
+  const topics = topicAlternatives();
+  const questions = questionAternatives();
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
     dificultie: "",
     numberOfQuestions: 5,
   });
   const [theDificultie, setTheDificultie] = useState(0);
-  const [dificultie, setDificultie] = useState(
-    props.model.difficultie[theDificultie]
-  );
   const [theTopic, setTheTopic] = useState(0);
-  const [topic, setTopic] = useState(props.model.topic[theTopic]);
-  const numberOfQuestions = [5, 10, 15, 20];
-  const [question, setQuestion] = useState(0);
-  const [numberOfQuestion, setNumberOfQuestions] = useState(
-    numberOfQuestions[question]
-  );
+  const [theQuestion, setTheQuestion] = useState(0);
+
   const navigate = useNavigate();
 
-  function handleQuestions() {
-    question !== 3 ? setQuestion(question + 1) : setQuestion(0);
-    setNumberOfQuestions(numberOfQuestions[question]);
-    setCustomQuiz({ ...customQuiz, numberOfQuestions: numberOfQuestion });
+  function handleQuestions(e) {
+    theQuestion !== 3 ? setTheQuestion(theQuestion + 1) : setTheQuestion(0);
+    setCustomQuiz({ ...CustomQuiz, [e.target.id]: questions[theQuestion] });
   }
 
-  function handleDificultie() {
+  function handleDificultie(e) {
     theDificultie !== 2
       ? setTheDificultie(theDificultie + 1)
       : setTheDificultie(0);
-    setDificultie(props.model.difficultie[theDificultie]);
     setCustomQuiz({
-      ...customQuiz,
-      dificultie: props.model.difficultie[theDificultie],
+      ...CustomQuiz,
+      [e.target.id]: difficulties[theDificultie],
     });
   }
-  function handleTopic() {
+  function handleTopic(e) {
     theTopic !== 3 ? setTheTopic(theTopic + 1) : setTheTopic(0);
-    setTopic(props.model.topic[theTopic]);
-    setCustomQuiz({ ...customQuiz, category: props.model.topic[theTopic] });
+    setCustomQuiz({ ...CustomQuiz, [e.target.id]: topics[theTopic] });
   }
 
   async function handleSearch() {
-    const quiz = await getQuestions({ customQuiz });
-    console.log(quiz)
-    navigate("./active", { state: { quiz } });
+    console.log(customQuiz);
+    //const quiz = await getQuestions({ customQuiz });
+    //console.log(quiz);
+    //navigate("./active", { state: { quiz } });
   }
-  
+
   function update() {
-    handleDificultie();
-    handleQuestions();
-    handleTopic();
     setCustomQuiz({
-      category: props.model.topic[theTopic],
-      dificultie: props.model.difficultie[theDificultie],
-      numberOfQuestions: numberOfQuestion,
+      category: topics[theTopic],
+      dificultie: difficulties[theDificultie],
+      numberOfQuestions: questions[theQuestion],
     });
   }
 
-  useState(() => {
+  useEffect(() => {
     update();
-  }, []);
+  }, [theTopic, theDificultie, theQuestion]);
 
   return (
     <QuizSettings
-      topic={topic}
+      topic={topics[theTopic]}
       topicSelect={handleTopic}
-      difficultie={dificultie}
+      difficultie={difficulties[theDificultie]}
       dificultieSelect={handleDificultie}
-      question={numberOfQuestion}
+      question={questions[theQuestion]}
       questionsSelect={handleQuestions}
       getQuiz={handleSearch}
     />
