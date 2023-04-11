@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import LoadPage from "../../presenters/loadPagePresenter/LoadPagePresenter";
 
 function ActiveQuiz(props) {
+  console.log(props)
   const location = useLocation();
   const [focus, setFocus] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -319,7 +320,7 @@ function ActiveQuiz(props) {
     setTimeout(setLoading, 800, true);
   }, [props.quiz]);
 
-  props.quiz.addquestions(mockdata);
+  //props.quiz.addquestions(mockdata);
   return (
     <div className="activeQuiz">
       <Head currentUser={focus} />
