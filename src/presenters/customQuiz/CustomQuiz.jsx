@@ -43,10 +43,8 @@ function CustomQuiz(props) {
   }
 
   async function handleSearch() {
-    console.log(customQuiz);
-    //const quiz = await getQuestions({ customQuiz });
-    //console.log(quiz);
-    //navigate("./active", { state: { quiz } });
+    await getQuestions({ customQuiz }, props.quiz);
+    navigate("./active");
   }
 
   function update() {

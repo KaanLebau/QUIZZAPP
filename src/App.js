@@ -47,7 +47,7 @@ function App(props) {
                     }
                   />
                   <Route path="quiz">
-                    <Route index element={<GetQuizDataPage />} />
+                    <Route index element={<GetQuizDataPage quiz={props.quiz} />} />
                     <Route
                       path="active"
                       element={
