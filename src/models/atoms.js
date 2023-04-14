@@ -25,7 +25,22 @@ export const activeUserSetter = selector({
 
 export const favoritesState = atom({
   key: "favoritesState",
-  default: [{}, {}, {}, [], {}],
+  default: [
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      dificultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: false,
+      edit: false,
+      category: "Sql",
+      dificultie: "Easy",
+      numberOfQuestions: 5,
+    },
+  ],
 });
 
 /*

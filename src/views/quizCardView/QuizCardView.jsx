@@ -3,8 +3,10 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import EditOffOutlinedIcon from "@mui/icons-material/EditOffOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { useState } from "react";
 
 function QuizCardView(props) {
+  const [favorite, setFavorite]= useState({})
   return (
     <div className="card">
       {props.edit ? (

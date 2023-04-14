@@ -9,9 +9,6 @@ import {
 } from "../../models/utilities";
 
 function CustomQuiz(props) {
-  const difficulties = difficultieAlternatives();
-  const topics = topicAlternatives();
-  const questions = questionAternatives();
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
     dificultie: "",
@@ -25,7 +22,10 @@ function CustomQuiz(props) {
 
   function handleQuestions(e) {
     theQuestion !== 3 ? setTheQuestion(theQuestion + 1) : setTheQuestion(0);
-    setCustomQuiz({ ...CustomQuiz, [e.target.id]: questions[theQuestion] });
+    setCustomQuiz({
+      ...CustomQuiz,
+      [e.target.id]: questionAternatives[theQuestion],
+    });
   }
 
   function handleDificultie(e) {
@@ -34,12 +34,15 @@ function CustomQuiz(props) {
       : setTheDificultie(0);
     setCustomQuiz({
       ...CustomQuiz,
-      [e.target.id]: difficulties[theDificultie],
+      [e.target.id]: difficultieAlternatives[theDificultie],
     });
   }
   function handleTopic(e) {
     theTopic !== 3 ? setTheTopic(theTopic + 1) : setTheTopic(0);
-    setCustomQuiz({ ...CustomQuiz, [e.target.id]: topics[theTopic] });
+    setCustomQuiz({
+      ...CustomQuiz,
+      [e.target.id]: topicAlternatives[theTopic],
+    });
   }
 
   async function handleSearch() {
@@ -51,9 +54,9 @@ function CustomQuiz(props) {
 
   function update() {
     setCustomQuiz({
-      category: topics[theTopic],
-      dificultie: difficulties[theDificultie],
-      numberOfQuestions: questions[theQuestion],
+      category: topicAlternatives[theTopic],
+      dificultie: difficultieAlternatives[theDificultie],
+      numberOfQuestions: questionAternatives[theQuestion],
     });
   }
 
@@ -63,11 +66,11 @@ function CustomQuiz(props) {
 
   return (
     <QuizSettings
-      topic={topics[theTopic]}
+      topic={topicAlternatives[theTopic]}
       topicSelect={handleTopic}
-      difficultie={difficulties[theDificultie]}
+      difficultie={difficultieAlternatives[theDificultie]}
       dificultieSelect={handleDificultie}
-      question={questions[theQuestion]}
+      question={questionAternatives[theQuestion]}
       questionsSelect={handleQuestions}
       getQuiz={handleSearch}
     />

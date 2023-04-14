@@ -1,6 +1,6 @@
 import "./favorites.scss";
 
-import QuizCard from "../quizCard/QuizCard";
+import QuizCardPresenter from "../quizCardPresenter/QuizCardPresenter";
 import getQuestions from "../../api/QuizSource";
 import { useRecoilState } from "recoil";
 import { favoritesState } from "../../models/atoms";
@@ -15,11 +15,12 @@ function Favorites(props) {
       <label htmlFor="">Favorites</label>
       <div className="cards">
         {favorites.map((theCard, index) => (
-          <QuizCard
+          <QuizCardPresenter
             card={theCard}
             update={(card) => setFavorites(...favorites, card)}
             key={index}
             selectedCard={theQuiz}
+            index={index}
           />
         ))}
       </div>
