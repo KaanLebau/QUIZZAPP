@@ -2,20 +2,21 @@ import "./quizCardView.scss";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import EditOffOutlinedIcon from "@mui/icons-material/EditOffOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { useState } from "react";
-
+import {
+  topicAlternatives,
+  difficultieAlternatives,
+  questionAternatives,
+} from "../../models/utilities";
 function QuizCardView(props) {
-  const [favorite, setFavorite]= useState({})
   return (
     <div className="card">
-      {props.edit ? (
+      {!props.edit ? (
         <p title="Edit on">
           {props.empty}
           <EditOffOutlinedIcon
             title="Edit"
             className="icon"
-            onClick={props.mode}
+            onClick={props.editOn}
           />
         </p>
       ) : (
@@ -24,7 +25,7 @@ function QuizCardView(props) {
             <EditOutlinedIcon
               title="Edit"
               className="icon"
-              onClick={props.mode}
+              onClick={props.editOff}
             />
           </p>
           <p title="Remove">
@@ -34,7 +35,7 @@ function QuizCardView(props) {
       )}
       <div className="quizData">
         <p htmlFor="">Category:</p>
-        {!props.edit ? (
+        {props.edit ? (
           <select
             className="selectC"
             name=""
@@ -46,7 +47,7 @@ function QuizCardView(props) {
             <option id="category" value="">
               .....
             </option>
-            {props.category.map((cat) => {
+            {topicAlternatives.map((cat) => {
               return (
                 <option id="category" value={cat}>
                   {cat}
@@ -60,7 +61,7 @@ function QuizCardView(props) {
       </div>
       <div className="quizData">
         <p htmlFor="">Difficultie:</p>
-        {!props.edit ? (
+        {props.edit ? (
           <select
             className="selectD"
             name=""
@@ -73,7 +74,7 @@ function QuizCardView(props) {
             <option id="difficultie" value="">
               .....
             </option>
-            {props.difficultie.map((dif) => {
+            {difficultieAlternatives.map((dif) => {
               return (
                 <option id="difficultie" value={dif}>
                   {dif}
@@ -87,7 +88,7 @@ function QuizCardView(props) {
       </div>
       <div className="quizData">
         <p htmlFor="">Questions:</p>
-        {!props.edit ? (
+        {props.edit ? (
           <select
             className="selectQ"
             name=""
@@ -100,7 +101,7 @@ function QuizCardView(props) {
             <option id="numberOfQuestions" value="5">
               .....
             </option>
-            {props.numberOfQuestions.map((num) => {
+            {questionAternatives.map((num) => {
               return (
                 <option id="numberOfQuestions" value={num}>
                   {num}
@@ -112,7 +113,7 @@ function QuizCardView(props) {
           <h3>{props.card.numberOfQuestions}</h3>
         )}
       </div>
-      {!props.edit ? (
+      {props.edit ? (
         <button title={"Save new favorite"} onClick={props.saveFavorite}>
           Save
         </button>

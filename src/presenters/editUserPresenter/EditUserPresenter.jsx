@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserSettings from "../../views/userSettings/UserSettings";
+import UserSettings from "../../views/userSettingsView/UserSettingsView";
 
 function EditUserPresenter(props) {
   return <UserSettings currentUser={true} />;

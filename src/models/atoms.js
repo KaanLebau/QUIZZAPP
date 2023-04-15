@@ -1,17 +1,42 @@
+import { db } from "../firebase";
+import { getDoc, doc } from "firebase/firestore";
 import { atom, selector } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
 //const model = new UserModel();
+const localStorageEffect =
+  (key) =>
+  ({ setSelf, onSet }) => {
+    const savedValue = localStorage.getItem(key);
+    if (savedValue != null) {
+      setSelf(JSON.parse(savedValue));
+    }
+
+    onSet((newValue) => {
+      localStorage.setItem("user", JSON.stringify(newValue));
+    });
+  };
 export const activeUser = atom({
   key: "activeUser",
-  default: {
-    displayName: "",
-    email: "",
-    name: "",
-    password: "",
+  default: null,
+  effects: [
+    localStorageEffect("activeUser"),
+    ({ onSet }) => {
+      onSet((user) => {});
+    },
+  ],
+});
+
+export const basicUserData = selector({
+  key: "basicUserData",
+  get: (id) => async () => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data().basic;
   },
 });
 
+/*
 export const activeUserSetter = selector({
   key: "activeUserSetter",
   set: ({ set }, basic) => {
@@ -22,6 +47,23 @@ export const activeUserSetter = selector({
   },
   get: ({ get }) => {},
 });
+*/
+export const sqlState = atom({
+  key: "sqlState",
+  default: {},
+});
+export const dockerState = atom({
+  key: "dockerState",
+  default: {},
+});
+export const linuxState = atom({
+  key: "linuxState",
+  default: {},
+});
+export const codeState = atom({
+  key: "codeState",
+  default: {},
+});
 
 export const favoritesState = atom({
   key: "favoritesState",
@@ -30,17 +72,43 @@ export const favoritesState = atom({
       empty: true,
       edit: false,
       category: "",
-      dificultie: "",
+      difficultie: "",
       numberOfQuestions: 5,
     },
     {
-      empty: false,
+      empty: true,
       edit: false,
-      category: "Sql",
-      dificultie: "Easy",
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
       numberOfQuestions: 5,
     },
   ],
+});
+
+export const authState = atom({
+  key: "authState",
+  default: false,
 });
 
 /*

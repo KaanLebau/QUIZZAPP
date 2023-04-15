@@ -86,12 +86,12 @@ function categorySummery(topic) {
   };
 }
 
-function userSummary(sql, code, docker, linux) {
+function userSummary(basic, sql, code, docker, linux) {
   return {
     basicData: {
       topic: "user",
-      name: this.name,
-      displayName: this.displayName,
+      name: basic.name,
+      displayName: basic.displayName,
       numberOfEasyPass:
         sql.basicData.numberOfEasyPass +
         code.basicData.numberOfEasyPass +

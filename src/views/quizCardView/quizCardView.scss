@@ -3,6 +3,7 @@
   background-color: #5c5470;
   border-radius: 20px;
   width: 200px;
+  height: 200px;
   padding: 5px;
   margin: 5px;
   display: flex;
@@ -22,10 +23,10 @@
     background-color: transparent;
     .icon {
       background-color: transparent;
-      padding: 5px;
+      padding: 8px;
       border-radius: 5px;
       color: #dbd8e3;
-      font-size: small;
+      font-size: medium;
       &:hover {
         cursor: pointer;
         background-color: #5c5470;

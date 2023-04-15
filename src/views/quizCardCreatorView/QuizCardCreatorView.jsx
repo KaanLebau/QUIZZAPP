@@ -7,8 +7,7 @@ import {
 } from "../../models/utilities";
 import { GrAddCircle } from "react-icons/gr";
 
-function QuizCardCreator(props) {
-
+function QuizCardCreatorView(props) {
   return (
     <div className="quizCardCreator">
       {!props.edit ? (
@@ -18,7 +17,7 @@ function QuizCardCreator(props) {
           title="Create"
           onClick={props.editingCard}
         >
-          <GrAddCircle className="icon" onClick={props.editingCard} />
+          <GrAddCircle className="icon" onClick={props.editOn} />
           Add
         </div>
       ) : (
@@ -107,4 +106,4 @@ function QuizCardCreator(props) {
   );
 }
 
-export default QuizCardCreator;
+export default QuizCardCreatorView;

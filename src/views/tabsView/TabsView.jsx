@@ -10,6 +10,7 @@ function TabsView(props) {
         return (
           <div
             id={index}
+            key={index}
             onClick={selection}
             className={index === Number(props.active) ? "active" : "tab"}
             title={chart.title}

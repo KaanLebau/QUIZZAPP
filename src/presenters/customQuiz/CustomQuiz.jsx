@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import QuizSettings from "../../views/quizSettings/QuizSettings";
+import QuizSettings from "../../views/quizSettingsView/QuizSettingsView";
 import getQuestions from "../../api/QuizSource";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,7 +11,7 @@ import {
 function CustomQuiz(props) {
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
-    dificultie: "",
+    difficultie: "",
     numberOfQuestions: 5,
   });
   const [theDificultie, setTheDificultie] = useState(0);

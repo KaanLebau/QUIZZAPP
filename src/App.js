@@ -11,8 +11,10 @@ import DemoPage from "./pages/demoPage/DemoPage";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { activeUser, registredState } from "./models/atoms";
 import Result from "./pages/result/Result";
+import UserModel from "./models/UserModel";
 function App(props) {
-  const [model, setModel] = useRecoilState(activeUser);
+  const model = new UserModel();
+  const theUser = useRecoilValue(activeUser);
   const registredUser = true; //useRecoilValue(registredState);
   const Authenticated = ({ children }) => {
     return registredUser ? children : <Navigate to="/" />;
