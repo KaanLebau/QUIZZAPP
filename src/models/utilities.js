@@ -1,14 +1,8 @@
-function difficultieAlternatives() {
-  return ["Easy", "Medium", "Hard"];
-}
+const difficultieAlternatives = ["Easy", "Medium", "Hard"];
 
-function topicAlternatives() {
-  return ["linux", "SQL", "Code", "Docker"];
-}
+const topicAlternatives = ["linux", "SQL", "Code", "Docker"];
 
-function questionAternatives() {
-  return [5, 10, 15, 20];
-}
+const questionAternatives = [5, 10, 15, 20];
 
 function categorySummery(topic) {
   var theTopic = topic.easy.category;
@@ -92,12 +86,12 @@ function categorySummery(topic) {
   };
 }
 
-function userSummary(sql, code, docker, linux) {
+function userSummary(basic, sql, code, docker, linux) {
   return {
     basicData: {
       topic: "user",
-      name: this.name,
-      displayName: this.displayName,
+      name: basic.name,
+      displayName: basic.displayName,
       numberOfEasyPass:
         sql.basicData.numberOfEasyPass +
         code.basicData.numberOfEasyPass +
@@ -223,7 +217,12 @@ function userSummary(sql, code, docker, linux) {
   };
 }
 
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
 export {
+  replaceItemAtIndex,
   difficultieAlternatives,
   topicAlternatives,
   questionAternatives,

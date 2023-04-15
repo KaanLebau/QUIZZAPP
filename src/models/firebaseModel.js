@@ -1,11 +1,15 @@
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import UserModel from "./UserModel";
+import { activeUser, authState } from "./atoms";
+import { favoritesState } from "./atoms";
 import { useRecoilState } from "recoil";
-import { activeUser } from "./atoms";
 
-function updateFirebase(model) {
-  const theUser = doc(db, "users", model.uid);
+async function updateModelFromFirebase(id) {
+  const docRef = doc(db, "test", id);
+  const docSnap = await getDoc(docRef);
+
+  updateFavorites(docSnap.data().favorites);
 
   /*
   async function firebaseModelPromise(id) {
@@ -39,20 +43,24 @@ function updateFirebase(model) {
   }
 
 */
-  function updateModelFromFirebase(user) {
-    const [userBasic, setUserBasic] = useRecoilState(activeUser);
 
-    setUserBasic(user.userBasic);
+  async function updateFavorites() {
+    const favoritesToUpload = {};
+  }
+
+  function updateModelFromFirebase(user) {
+    //const [userBasic, setUserBasic] = useRecoilState(activeUser);
+    //setUserBasic(user.userBasic);
   }
 
   async function updatedModel(payload) {
     if (payload) {
       switch (payload.type) {
         case "displayNameChanged":
-          await updateDoc(theUser, { dispalyName: model.dispalyName });
+          //await updateDoc(theUser, { dispalyName: model.dispalyName });
           break;
         case "favoritesChanged":
-          await updateDoc(theUser, { favorites: model.favorites });
+          //await updateDoc(theUser, { favorites: model.favorites });
           break;
         case "sqlEasyChanged":
           break;
@@ -84,8 +92,8 @@ function updateFirebase(model) {
       }
     }
   }
-  model.addObserver(updatedModel);
+  //model.addObserver(updatedModel);
 }
 
-function updateModel(model) {}
-export { updateFirebase };
+//function updateModel(model) {}
+export { updateModelFromFirebase };

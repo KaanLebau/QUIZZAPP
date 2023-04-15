@@ -1,28 +1,43 @@
 import "./favorites.scss";
-
-import QuizCard from "../quizCard/QuizCard";
+import LoadPagePresenter from "../loadPagePresenter/LoadPagePresenter";
+import QuizCardPresenter from "../quizCardPresenter/QuizCardPresenter";
 import getQuestions from "../../api/QuizSource";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { favoritesState } from "../../models/atoms";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Favorites(props) {
-  const [favorites, setFavorites] = useRecoilState(favoritesState);
-  function theQuiz(query) {
-    getQuestions(query);
+  const [loading, setLoading] = useState(true);
+  const favorites = useRecoilValue(favoritesState);
+  const navigate = useNavigate();
+  async function theQuiz(query) {
+    const quiz = await getQuestions({ query });
+    console.log(quiz);
+    navigate("./active", { state: { quiz } });
   }
+  useEffect(() => {
+    setTimeout(setLoading, 2000, false);
+  }, []);
   return (
     <div className="favorites">
       <label htmlFor="">Favorites</label>
-      <div className="cards">
-        {favorites.map((theCard, index) => (
-          <QuizCard
-            card={theCard}
-            update={(card) => setFavorites(...favorites, card)}
-            key={index}
-            selectedCard={theQuiz}
-          />
-        ))}
-      </div>
+
+      {loading ? (
+        <LoadPagePresenter info={"Loading user"} />
+      ) : (
+        <div className="cards">
+          {favorites.map((theCard, index) => (
+            <QuizCardPresenter
+              card={theCard}
+              key={index}
+              selectedCard={theQuiz}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

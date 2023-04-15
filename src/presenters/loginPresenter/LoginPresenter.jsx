@@ -4,17 +4,37 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { useRecoilState } from "recoil";
-import { activeUser } from "../../models/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  activeUser,
+  authState,
+  sqlState,
+  dockerState,
+  linuxState,
+  codeState,
+  favoritesState,
+  basicUserData,
+} from "../../models/atoms";
 
 function LoginPresenter() {
-  const [currentUser, setCurentUser] = useRecoilState(activeUser);
+  //tools
+  const navigate = useNavigate();
+  //global state hooks
+  const [, setAuth] = useRecoilState(authState);
+  const [, setCurentUser] = useRecoilState(activeUser);
+  const [, setFavoritesState] = useRecoilState(favoritesState);
+  const [, setSqlState] = useRecoilState(sqlState);
+  const [, setDockerState] = useRecoilState(dockerState);
+  const [, setLinuxState] = useRecoilState(linuxState);
+  const [, setCodeState] = useRecoilState(codeState);
+  const theBasicUserData = useSetRecoilState(basicUserData);
+  //user input hooks
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
   const [passwordControll, setPasswordControll] = useState(false);
+  // firebase respons hooks
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
-  const navigate = useNavigate();
 
   function handleInput(e) {
     const id = e.id;
@@ -32,13 +52,13 @@ function LoginPresenter() {
     }
     setUser({ ...user, [id]: value });
   }
-  function handleLogin() {
+  async function handleLogin() {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(setLoading(true))
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        getData(user.uid);
+        setUser({ ...user, firebase: userCredential.user });
+        const firebaseUser = userCredential.user;
+        getData(firebaseUser);
       })
       .catch((error) => {
         setErr(true);
@@ -47,10 +67,19 @@ function LoginPresenter() {
   }
 
   async function getData(id) {
-    const docRef = doc(db, "users", id);
+    console.log(user);
+    const docRef = doc(db, "users", id.uid);
     const docSnap = await getDoc(docRef);
+
+    setAuth(true);
     setCurentUser(docSnap.data().basic);
-    console.log(docSnap.data());
+    setSqlState(docSnap.data().sql);
+    setDockerState(docSnap.data().docker);
+    setLinuxState(docSnap.data().linux);
+    setCodeState(docSnap.data().code);
+    setFavoritesState(docSnap.data().favorites);
+    //setCurentUser(docSnap.data().basic);
+    //console.log(docSnap.data());
   }
   function handleSignup() {
     navigate("../registration");

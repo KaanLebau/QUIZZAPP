@@ -1,6 +1,42 @@
 export const InitialUserData = {
   basic: {},
-  favorites: [{}, {}, {}, {}, {}],
+  favorites: [
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+    {
+      empty: true,
+      edit: false,
+      category: "",
+      difficultie: "",
+      numberOfQuestions: 5,
+    },
+  ],
   sql: {
     easy: {
       correct: 0,

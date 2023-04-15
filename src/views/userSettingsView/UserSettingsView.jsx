@@ -4,7 +4,7 @@ import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutli
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-function UserSettings(props) {
+function UserSettingsView(props) {
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(true);
   const currentUser = false;
@@ -237,4 +237,4 @@ function UserSettings(props) {
   );
 }
 
-export default UserSettings;
+export default UserSettingsView;

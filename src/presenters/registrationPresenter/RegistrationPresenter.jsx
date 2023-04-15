@@ -1,4 +1,4 @@
-import UserSettings from "../../views/userSettings/UserSettings";
+import UserSettings from "../../views/userSettingsView/UserSettingsView";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InitialUserData } from "../../models/initialUserdata";

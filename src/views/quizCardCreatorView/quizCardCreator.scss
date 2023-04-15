@@ -1,0 +1,116 @@
+.quizCardCreator {
+  background: transparent;
+  .editCard {
+    background: transparent;
+    background-color: #5c5470;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    color: #dbd8e3;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+    box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+    cursor: pointer;
+    &:hover {
+      background-color: #2a2438;
+      -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+      box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    }
+    .icon {
+      background: transparent;
+      color: #dbd8e3;
+      font-size: 70px;
+    }
+    .card {
+      display: hidden;
+    }
+  }
+
+  .card {
+    background: transparent;
+    background-color: #5c5470;
+    border-radius: 20px;
+    width: 200px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+    box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
+    &:hover {
+      background-color: #2a2438;
+      -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+      box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    }
+
+    .addFavorite {
+    }
+
+    .quizData {
+      background-color: transparent;
+      color: #dbd8e3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+
+      .title {
+        background-color: transparent;
+        flex: 1;
+      }
+      .selectC {
+        border-radius: 20px;
+        background-color: transparent;
+        color: #dbd8e3;
+        flex: 3;
+        text-align: center;
+        font-size: xx-large;
+      }
+      .selectD {
+        border-radius: 20px;
+        background-color: transparent;
+        color: #dbd8e3;
+        flex: 3;
+        text-align: center;
+        font-size: x-large;
+      }
+      .selectQ {
+        border-radius: 20px;
+        background-color: transparent;
+        color: #dbd8e3;
+        flex: 3;
+        text-align: center;
+        font-size: x-large;
+      }
+    }
+    .buttons {
+      display: flex;
+      background: transparent;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      button {
+        border-radius: 10px;
+        background-color: #352f44;
+        color: #dbd8e3;
+        padding: 5px;
+        width: 40%;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button:hover {
+        color: #352f44;
+        background-color: #dbd8e3;
+      }
+      .hidden {
+        display: hidden;
+      }
+    }
+  }
+}
