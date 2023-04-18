@@ -21,7 +21,7 @@ function UserSettingsView(props) {
         QuizIt
       </div>
       <div className="form">
-        <span className="type">Basic info</span>
+        <span className="type">User info</span>
         <div className="row">
           <div className="top">
             <div className="left">
@@ -59,7 +59,7 @@ function UserSettingsView(props) {
                 type="text"
                 id={"displayName"}
                 title={"Display name"}
-                placeholder={currentUser ? "New displayname" : "Johny"}
+                placeholder={currentUser ? "New displayname" : "Johnny"}
                 onChange={(e) =>
                   props.input({ id: e.target.id, value: e.target.value })
                 }
