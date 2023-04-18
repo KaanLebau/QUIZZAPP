@@ -5,7 +5,7 @@ import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 
 import "./quizSettings.scss";
 
-function QuizSettings(props) {
+function QuizSettingsView(props) {
   function topicIcon(topic) {
     switch (topic) {
       case "SQL":
@@ -68,4 +68,4 @@ function QuizSettings(props) {
   );
 }
 
-export default QuizSettings;
+export default QuizSettingsView;

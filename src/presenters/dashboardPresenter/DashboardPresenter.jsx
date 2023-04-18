@@ -1,12 +1,14 @@
 import "./dashboardPresenter.scss";
-import DashboardSidebarView from "../../views/dashboardSidebar/DashboardSidebarView";
-import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
 import { useState, useEffect } from "react";
-import UserCardView from "../../views/userCardView/UserCardView";
-import TopicCardView from "../../views/topicCardView/TopicCardView";
-
+import DashboardSidebarView from "../../views/dashboardSidebarView/DashboardSidebarView";
 import CardView from "../../views/cardView/CardView";
 import TabPanelPresenter from "../tabPanelPresenter/TabPanelPresenter";
+import { useRecoilValue } from "recoil";
+import { activeUser } from "../../models/atoms";
+
+//import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
+//import UserCardView from "../../views/userCardView/UserCardView";
+//import TopicCardView from "../../views/topicCardView/TopicCardView";
 
 function DashboardPresenter(props) {
   var user = props.model.userSummary();
@@ -48,11 +50,12 @@ function DashboardPresenter(props) {
       <div className="dashSidebar">
         <DashboardSidebarView setCategory={handleshow} />
       </div>
-      <div className="dashContent">
-        {}
-        <CardView data={theTopic} />
-        <TabPanelPresenter data={theTopic} />
-      </div>
+      {
+        <div className="dashContent">
+          <CardView data={theTopic} />
+          <TabPanelPresenter data={theTopic} />
+        </div>
+      }
     </div>
   );
 }

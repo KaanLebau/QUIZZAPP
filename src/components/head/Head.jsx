@@ -15,13 +15,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 function Head(props) {
   const regi = useRecoilValue(registredState);
   const [registred, setRegistred] = useRecoilState(registredState);
-  console.log(regi);
+
   const [logged, setLoged] = useState(props.currentUser);
   const navigate = useNavigate();
   //const logingout = useSetRecoilState(toggleRegistredState);
   async function handleLogout() {
     setRegistred(false);
-    console.log(regi);
+
     //logingout();
     /*
     signOut(auth)
