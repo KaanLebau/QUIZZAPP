@@ -21,7 +21,7 @@ function UserSettingsView(props) {
         QuizIt
       </div>
       <div className="form">
-        <span className="type">User info</span>
+        <div className="type">Enter your credentials and sign up!</div>
         <div className="row">
           <div className="top">
             <div className="left">
@@ -127,15 +127,6 @@ function UserSettingsView(props) {
               <label htmlFor="">Password: </label>
             </div>
             <div className="right">
-              <input
-                type={showPassword ? "password" : "text"}
-                id={"password"}
-                title={"password"}
-                placeholder={"*****"}
-                onChange={(e) =>
-                  props.input({ id: e.target.id, value: e.target.value })
-                }
-              />
               {showPassword ? (
                 <VisibilityOutlinedIcon
                   className="iconPass"
@@ -147,6 +138,15 @@ function UserSettingsView(props) {
                   onClick={handleShowPassword}
                 />
               )}
+              <input
+                type={showPassword ? "password" : "text"}
+                id={"password"}
+                title={"password"}
+                placeholder={"*****"}
+                onChange={(e) =>
+                  props.input({ id: e.target.id, value: e.target.value })
+                }
+              />
             </div>
           </div>
           <div className="info">
@@ -163,15 +163,6 @@ function UserSettingsView(props) {
               <label htmlFor="">Confirm Password: </label>
             </div>
             <div className="right">
-              <input
-                type={showConfirmation ? "password" : "text"}
-                id={"passwordValidation"}
-                title={"password"}
-                placeholder={"*****"}
-                onChange={(e) =>
-                  props.input({ id: e.target.id, value: e.target.value })
-                }
-              />
               {showConfirmation ? (
                 <VisibilityOutlinedIcon
                   className="iconPass"
@@ -183,6 +174,15 @@ function UserSettingsView(props) {
                   onClick={handleShowConfirmation}
                 />
               )}
+              <input
+                type={showConfirmation ? "password" : "text"}
+                id={"passwordValidation"}
+                title={"password"}
+                placeholder={"*****"}
+                onChange={(e) =>
+                  props.input({ id: e.target.id, value: e.target.value })
+                }
+              />
             </div>
           </div>
           <div className="info">
@@ -225,7 +225,7 @@ function UserSettingsView(props) {
               }
               onClick={props.create}
             >
-              Create
+              Sign Up
             </button>
           )}
           <button onClick={props.cancel} title="Cancel">
