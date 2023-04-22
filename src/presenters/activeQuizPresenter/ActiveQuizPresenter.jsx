@@ -2,7 +2,7 @@ import "./activeQuizPresenter.scss";
 import React, { useEffect, useState } from "react";
 import QuestionsView from "../../views/questionsView/QuestionsView";
 import StartQuiz from "../../views/startQuiz/StartQuiz";
-import CurrentQuestion from "../../views/currentQuestion/CurrentQuestion";
+import CurrentQuestion from "../../views/currentQuestionView/CurrentQuestionView";
 import { SocialDistanceOutlined } from "@mui/icons-material";
 import { type } from "@testing-library/user-event/dist/type";
 

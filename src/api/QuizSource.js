@@ -8,9 +8,9 @@ async function getQuestions(query, quizModel) {
   let {category, dificultie, numberOfQuestions} = query.customQuiz
   Axios.get(
     `https://quizapi.io/api/v1/questions?apiKey=${apiKey}&category=${category}&difficulty=${dificultie}&limit=${numberOfQuestions}`
-  ).then((response) => {
+  )
+    .then((response) => {
       let data = response.data;
-      console.log(data)
       quizModel.addquestions(data);
     })
     .catch(console.error);

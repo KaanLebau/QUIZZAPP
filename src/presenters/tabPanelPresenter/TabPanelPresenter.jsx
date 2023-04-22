@@ -1,7 +1,7 @@
 import "./tabPanelPresenter.scss";
 import React, { useEffect } from "react";
 import TabView from "../../views/tabView/TabView";
-import TabsView from "../../views/tabs/TabsView";
+import TabsView from "../../views/tabsView/TabsView";
 import ChartPresenter from "../chartPresenter/ChartPresenter";
 import ChartInfoPresenter from "../chartInfoPresenter/ChartInfoPresenter";
 import { useState } from "react";

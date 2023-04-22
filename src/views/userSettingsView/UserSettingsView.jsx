@@ -4,7 +4,7 @@ import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutli
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-function UserSettings(props) {
+function UserSettingsView(props) {
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(true);
   const currentUser = false;
@@ -21,7 +21,7 @@ function UserSettings(props) {
         QuizIt
       </div>
       <div className="form">
-        <span className="type">Basic info</span>
+        <div className="type">Enter your credentials and sign up!</div>
         <div className="row">
           <div className="top">
             <div className="left">
@@ -59,7 +59,7 @@ function UserSettings(props) {
                 type="text"
                 id={"displayName"}
                 title={"Display name"}
-                placeholder={currentUser ? "New displayname" : "Johny"}
+                placeholder={currentUser ? "New displayname" : "Johnny"}
                 onChange={(e) =>
                   props.input({ id: e.target.id, value: e.target.value })
                 }
@@ -127,15 +127,6 @@ function UserSettings(props) {
               <label htmlFor="">Password: </label>
             </div>
             <div className="right">
-              <input
-                type={showPassword ? "password" : "text"}
-                id={"password"}
-                title={"password"}
-                placeholder={"*****"}
-                onChange={(e) =>
-                  props.input({ id: e.target.id, value: e.target.value })
-                }
-              />
               {showPassword ? (
                 <VisibilityOutlinedIcon
                   className="iconPass"
@@ -147,6 +138,15 @@ function UserSettings(props) {
                   onClick={handleShowPassword}
                 />
               )}
+              <input
+                type={showPassword ? "password" : "text"}
+                id={"password"}
+                title={"password"}
+                placeholder={"*****"}
+                onChange={(e) =>
+                  props.input({ id: e.target.id, value: e.target.value })
+                }
+              />
             </div>
           </div>
           <div className="info">
@@ -163,15 +163,6 @@ function UserSettings(props) {
               <label htmlFor="">Confirm Password: </label>
             </div>
             <div className="right">
-              <input
-                type={showConfirmation ? "password" : "text"}
-                id={"passwordValidation"}
-                title={"password"}
-                placeholder={"*****"}
-                onChange={(e) =>
-                  props.input({ id: e.target.id, value: e.target.value })
-                }
-              />
               {showConfirmation ? (
                 <VisibilityOutlinedIcon
                   className="iconPass"
@@ -183,6 +174,15 @@ function UserSettings(props) {
                   onClick={handleShowConfirmation}
                 />
               )}
+              <input
+                type={showConfirmation ? "password" : "text"}
+                id={"passwordValidation"}
+                title={"password"}
+                placeholder={"*****"}
+                onChange={(e) =>
+                  props.input({ id: e.target.id, value: e.target.value })
+                }
+              />
             </div>
           </div>
           <div className="info">
@@ -225,7 +225,7 @@ function UserSettings(props) {
               }
               onClick={props.create}
             >
-              Create
+              Sign Up
             </button>
           )}
           <button onClick={props.cancel} title="Cancel">
@@ -237,4 +237,4 @@ function UserSettings(props) {
   );
 }
 
-export default UserSettings;
+export default UserSettingsView;

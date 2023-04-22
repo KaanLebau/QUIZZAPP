@@ -9,7 +9,7 @@ function StartQuiz(props) {
       </div>
       <div className="row">
         <h2>Difficultie: </h2>
-        <h2>{props.quizData[0].difficultie}</h2>
+        <h2>{props.quizData[0].difficulty}</h2>
       </div>
       <div className="row">
         <h2>Questions: </h2>

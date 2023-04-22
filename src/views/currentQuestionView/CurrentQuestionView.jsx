@@ -1,14 +1,18 @@
 import React from "react";
 import "./currentQuestion.scss";
 
-function CurrentQuestion(props) {
+function CurrentQuestionView(props) {
   return (
     <div className="theQuestion">
       <div className="questionInfo">{props.question.category}</div>
       <div className="question">{props.question.question}</div>
       <div className="alternatives">
         {props.question.answers.map((a, key) => (
-          <div className={key === props.givenAnswer ? "selected" : "alt"} id={key} onClick={props.chooseAnswer}>
+          <div
+            className={key === props.givenAnswer ? "selected" : "alt"}
+            id={key}
+            onClick={props.chooseAnswer}
+          >
             {a.answer}
           </div>
         ))}
@@ -22,4 +26,4 @@ function CurrentQuestion(props) {
   );
 }
 
-export default CurrentQuestion;
+export default CurrentQuestionView;
