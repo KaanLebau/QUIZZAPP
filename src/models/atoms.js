@@ -3,6 +3,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { atom, selector } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
+import effects from "chart.js/dist/helpers/helpers.easing";
 //const model = new UserModel();
 
 var firestoreObject;
@@ -62,6 +63,12 @@ export const activeUser = atom({
       onSet((user) => {});
     },
   ],
+});
+
+export const activeQuizState = atom({
+  key: "activeQuizState",
+  default: null,
+  effects: [localStorageEffect("sqlState")],
 });
 
 export const sqlState = atom({
