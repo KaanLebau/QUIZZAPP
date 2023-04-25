@@ -6,7 +6,6 @@ import { useRecoilState } from "recoil";
 import { favoritesState } from "../../models/atoms";
 import { replaceItemAtIndex } from "../../models/utilities";
 function QuizCardPresenter(props) {
-  console.log(props.card);
   const [theCard, setTheCard] = useState(props.card);
   const [, reRender] = useState();
   const [userFavorites, setUserFavorites] = useRecoilState(favoritesState);
@@ -35,7 +34,6 @@ function QuizCardPresenter(props) {
     const list = userFavorites;
     const newList = replaceItemAtIndex(list, props.index, theCard);
     setUserFavorites(newList);
-    //console.log(userFavorites);
   }
   function handleCancel() {
     setTheCard({ empty: true, edit: false });

@@ -1,8 +1,17 @@
 import "./cardView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useRecoilValue } from "recoil";
+import { activeUser } from "../../models/atoms";
 
 function CardView(props) {
+  const theUser = useRecoilValue(activeUser);
+  function getusername() {
+    if (theUser === null) {
+      return "";
+    }
+    return theUser.displayName;
+  }
   function topicIcon(topic) {
     switch (topic) {
       case "SQL":
@@ -25,7 +34,7 @@ function CardView(props) {
         <div className="bild">{topicIcon(props.data.basicData.topic)}</div>
         <p className="title">
           {props.data.basicData.topic === "user"
-            ? props.data.basicData.displayName
+            ? getusername()
             : props.data.basicData.topic}
         </p>
       </div>

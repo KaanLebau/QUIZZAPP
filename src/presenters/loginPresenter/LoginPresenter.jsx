@@ -21,7 +21,7 @@ function LoginPresenter() {
   const navigate = useNavigate();
   //global state hooks
   const [, setAuth] = useRecoilState(authState);
-  const [, setCurentUser] = useRecoilState(activeUser);
+  const [curentUser, setCurentUser] = useRecoilState(activeUser);
   const [, setFavoritesState] = useRecoilState(favoritesState);
   const [, setSqlState] = useRecoilState(sqlState);
   const [, setDockerState] = useRecoilState(dockerState);
@@ -56,8 +56,8 @@ function LoginPresenter() {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(setLoading(true))
       .then((userCredential) => {
-        setUser({ ...user, firebase: userCredential.user });
         const firebaseUser = userCredential.user;
+
         getData(firebaseUser);
       })
       .catch((error) => {
@@ -66,11 +66,9 @@ function LoginPresenter() {
       .finally(navigate("/user"));
   }
 
-  async function getData(id) {
-    console.log(user);
-    const docRef = doc(db, "users", id.uid);
+  async function getData(firebaseUser) {
+    const docRef = doc(db, "users", firebaseUser.uid);
     const docSnap = await getDoc(docRef);
-
     setAuth(true);
     setCurentUser(docSnap.data().basic);
     setSqlState(docSnap.data().sql);

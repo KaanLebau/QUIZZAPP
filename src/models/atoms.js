@@ -4,6 +4,34 @@ import { atom, selector } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
 //const model = new UserModel();
+
+var firestoreObject;
+export async function firestoreStorage(id) {
+  const docRef = doc(db, "users", id);
+  const docSnap = await getDoc(docRef);
+  firestoreObject = docSnap.data();
+}
+
+const syncBasicStorageEffect =
+  (userID) =>
+  ({ setSelf, trigger }) => {
+    // Initialize atom value to the remote storage state
+    if (trigger === "get") {
+      // Avoid expensive initialization
+      setSelf(firestoreObject.basic); // Call synchronously to initialize
+    }
+
+    // Subscribe to remote storage changes and update the atom value
+    //myRemoteStorage.onChange(userID, (userInfo) => {
+    //  setSelf(userInfo); // Call asynchronously to change value
+    //});
+
+    // Cleanup remote storage subscription
+    return () => {
+      //myRemoteStorage.onChange(userID, null);
+    };
+  };
+
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
@@ -13,20 +41,9 @@ const localStorageEffect =
     }
 
     onSet((newValue) => {
-      localStorage.setItem("user", JSON.stringify(newValue));
+      localStorage.setItem(key, JSON.stringify(newValue));
     });
   };
-export const activeUser = atom({
-  key: "activeUser",
-  default: null,
-  effects: [
-    localStorageEffect("activeUser"),
-    ({ onSet }) => {
-      onSet((user) => {});
-    },
-  ],
-});
-
 export const basicUserData = selector({
   key: "basicUserData",
   get: (id) => async () => {
@@ -36,33 +53,37 @@ export const basicUserData = selector({
   },
 });
 
-/*
-export const activeUserSetter = selector({
-  key: "activeUserSetter",
-  set: ({ set }, basic) => {
-    set((activeUser.displayName = basic.displayName));
-    set((activeUser.name = basic.name));
-    set((activeUser.email = basic.email));
-    set((activeUser.password = basic.password));
-  },
-  get: ({ get }) => {},
+export const activeUser = atom({
+  key: "activeUser",
+  default: null,
+  effects: [
+    localStorageEffect("activeUser"),
+    ({ onSet, setSelf }) => {
+      onSet((user) => {});
+    },
+  ],
 });
-*/
+
 export const sqlState = atom({
   key: "sqlState",
-  default: {},
+  default: null,
+  effects: [localStorageEffect("sqlState")],
 });
+
 export const dockerState = atom({
   key: "dockerState",
-  default: {},
+  default: null,
+  effects: [localStorageEffect("dockerState")],
 });
 export const linuxState = atom({
   key: "linuxState",
-  default: {},
+  default: null,
+  effects: [localStorageEffect("linuxState")],
 });
 export const codeState = atom({
   key: "codeState",
-  default: {},
+  default: null,
+  effects: [localStorageEffect("codeState")],
 });
 
 export const favoritesState = atom({
@@ -104,6 +125,7 @@ export const favoritesState = atom({
       numberOfQuestions: 5,
     },
   ],
+  effects: [localStorageEffect("favoritesState")],
 });
 
 export const authState = atom({
@@ -111,27 +133,7 @@ export const authState = atom({
   default: false,
 });
 
-/*
-export const updateActiveUser = selector({
-  key: "updateUser",
-  set: (user, { set, get }) => {
-    const u = get(activeUser);
-    set(activeUser, user);
-  },
-});
-*/
-
 export const registredState = atom({
   key: "registredState",
   default: true,
 });
-
-/*
-export const toggleRegistredState = selector({
-  key: "registredToggle",
-  set: ({ get, set }) => {
-    const currentRegistredValue = get(registredState);
-    set(registredState, !currentRegistredValue);
-  },
-});
-*/

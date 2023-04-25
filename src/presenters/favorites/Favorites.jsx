@@ -23,21 +23,16 @@ function Favorites(props) {
   return (
     <div className="favorites">
       <label htmlFor="">Favorites</label>
-
-      {loading ? (
-        <LoadPagePresenter info={"Loading user"} />
-      ) : (
-        <div className="cards">
-          {favorites.map((theCard, index) => (
-            <QuizCardPresenter
-              card={theCard}
-              key={index}
-              selectedCard={theQuiz}
-              index={index}
-            />
-          ))}
-        </div>
-      )}
+      <div className="cards">
+        {favorites.map((theCard, index) => (
+          <QuizCardPresenter
+            card={theCard}
+            key={index}
+            selectedCard={theQuiz}
+            index={index}
+          />
+        ))}
+      </div>
     </div>
   );
 }

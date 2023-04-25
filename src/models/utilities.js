@@ -87,54 +87,83 @@ function categorySummery(topic) {
 }
 
 function userSummary(basic, sql, code, docker, linux) {
+  var numberOfSql = sql.basicData.numberOfPass + sql.basicData.numberOfFaild;
+  var numberOfCode = code.basicData.numberOfPass + code.basicData.numberOfFaild;
+  var numberOfLinux =
+    linux.basicData.numberOfPass + linux.basicData.numberOfFaild;
+  var numberOfDocker =
+    docker.basicData.numberOfPass + docker.basicData.numberOfFaild;
+  var numberOfEasy =
+    sql.basicData.numberOfEasy +
+    code.basicData.numberOfEasy +
+    linux.basicData.numberOfEasy +
+    docker.basicData.numberOfEasy;
+  var numberOfMedium =
+    sql.basicData.numberOfMedium +
+    code.basicData.numberOfMedium +
+    linux.basicData.numberOfMedium +
+    docker.basicData.numberOfMedium;
+  var numberOfHard =
+    sql.basicData.numberOfHard +
+    code.basicData.numberOfHard +
+    linux.basicData.numberOfHard +
+    docker.basicData.numberOfHard;
+
+  var numberOfEasyPass =
+    sql.basicData.numberOfEasyPass +
+    code.basicData.numberOfEasyPass +
+    linux.basicData.numberOfEasyPass +
+    docker.basicData.numberOfEasyPass;
+  var numberOfMediumPass =
+    sql.basicData.numberOfMediumPass +
+    code.basicData.numberOfMediumPass +
+    linux.basicData.numberOfMediumPass +
+    docker.basicData.numberOfMediumPass;
+  var numberOfHardPass =
+    sql.basicData.numberOfHardPass +
+    code.basicData.numberOfHardPass +
+    linux.basicData.numberOfHardPass +
+    docker.basicData.numberOfHardPass;
+  var numberOfPass =
+    sql.basicData.numberOfPass +
+    code.basicData.numberOfPass +
+    linux.basicData.numberOfPass +
+    docker.basicData.numberOfPass;
+  var numberOfFaild =
+    sql.basicData.numberOfFaild +
+    code.basicData.numberOfFaild +
+    linux.basicData.numberOfFaild +
+    docker.basicData.numberOfFaild;
+  var numberOfCorrect =
+    sql.basicData.numberOfCorrect +
+    code.basicData.numberOfCorrect +
+    linux.basicData.numberOfCorrect +
+    docker.basicData.numberOfCorrect;
+
+  var numberOfWrong =
+    sql.basicData.numberOfWrong +
+    code.basicData.numberOfWrong +
+    linux.basicData.numberOfWrong +
+    docker.basicData.numberOfWrong;
+  var numberOfNoAnswer =
+    sql.basicData.numberOfNoAnswer +
+    code.basicData.numberOfNoAnswer +
+    linux.basicData.numberOfNoAnswer +
+    docker.basicData.numberOfNoAnswer;
+
   return {
     basicData: {
       topic: "user",
       name: basic.name,
       displayName: basic.displayName,
-      numberOfEasyPass:
-        sql.basicData.numberOfEasyPass +
-        code.basicData.numberOfEasyPass +
-        linux.basicData.numberOfEasyPass +
-        docker.basicData.numberOfEasyPass,
-
-      numberOfMediumPass:
-        sql.basicData.numberOfMediumPass +
-        code.basicData.numberOfMediumPass +
-        linux.basicData.numberOfMediumPass +
-        docker.basicData.numberOfMediumPass,
-
-      numberOfHardPass:
-        sql.basicData.numberOfHardPass +
-        code.basicData.numberOfHardPass +
-        linux.basicData.numberOfHardPass +
-        docker.basicData.numberOfHardPass,
-
-      numberOfPass:
-        sql.basicData.numberOfPass +
-        code.basicData.numberOfPass +
-        linux.basicData.numberOfPass +
-        docker.basicData.numberOfPass,
-      numberOfFaild:
-        sql.basicData.numberOfFaild +
-        code.basicData.numberOfFaild +
-        linux.basicData.numberOfFaild +
-        docker.basicData.numberOfFaild,
-      numberOfCorrect:
-        sql.basicData.numberOfCorrect +
-        code.basicData.numberOfCorrect +
-        linux.basicData.numberOfCorrect +
-        docker.basicData.numberOfCorrect,
-      numberOfWrong:
-        sql.basicData.numberOfWrong +
-        code.basicData.numberOfWrong +
-        linux.basicData.numberOfWrong +
-        docker.basicData.numberOfWrong,
-      numberOfNoAnswer:
-        sql.basicData.numberOfNoAnswer +
-        code.basicData.numberOfNoAnswer +
-        linux.basicData.numberOfNoAnswer +
-        docker.basicData.numberOfNoAnswer,
+      numberOfEasyPass: numberOfEasyPass,
+      numberOfMediumPass: numberOfMediumPass,
+      numberOfHardPass: numberOfHardPass,
+      numberOfPass: numberOfPass,
+      numberOfFaild: numberOfFaild,
+      numberOfCorrect: numberOfCorrect,
+      numberOfWrong: numberOfWrong,
+      numberOfNoAnswer: numberOfNoAnswer,
     },
     chartData: [
       //resultdistributionData:
@@ -143,29 +172,21 @@ function userSummary(basic, sql, code, docker, linux) {
         title: "Result distribution",
         labels: ["Pass", "Failed"],
         data: {
-          pass:
-            sql.basicData.numberOfPass +
-            code.basicData.numberOfPass +
-            linux.basicData.numberOfPass +
-            docker.basicData.numberOfPass,
-          failed:
-            sql.basicData.numberOfFaild +
-            code.basicData.numberOfFaild +
-            linux.basicData.numberOfFaild +
-            docker.basicData.numberOfFaild,
+          pass: numberOfPass,
+          failed: numberOfFaild,
         },
       },
+
       //topicdistributionData:
       {
         chartType: "pie",
         title: "Topic distribution",
         labels: ["Sql", "Code", "Linux", "Docker"],
         data: {
-          sql: sql.basicData.numberOfPass + sql.basicData.numberOfFaild,
-          code: code.basicData.numberOfPass + code.basicData.numberOfFaild,
-          linux: linux.basicData.numberOfPass + linux.basicData.numberOfFaild,
-          docker:
-            docker.basicData.numberOfPass + docker.basicData.numberOfFaild,
+          sql: numberOfSql,
+          code: numberOfCode,
+          linux: numberOfLinux,
+          docker: numberOfDocker,
         },
       },
       //difficultieDistributionData:
@@ -174,21 +195,9 @@ function userSummary(basic, sql, code, docker, linux) {
         title: "Dificultie distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
-          easy:
-            sql.basicData.numberOfEasy +
-            code.basicData.numberOfEasy +
-            linux.basicData.numberOfEasy +
-            docker.basicData.numberOfEasy,
-          medium:
-            sql.basicData.numberOfMedium +
-            code.basicData.numberOfMedium +
-            linux.basicData.numberOfMedium +
-            docker.basicData.numberOfMedium,
-          hard:
-            sql.basicData.numberOfHard +
-            code.basicData.numberOfHard +
-            linux.basicData.numberOfHard +
-            docker.basicData.numberOfHard,
+          easy: numberOfEasy,
+          medium: numberOfMedium,
+          hard: numberOfHard,
         },
       },
       //answerdistributionData:
@@ -196,21 +205,9 @@ function userSummary(basic, sql, code, docker, linux) {
         chartType: "pie",
         title: "Answers distribution",
         data: {
-          correct:
-            sql.basicData.numberOfCorrect +
-            code.basicData.numberOfCorrect +
-            linux.basicData.numberOfCorrect +
-            docker.basicData.numberOfCorrect,
-          wrong:
-            sql.basicData.numberOfWrong +
-            code.basicData.numberOfWrong +
-            linux.basicData.numberOfWrong +
-            docker.basicData.numberOfWrong,
-          noAnswer:
-            sql.basicData.numberOfNoAnswer +
-            code.basicData.numberOfNoAnswer +
-            linux.basicData.numberOfNoAnswer +
-            docker.basicData.numberOfNoAnswer,
+          correct: numberOfCorrect,
+          wrong: numberOfWrong,
+          noAnswer: numberOfNoAnswer,
         },
       },
     ],
