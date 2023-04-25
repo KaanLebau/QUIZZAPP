@@ -2,7 +2,7 @@ import React from "react";
 import "./quizCardCreator.scss";
 import {
   topicAlternatives,
-  difficultieAlternatives,
+  difficultyAlternatives,
   questionAternatives,
 } from "../../models/utilities";
 import { GrAddCircle } from "react-icons/gr";
@@ -45,26 +45,26 @@ function QuizCardCreatorView(props) {
             </select>
           </div>
           <div className="quizData">
-            <span className="title">Difficultie:</span>
+            <span className="title">Difficulty:</span>
             <select
               name=""
-              id="difficultie"
+              id="difficulty"
               className="selectD"
               onChange={(e) => {
                 props.card({ id: e.target.id, value: e.target.value });
               }}
             >
-              <option id="difficultie" value="" key="">
+              <option id="difficulty" value="" key="">
                 .....
               </option>
-              {difficultieAlternatives.map((difficultie) => {
+              {difficultyAlternatives.map((difficulty) => {
                 return (
                   <option
-                    id="difficultie"
-                    value={difficultie}
-                    key={difficultie}
+                    id="difficulty"
+                    value={difficulty}
+                    key={difficulty}
                   >
-                    {difficultie}
+                    {difficulty}
                   </option>
                 );
               })}

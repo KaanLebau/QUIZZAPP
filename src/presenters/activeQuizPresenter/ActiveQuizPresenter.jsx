@@ -5,92 +5,92 @@ import StartQuiz from "../../views/startQuiz/StartQuiz";
 import CurrentQuestion from "../../views/currentQuestionView/CurrentQuestionView";
 import { SocialDistanceOutlined } from "@mui/icons-material";
 import { type } from "@testing-library/user-event/dist/type";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { activeQuizState } from "../../models/atoms";
+import { correctQuiz, replaceItemAtIndex } from "../../models/utilities";
 
-function ActiveQuizPresenter(props) {
+function ActiveQuizPresenter() {
+  const [activeQuiz, setActiveQuiz] = useRecoilState(activeQuizState);
   const [start, setStart] = useState(false);
   const [index, setIndex] = useState(0);
-  const [active, setActive] = useState({});
-  const [progress, setProgress] = useState(0);
-  const [answered, setAnswered] = useState();
-  const [, setActiveAnswer] = useState();
+  const [activeQuestion, setActiveQuestion] = useState(activeQuiz.questions[index]);
   
   function handleNext() {
-    if (index === props.quiz.appQuestions.length - 1) {
+    if (index === activeQuiz.questions.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
     }
-    setActive(props.quiz.appQuestions[index])
-    setActiveAnswer(props.quiz.appQuestions[index].answer)
+    setActiveQuestion(activeQuiz.questions[index])
   }
 
   function handlePrev() {
     if (index === 0) {
-      setIndex(props.quiz.appQuestions.length - 1);
+      setIndex(activeQuiz.questions.questions.length);
     } else {
       setIndex(index - 1);
     }
-    setActive(props.quiz.appQuestions[index])
-    setActiveAnswer(props.quiz.appQuestions[index])
+    setActiveQuestion(activeQuiz.questions[index])
   }
 
   function newQuestion(e) {
     setIndex(Number.parseInt(e.target.id));
-    setActive(props.quiz.appQuestions[index])
-    setActiveAnswer(active.answer)
+    setActiveQuestion(activeQuiz.questions[index])
   }
 
   function beginQuiz() {
     setStart(true);
-    setActive(props.quiz.appQuestions[index]);
+    setActiveQuestion(activeQuiz.questions[index]);
   }
 
-  function calculateProgress() {
-    function count(q) {
-      return q.answered ? 1 : 0;
-    }
-    setAnswered(
-      props.quiz.appQuestions.map(count).reduce((acc, val) => {
-        return acc + val;
-      }, 0)
-    );
-    setProgress((answered / props.quiz.appQuestions.length).toFixed(2) * 100);
-  }
   function activateAnswer(e) {
-    if (!active.answered) {
-      active.answered = true;
+    if (!activeQuiz.questions[index].answered) {
+      let y = 1;
     }
-    props.quiz.appQuestions[index].setAnswer(Number.parseInt(e.target.id));
-    setActiveAnswer(props.quiz.appQuestions[index].answer)
+    activeQuestion.answer = Number.parseInt(e.target.id)
+    updateQuestions();
   }
+
+  function updateQuestions(){
+    let list = activeQuiz.questions;
+    let newlist = replaceItemAtIndex(list, index, activeQuestion)
+    setActiveQuiz(newlist)
+  }
+
   function handleSubmit() {
-    let result = props.quiz.correctQuiz()
+    let result = correctQuiz(activeQuiz.questions)
     console.log(result)
   }
+
+  function checkQuestionsError() {
+    
+    return Number.parseInt(activeQuiz.numberOfQuestions) !== Number.parseInt(activeQuiz.questions.length);
+  }
+  
   useEffect(() => {
-    setActive(props.quiz.appQuestions[index]);
-  }, [index, active.answer]);
+    setActiveQuestion(activeQuiz.questions[index]);
+  }, [index]);
 
   return (
     <div className="activePresenter">
       <div className="activeQuestion">
         {start ? (
           <CurrentQuestion
-            question={active}
-            givenAnswer={active.answer}
+            question={activeQuestion}
+            givenAnswer={activeQuiz.questions[index].answer}
             chooseAnswer={activateAnswer}
             next={handleNext}
             submit={handleSubmit}
             prev={handlePrev}
           />
         ) : (
-          <StartQuiz begin={beginQuiz} quizData={props.quiz.appQuestions} />
+          <StartQuiz begin={beginQuiz} quizData={activeQuiz} error={checkQuestionsError()}/>
         )}
       </div>
-      <QuestionsView  questions={props.quiz.appQuestions}
+      <QuestionsView  questions={activeQuiz.questions}
                       questionSelection={newQuestion}
                       activeIndex={index}
-                      beenAnswered={active.answered}
+                      beenAnswered={activeQuestion.answered}
                       quizActive={start}/>
     </div>
   );

@@ -74,8 +74,8 @@ export default QuizCardPresenter;
 
 /*<QuizCardView
       category={topicAlternatives}
-      difficultie={difficultieAlternatives}
-      numberOfQuestions={difficultieAlternatives}
+      difficulty={difficultyAlternatives}
+      numberOfQuestions={difficultyAlternatives}
       edit={edit}
       mode={() => setEdit(!edit)}
       card={theCard}

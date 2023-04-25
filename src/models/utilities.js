@@ -1,4 +1,4 @@
-const difficultieAlternatives = ["Easy", "Medium", "Hard"];
+const difficultyAlternatives = ["Easy", "Medium", "Hard"];
 
 const topicAlternatives = ["linux", "SQL", "Code", "Docker"];
 
@@ -46,10 +46,10 @@ function categorySummery(topic) {
           failed: numberOfFaild,
         },
       },
-      //resultByDifficultieDistribution:
+      //resultByDifficultyDistribution:
       {
         chartType: "radar",
-        title: "Dificultie result distribution",
+        title: "Difficulty result distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           pass: [numberOfEasyPass, numberOfMediumPass, numberOfHardPass],
@@ -60,10 +60,10 @@ function categorySummery(topic) {
           ],
         },
       },
-      //difficultieDistributionData:
+      //difficultyDistributionData:
       {
         chartType: "pie",
-        title: "Dificultie distribution",
+        title: "Difficulty distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           easy: numberOfEasy,
@@ -189,10 +189,10 @@ function userSummary(basic, sql, code, docker, linux) {
           docker: numberOfDocker,
         },
       },
-      //difficultieDistributionData:
+      //difficultyDistributionData:
       {
         chartType: "bar",
-        title: "Dificultie distribution",
+        title: "Difficulty distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           easy: numberOfEasy,
@@ -218,11 +218,94 @@ function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 }
 
+class Question {
+  constructor(id, question, answers, correct_answers, category, difficulty) {
+    this.id = id;
+    this.question = question;
+    this.category = category;
+    this.difficulty = difficulty;
+    this.answered = false;
+    this.correct = false;
+    this.answer = -1;
+    this.answers = this.copyAnswers(answers, correct_answers);
+  }
+  copyAnswers(answers, correct_answers) {
+    var appQuestion = [];
+    const answerSize = Object.keys(answers).length;
+    const ansverList = Object.values(answers);
+    const resultList = Object.values(correct_answers);
+    for (var i = 0; i < answerSize; i++) {
+      if (ansverList[i] !== null) {
+        appQuestion.push({
+          id: i,
+          answer: ansverList[i],
+          isCorrect: resultList[i],
+        });
+      }
+    }
+    return appQuestion;
+  }
+  setAnswer(index) {
+    this.answer = index;
+  }
+};
+
+function addQuestions(listOfQuestions) {
+  return listOfQuestions.map((theQ) => {
+    const { id, question, answers, correct_answers, category, difficulty } =
+    theQ;
+    return new Question(
+      id,
+      question,
+      answers,
+      correct_answers,
+      category,
+      difficulty
+      );
+  });
+}
+
+function correctQuiz(theQuiz) {
+  let correct = 0;
+  let wrong = 0;
+  let noAnswer = 0;
+  let passedQuiz = false;
+  let ratio = 0.0;
+
+  theQuiz.questions.forEach(q => {
+    if (q.answered) {
+      if (q.answers[q.answer].isCorrect === "true") {
+        correct += 1;
+      } else {
+        wrong += 1;
+      }
+    } else {
+      noAnswer += 1;
+    }
+  });
+
+  ratio = correct / theQuiz.questions.length
+  if (ratio >= 0.8) {
+    passedQuiz = true;
+  }
+  return {
+            category: theQuiz.category,
+            difficulty: theQuiz.difficulty,
+            correct: correct,
+            wrong: wrong,
+            noAnswers: noAnswer,
+            passed: passedQuiz,
+            successRatio: ratio
+  }
+}
+
 export {
   replaceItemAtIndex,
-  difficultieAlternatives,
+  difficultyAlternatives,
   topicAlternatives,
   questionAternatives,
   categorySummery,
   userSummary,
+  addQuestions,
+  correctQuiz
 };

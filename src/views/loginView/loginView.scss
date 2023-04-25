@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
   animation: mounth 1s ease-in 0s 1 normal forwards;
+  
   .welcometext {
     background-color: #2a2438;
     padding: 10px;
@@ -26,7 +27,7 @@
   .content {
     color: #dbd8e3;
     display: flex;
-    align-content: center;
+    align-self: center;
     justify-content: center;
     padding: 5px;
     background-color: #5c5470;
@@ -49,24 +50,22 @@
       .row {
         padding: 5px;
         padding-right: 5px;
-
         display: flex;
         align-items: center;
         justify-content: space-between;
         background-color: transparent;
+        max-width: 80%;
+        min-width: 80%;
         .right {
-          background-color: transparent;
-          position: relative;
-          display: flex;
-          justify-content: center;
           input {
-            aling-self: flex-end;
             border-radius: 10px;
             border-bottom: 1px solid #dbd8e3;
             margin: 3px;
             background-color: transparent;
             color: #dbd8e3;
             text-align: center;
+            max-width: 100%;
+            min-width: 100%;
             &:focus {
               border: none;
               border-bottom: 1px solid #5c5470;
@@ -83,7 +82,11 @@
         .left {
           background-color: transparent;
           margin: 15px;
+          max-width: 40%;
+          min-width: 40%;
           label {
+            max-width: 100%;
+            min-width: 100%;
             justify-self: flex-start;
             background-color: transparent;
             color: #dbd8e3;

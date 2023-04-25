@@ -32,15 +32,15 @@ export default TopicCardView;
 /*
 <DiffifultieSummaryView
             data={props.data.topic.easy}
-            difficultie={"Easy"}
+            difficulty={"Easy"}
           />
           <DiffifultieSummaryView
             data={props.data.topic.medium}
-            difficultie={"Medium"}
+            difficulty={"Medium"}
           />
           <DiffifultieSummaryView
             data={props.data.topic.hard}
-            difficultie={"Hard"}
+            difficulty={"Hard"}
           />
 
 */

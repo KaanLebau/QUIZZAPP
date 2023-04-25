@@ -2,7 +2,7 @@ import "./topicCardPresenter.scss";
 import TopicCardView from "../../views/topicCardView/TopicCardView";
 import { useEffect, useState } from "react";
 import TopicSidebar from "../../views/dashboardSidebar/DashboardSidebarView";
-import DiffifultieSummaryView from "../../views/difficultieSummaryView/DiffifultieSummaryView";
+import DiffifultieSummaryView from "../../views/difficultySummaryView/DiffifultieSummaryView";
 //import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 import UserCardView from "../../views/userCardView/UserCardView";
 
@@ -71,10 +71,10 @@ function TopicCardPresenter(props) {
         <TopicSidebar setCategory={handleshow} />
       </div>
       <div className="right">
-        <div className="difficultieSummary">
-          <DiffifultieSummaryView data={easy} difficultie={"Easy"} />
-          <DiffifultieSummaryView data={medium} difficultie={"Medium"} />
-          <DiffifultieSummaryView data={hard} difficultie={"Hard"} />
+        <div className="difficultySummary">
+          <DiffifultieSummaryView data={easy} difficulty={"Easy"} />
+          <DiffifultieSummaryView data={medium} difficulty={"Medium"} />
+          <DiffifultieSummaryView data={hard} difficulty={"Hard"} />
         </div>
         <div className="topicSummary">
           {selection === "user" ? (

@@ -114,35 +114,35 @@ export const favoritesState = atom({
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
   ],
@@ -160,7 +160,7 @@ export const registredState = atom({
 });
 
 export const activeQuizState = atom({
-  key: "activeQuizState",
+  key:'activeQuizState',
   default: null,
-  effects: [localStorageEffect("activeQuizState")],
+  effects: [localStorageEffect('activeQuizState')],
 });

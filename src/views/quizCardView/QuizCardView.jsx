@@ -4,7 +4,7 @@ import EditOffOutlinedIcon from "@mui/icons-material/EditOffOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import {
   topicAlternatives,
-  difficultieAlternatives,
+  difficultyAlternatives,
   questionAternatives,
 } from "../../models/utilities";
 function QuizCardView(props) {
@@ -60,21 +60,21 @@ function QuizCardView(props) {
         )}
       </div>
       <div className="quizData">
-        <p htmlFor="">Difficultie:</p>
+        <p htmlFor="">Difficulty:</p>
         {props.edit ? (
           <select
             className="selectD"
             name=""
-            id="difficultie"
+            id="difficulty"
             onChange={(e) => {
               props.update({ id: e.target.id, value: e.target.value });
             }}
           >
             {" "}
-            <option id="difficultie" value="">
+            <option id="difficulty" value="">
               .....
             </option>
-            {difficultieAlternatives.map((dif) => {
+            {difficultyAlternatives.map((dif) => {
               return (
                 <option id="difficultie" value={dif} key={dif}>
                   {" "}
@@ -84,7 +84,7 @@ function QuizCardView(props) {
             })}
           </select>
         ) : (
-          <h2>{props.card.difficultie}</h2>
+          <h2>{props.card.difficulty}</h2>
         )}
       </div>
       <div className="quizData">

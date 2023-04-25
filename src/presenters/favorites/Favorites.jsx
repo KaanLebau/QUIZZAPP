@@ -2,21 +2,29 @@ import "./favorites.scss";
 import LoadPagePresenter from "../loadPagePresenter/LoadPagePresenter";
 import QuizCardPresenter from "../quizCardPresenter/QuizCardPresenter";
 import getQuestions from "../../api/QuizSource";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { favoritesState } from "../../models/atoms";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import { activeQuizState } from "../../models/atoms";
+import { addQuestions} from "../../models/utilities";
 
 function Favorites(props) {
   const [loading, setLoading] = useState(true);
   const favorites = useRecoilValue(favoritesState);
   const navigate = useNavigate();
-  
+  const [, setActiveQuiz] = useRecoilState(activeQuizState)
   async function theQuiz(query) {
-    const quiz = await getQuestions({ query });
-    console.log(quiz);
-    navigate("./active", { state: { quiz } });
+    let fetchedQuestions = await getQuestions(query);
+    let customQuiz = {
+      category: query.category,
+      difficulty: query.difficulty,
+      numberOfQuestions: query.numberOfQuestions,
+      questions: addQuestions(fetchedQuestions)
+    };
+    setActiveQuiz(customQuiz);
+    navigate("./active");
   }
   useEffect(() => {
     setTimeout(setLoading, 2000, false);

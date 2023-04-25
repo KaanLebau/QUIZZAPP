@@ -7,14 +7,14 @@ class UserModel {
     this.noAnswer = 0;
     this.failed = 0;
     this.pass = 0;
-    this.difficultie = ["Easy", "Medium", "Hard"];
+    this.difficulty = ["Easy", "Medium", "Hard"];
     this.topic = ["linux", "SQL", "Code", "Docker"];
     this.favorites = [
-      { category: "SQL", difficultie: "Easy", numberOfQuestions: 10 },
-      { category: "", difficultie: "", numberOfQuestions: 0 },
-      { category: "", difficultie: "", numberOfQuestions: 0 },
-      { category: "", difficultie: "", numberOfQuestions: 0 },
-      { category: "", difficultie: "", numberOfQuestions: 0 },
+      { category: "SQL", difficulty: "Easy", numberOfQuestions: 10 },
+      { category: "", difficulty: "", numberOfQuestions: 0 },
+      { category: "", difficulty: "", numberOfQuestions: 0 },
+      { category: "", difficulty: "", numberOfQuestions: 0 },
+      { category: "", difficulty: "", numberOfQuestions: 0 },
     ];
     this.observers = [];
     this.sql = {
@@ -25,7 +25,7 @@ class UserModel {
         noAnswer: 10,
         failed: 1,
         category: "SQL",
-        difficultie: "Easy",
+        difficulty: "Easy",
       },
       medium: {
         correct: 12,
@@ -34,7 +34,7 @@ class UserModel {
         noAnswer: 0,
         failed: 12,
         category: "SQL",
-        difficultie: "Medium",
+        difficulty: "Medium",
       },
       hard: {
         correct: 8,
@@ -43,7 +43,7 @@ class UserModel {
         noAnswer: 1,
         failed: 1,
         category: "SQL",
-        difficultie: "Hard",
+        difficulty: "Hard",
       },
     };
     this.docker = {
@@ -54,7 +54,7 @@ class UserModel {
         noAnswer: 5,
         failed: 1,
         category: "Docker",
-        difficultie: "Easy",
+        difficulty: "Easy",
       },
       medium: {
         correct: 13,
@@ -63,7 +63,7 @@ class UserModel {
         noAnswer: 3,
         failed: 1,
         category: "Docker",
-        difficultie: "Medium",
+        difficulty: "Medium",
       },
       hard: {
         correct: 0,
@@ -72,7 +72,7 @@ class UserModel {
         noAnswer: 4,
         failed: 1,
         category: "Docker",
-        difficultie: "Hard",
+        difficulty: "Hard",
       },
     };
     this.linux = {
@@ -83,7 +83,7 @@ class UserModel {
         noAnswer: 2,
         failed: 1,
         category: "Linux",
-        difficultie: "Easy",
+        difficulty: "Easy",
       },
       medium: {
         correct: 10,
@@ -92,7 +92,7 @@ class UserModel {
         noAnswer: 5,
         failed: 1,
         category: "Linux",
-        difficultie: "Medium",
+        difficulty: "Medium",
       },
       hard: {
         correct: 6,
@@ -101,7 +101,7 @@ class UserModel {
         noAnswer: 1,
         failed: 0,
         category: "Linux",
-        difficultie: "Hard",
+        difficulty: "Hard",
       },
     };
     this.code = {
@@ -112,7 +112,7 @@ class UserModel {
         noAnswer: 4,
         failed: 1,
         category: "Code",
-        difficultie: "Easy",
+        difficulty: "Easy",
       },
       medium: {
         correct: 3,
@@ -121,7 +121,7 @@ class UserModel {
         noAnswer: 5,
         failed: 5,
         category: "Code",
-        difficultie: "Medium",
+        difficulty: "Medium",
       },
       hard: {
         correct: 14,
@@ -130,7 +130,7 @@ class UserModel {
         noAnswer: 0,
         failed: 1,
         category: "Code",
-        difficultie: "Hard",
+        difficulty: "Hard",
       },
     };
   }
@@ -339,10 +339,10 @@ class UserModel {
             failed: numberOfFaild,
           },
         },
-        //resultByDifficultieDistribution:
+        //resultByDifficultyDistribution:
         {
           chartType: "radar",
-          title: "Dificultie result distribution",
+          title: "Difficulty result distribution",
           labels: ["Easy", "Medium", "Hard"],
           data: {
             pass: [numberOfEasyPass, numberOfMediumPass, numberOfHardPass],
@@ -353,10 +353,10 @@ class UserModel {
             ],
           },
         },
-        //difficultieDistributionData:
+        //difficultyDistributionData:
         {
           chartType: "pie",
-          title: "Dificultie distribution",
+          title: "Difficulty distribution",
           labels: ["Easy", "Medium", "Hard"],
           data: {
             easy: numberOfEasy,
@@ -465,10 +465,10 @@ class UserModel {
               docker.basicData.numberOfPass + docker.basicData.numberOfFaild,
           },
         },
-        //difficultieDistributionData:
+        //difficultyDistributionData:
         {
           chartType: "bar",
-          title: "Dificultie distribution",
+          title: "Difficulty distribution",
           labels: ["Easy", "Medium", "Hard"],
           data: {
             easy:
