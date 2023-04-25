@@ -49,7 +49,7 @@ function QuizCardView(props) {
             </option>
             {topicAlternatives.map((cat) => {
               return (
-                <option id="category" value={cat}>
+                <option id="category" value={cat} key={cat}>
                   {cat}
                 </option>
               );
@@ -76,7 +76,8 @@ function QuizCardView(props) {
             </option>
             {difficultyAlternatives.map((dif) => {
               return (
-                <option id="difficulty" value={dif}>
+                <option id="difficultie" value={dif} key={dif}>
+                  {" "}
                   {dif}
                 </option>
               );
@@ -103,7 +104,7 @@ function QuizCardView(props) {
             </option>
             {questionAternatives.map((num) => {
               return (
-                <option id="numberOfQuestions" value={num}>
+                <option id="numberOfQuestions" value={num} key={num}>
                   {num}
                 </option>
               );

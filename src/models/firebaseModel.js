@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, setDoc, onSnapshot  } from "firebase/firestore";
 import UserModel from "./UserModel";
 import { activeUser, authState } from "./atoms";
 import { favoritesState } from "./atoms";
@@ -43,6 +43,12 @@ async function updateModelFromFirebase(id) {
   }
 
 */
+
+
+const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
+  console.log("Current data: ", doc.data());
+});
+
 
   async function updateFavorites() {
     const favoritesToUpload = {};

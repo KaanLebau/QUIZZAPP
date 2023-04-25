@@ -1,15 +1,16 @@
 import { db } from "../firebase";
-import { getDoc, doc } from "firebase/firestore";
-import { atom, selector } from "recoil";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { atom, selector, useRecoilValue } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
 //const model = new UserModel();
 
-var firestoreObject;
-export async function firestoreStorage(id) {
-  const docRef = doc(db, "users", id);
+export async function FirestoreStorage(key) {
+  const user = useRecoilValue(activeUser);
+  const docRef = doc(db, "users", user.uid);
   const docSnap = await getDoc(docRef);
-  firestoreObject = docSnap.data();
+  console.log(key);
+  console.log(docSnap);
 }
 
 const syncBasicStorageEffect =
@@ -18,7 +19,7 @@ const syncBasicStorageEffect =
     // Initialize atom value to the remote storage state
     if (trigger === "get") {
       // Avoid expensive initialization
-      setSelf(firestoreObject.basic); // Call synchronously to initialize
+      setSelf(); // Call synchronously to initialize
     }
 
     // Subscribe to remote storage changes and update the atom value
@@ -32,6 +33,33 @@ const syncBasicStorageEffect =
     };
   };
 
+/*
+const localForageEffect =
+  (key) =>
+  ({ setSelf, onSet, trigger }) => {
+    // If there's a persisted value - set it on load
+    const loadPersisted = async () => {
+      const savedValue = await localForage.getItem(key);
+
+      if (savedValue != null) {
+        setSelf(JSON.parse(savedValue));
+      }
+    };
+
+    // Asynchronously set the persisted data
+    if (trigger === "get") {
+      loadPersisted();
+    }
+
+    // Subscribe to state changes and persist them to localForage
+    onSet((newValue, _, isReset) => {
+      isReset
+        ? localForage.removeItem(key)
+        : localForage.setItem(key, JSON.stringify(newValue));
+    });
+  };
+*/
+
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
@@ -42,23 +70,16 @@ const localStorageEffect =
 
     onSet((newValue) => {
       localStorage.setItem(key, JSON.stringify(newValue));
+      FirestoreStorage(key);
     });
   };
-export const basicUserData = selector({
-  key: "basicUserData",
-  get: (id) => async () => {
-    const docRef = doc(db, "users", id);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data().basic;
-  },
-});
 
 export const activeUser = atom({
   key: "activeUser",
   default: null,
   effects: [
     localStorageEffect("activeUser"),
-    ({ onSet, setSelf }) => {
+    ({ onSet }) => {
       onSet((user) => {});
     },
   ],
@@ -141,5 +162,5 @@ export const registredState = atom({
 export const activeQuizState = atom({
   key:'activeQuizState',
   default: null,
-  effects:[localStorageEffect('activeQuizState')]
-})
+  effects: [localStorageEffect('activeQuizState')],
+});

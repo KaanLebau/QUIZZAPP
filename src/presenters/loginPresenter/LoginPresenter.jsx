@@ -19,15 +19,15 @@ import {
 function LoginPresenter() {
   //tools
   const navigate = useNavigate();
+
   //global state hooks
   const [, setAuth] = useRecoilState(authState);
-  const [curentUser, setCurentUser] = useRecoilState(activeUser);
+  const [, setCurentUser] = useRecoilState(activeUser);
   const [, setFavoritesState] = useRecoilState(favoritesState);
   const [, setSqlState] = useRecoilState(sqlState);
   const [, setDockerState] = useRecoilState(dockerState);
   const [, setLinuxState] = useRecoilState(linuxState);
   const [, setCodeState] = useRecoilState(codeState);
-  const theBasicUserData = useSetRecoilState(basicUserData);
   //user input hooks
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
@@ -76,7 +76,6 @@ function LoginPresenter() {
     setLinuxState(docSnap.data().linux);
     setCodeState(docSnap.data().code);
     setFavoritesState(docSnap.data().favorites);
-    //setCurentUser(docSnap.data().basic);
     //console.log(docSnap.data());
   }
   function handleSignup() {
