@@ -3,14 +3,14 @@ import Favorites from "../../presenters/favorites/Favorites";
 import "./getQuizDataPage.scss";
 import Head from "../../components/head/Head";
 
-function GetQuizDataPage(props) {
+function GetQuizDataPage() {
   return (
     <div className="getQuiz">
       <Head currentUser={true} />
       <div className="right">
         <div className="options">
           <Favorites />
-          <CustomQuiz quiz={props.quiz}/>
+          <CustomQuiz />
         </div>
       </div>
     </div>

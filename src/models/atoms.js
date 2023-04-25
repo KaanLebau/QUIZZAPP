@@ -137,3 +137,9 @@ export const registredState = atom({
   key: "registredState",
   default: true,
 });
+
+export const activeQuizState = atom({
+  key:'activeQuizState',
+  default: null,
+  effects:[localStorageEffect('activeQuizState')]
+})

@@ -15,7 +15,7 @@ function Favorites(props) {
   async function theQuiz(query) {
     const quiz = await getQuestions({ query });
     console.log(quiz);
-    navigate("./active", { state: { quiz } });
+    navigate("./active");
   }
   useEffect(() => {
     setTimeout(setLoading, 2000, false);

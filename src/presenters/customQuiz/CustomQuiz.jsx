@@ -6,17 +6,22 @@ import {
   topicAlternatives,
   difficultieAlternatives,
   questionAternatives,
+  addQuestions,
 } from "../../models/utilities";
+import { useRecoilState } from "recoil";
+import { activeQuizState } from "../../models/atoms";
 
 function CustomQuiz(props) {
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
     difficultie: "",
     numberOfQuestions: 5,
+    questions: []
   });
   const [theDificultie, setTheDificultie] = useState(0);
   const [theTopic, setTheTopic] = useState(0);
   const [theQuestion, setTheQuestion] = useState(0);
+  const [, setActiveQuiz] = useRecoilState(activeQuizState)
 
   const navigate = useNavigate();
 
@@ -46,7 +51,9 @@ function CustomQuiz(props) {
   }
 
   async function handleSearch() {
-    await getQuestions({ customQuiz }, props.quiz);
+    let fetchedQuestions = await getQuestions({ customQuiz });
+    customQuiz.questions = addQuestions(fetchedQuestions);
+    setActiveQuiz(customQuiz);
     navigate("./active");
   }
 
@@ -54,7 +61,8 @@ function CustomQuiz(props) {
     setCustomQuiz({
       category: topicAlternatives[theTopic],
       dificultie: difficultieAlternatives[theDificultie],
-      numberOfQuestions: questionAternatives[theQuestion],
+      numberOfQuestions: questionAternatives[theQuestion]
+
     });
   }
 
