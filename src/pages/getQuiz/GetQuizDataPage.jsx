@@ -9,7 +9,7 @@ function GetQuizDataPage(props) {
       <Head currentUser={true} />
       <div className="right">
         <div className="options">
-          <Favorites model={props.model} />
+          <Favorites />
           <CustomQuiz quiz={props.quiz}/>
         </div>
       </div>
