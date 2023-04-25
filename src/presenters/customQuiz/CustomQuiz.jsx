@@ -4,7 +4,7 @@ import getQuestions from "../../api/QuizSource";
 import { useNavigate } from "react-router-dom";
 import {
   topicAlternatives,
-  difficultieAlternatives,
+  difficultyAlternatives,
   questionAternatives,
   addQuestions,
 } from "../../models/utilities";
@@ -14,11 +14,11 @@ import { activeQuizState } from "../../models/atoms";
 function CustomQuiz(props) {
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
-    difficultie: "",
+    difficulty: "",
     numberOfQuestions: 5,
     questions: []
   });
-  const [theDificultie, setTheDificultie] = useState(0);
+  const [theDifficulty, setTheDifficulty] = useState(0);
   const [theTopic, setTheTopic] = useState(0);
   const [theQuestion, setTheQuestion] = useState(0);
   const [, setActiveQuiz] = useRecoilState(activeQuizState)
@@ -33,13 +33,13 @@ function CustomQuiz(props) {
     });
   }
 
-  function handleDificultie(e) {
-    theDificultie !== 2
-      ? setTheDificultie(theDificultie + 1)
-      : setTheDificultie(0);
+  function handleDifficulty(e) {
+    theDifficulty !== 2
+      ? setTheDifficulty(theDifficulty + 1)
+      : setTheDifficulty(0);
     setCustomQuiz({
       ...CustomQuiz,
-      [e.target.id]: difficultieAlternatives[theDificultie],
+      [e.target.id]: difficultyAlternatives[theDifficulty],
     });
   }
   function handleTopic(e) {
@@ -51,7 +51,7 @@ function CustomQuiz(props) {
   }
 
   async function handleSearch() {
-    let fetchedQuestions = await getQuestions({ customQuiz });
+    let fetchedQuestions = await getQuestions(customQuiz);
     customQuiz.questions = addQuestions(fetchedQuestions);
     setActiveQuiz(customQuiz);
     navigate("./active");
@@ -60,7 +60,7 @@ function CustomQuiz(props) {
   function update() {
     setCustomQuiz({
       category: topicAlternatives[theTopic],
-      dificultie: difficultieAlternatives[theDificultie],
+      difficulty: difficultyAlternatives[theDifficulty],
       numberOfQuestions: questionAternatives[theQuestion]
 
     });
@@ -68,14 +68,14 @@ function CustomQuiz(props) {
 
   useEffect(() => {
     update();
-  }, [theTopic, theDificultie, theQuestion]);
+  }, [theTopic, theDifficulty, theQuestion]);
 
   return (
     <QuizSettings
       topic={topicAlternatives[theTopic]}
       topicSelect={handleTopic}
-      difficultie={difficultieAlternatives[theDificultie]}
-      dificultieSelect={handleDificultie}
+      difficulty={difficultyAlternatives[theDifficulty]}
+      difficultySelect={handleDifficulty}
       question={questionAternatives[theQuestion]}
       questionsSelect={handleQuestions}
       getQuiz={handleSearch}

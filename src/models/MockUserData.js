@@ -1,22 +1,22 @@
 const mockCards = [
   {
     category: "SQL",
-    difficultie: "Easy",
+    difficulty: "Easy",
     numberOfQuestions: 10,
   },
   {
     category: "Linux",
-    difficultie: "Medium",
+    difficulty: "Medium",
     numberOfQuestions: 20,
   },
   {
     category: "Docker",
-    difficultie: "Hard",
+    difficulty: "Hard",
     numberOfQuestions: 5,
   },
   {
     category: "Code",
-    difficultie: "Easy",
+    difficulty: "Easy",
     numberOfQuestions: 15,
   },
   {},
@@ -27,7 +27,7 @@ const mockUser = {
   correct: 0,
   wrong: 0,
   pass: 0,
-  difficultie: ["Easy", "Medium", "Hard"],
+  difficulty: ["Easy", "Medium", "Hard"],
   topic: ["linux", "SQL", "Code", "Docker"],
   favorites: [{}, {}, {}, {}, {}],
   sql: {
@@ -38,7 +38,7 @@ const mockUser = {
       pass: 10,
       failed: 0,
       category: "SQL",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -47,7 +47,7 @@ const mockUser = {
       pass: 0,
       failed: 0,
       category: "SQL",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 120,
@@ -56,7 +56,7 @@ const mockUser = {
       pass: 12,
       failed: 2,
       category: "SQL",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   linux: {
@@ -68,7 +68,7 @@ const mockUser = {
 
       failed: 1,
       category: "Linux",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -77,7 +77,7 @@ const mockUser = {
       pass: 0,
       failed: 0,
       category: "Linux",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -87,7 +87,7 @@ const mockUser = {
       pass: 0,
       failed: 0,
       category: "Linux",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   code: {
@@ -98,7 +98,7 @@ const mockUser = {
       pass: 3,
       failed: 0,
       category: "Code",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 34,
@@ -108,7 +108,7 @@ const mockUser = {
       pass: 3,
       failed: 3,
       category: "Code",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 3,
@@ -118,7 +118,7 @@ const mockUser = {
       pass: 0,
       failed: 4,
       category: "Code",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   docker: {
@@ -130,7 +130,7 @@ const mockUser = {
       pass: 5,
       failed: 2,
       category: "Docker",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 20,
@@ -139,7 +139,7 @@ const mockUser = {
       pass: 1,
       failed: 3,
       category: "Docker",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -148,7 +148,7 @@ const mockUser = {
       pass: 0,
       failed: 0,
       category: "Docker",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
 };

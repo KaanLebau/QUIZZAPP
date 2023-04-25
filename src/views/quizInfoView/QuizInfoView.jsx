@@ -27,7 +27,7 @@ function QuizInfoView(props) {
             <h5>{props.current.category}</h5>
           </div>
           <div className="row">
-            <h5>Difficultie:</h5>
+            <h5>Difficulty:</h5>
             <h5>{props.current.difficulty}</h5>
           </div>
         </div>

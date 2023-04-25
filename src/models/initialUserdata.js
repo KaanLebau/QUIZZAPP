@@ -5,35 +5,35 @@ export const InitialUserData = {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
     {
       empty: true,
       edit: false,
       category: "",
-      difficultie: "",
+      difficulty: "",
       numberOfQuestions: 5,
     },
   ],
@@ -46,7 +46,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "SQL",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -56,7 +56,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "SQL",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -66,7 +66,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "SQL",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   linux: {
@@ -78,7 +78,7 @@ export const InitialUserData = {
 
       failed: 0,
       category: "Linux",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -87,7 +87,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Linux",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -97,7 +97,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Linux",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   code: {
@@ -109,7 +109,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Code",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -119,7 +119,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Code",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -129,7 +129,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Code",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
   docker: {
@@ -141,7 +141,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Docker",
-      difficultie: "Easy",
+      difficulty: "Easy",
     },
     medium: {
       correct: 0,
@@ -151,7 +151,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Docker",
-      difficultie: "Medium",
+      difficulty: "Medium",
     },
     hard: {
       correct: 0,
@@ -161,7 +161,7 @@ export const InitialUserData = {
       pass: 0,
       failed: 0,
       category: "Docker",
-      difficultie: "Hard",
+      difficulty: "Hard",
     },
   },
 };

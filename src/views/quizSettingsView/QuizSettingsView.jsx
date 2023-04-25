@@ -46,14 +46,14 @@ function QuizSettingsView(props) {
         <p>Category</p>
       </div>
       <div
-        title="Select dificulty"
-        id="dificultie"
-        onClick={(e) => props.dificultieSelect(e)}
+        title="Select difficulty"
+        id="difficulty"
+        onClick={(e) => props.difficultySelect(e)}
       >
-        {Diff(props.difficultie)}
-        <h1>{props.difficultie}</h1>
-        <h1>{props.currentDificultie}</h1>
-        <p>Dificultie</p>
+        {Diff(props.difficulty)}
+        <h1>{props.difficulty}</h1>
+        <h1>{props.currentDifficulty}</h1>
+        <p>Difficulty</p>
       </div>
       <div
         title="Select nuber of questions"

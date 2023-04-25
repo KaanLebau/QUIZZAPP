@@ -1,4 +1,4 @@
-const difficultieAlternatives = ["Easy", "Medium", "Hard"];
+const difficultyAlternatives = ["Easy", "Medium", "Hard"];
 
 const topicAlternatives = ["linux", "SQL", "Code", "Docker"];
 
@@ -46,10 +46,10 @@ function categorySummery(topic) {
           failed: numberOfFaild,
         },
       },
-      //resultByDifficultieDistribution:
+      //resultByDifficultyDistribution:
       {
         chartType: "radar",
-        title: "Dificultie result distribution",
+        title: "Difficulty result distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           pass: [numberOfEasyPass, numberOfMediumPass, numberOfHardPass],
@@ -60,10 +60,10 @@ function categorySummery(topic) {
           ],
         },
       },
-      //difficultieDistributionData:
+      //difficultyDistributionData:
       {
         chartType: "pie",
-        title: "Dificultie distribution",
+        title: "Difficulty distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           easy: numberOfEasy,
@@ -189,10 +189,10 @@ function userSummary(basic, sql, code, docker, linux) {
           docker: numberOfDocker,
         },
       },
-      //difficultieDistributionData:
+      //difficultyDistributionData:
       {
         chartType: "bar",
-        title: "Dificultie distribution",
+        title: "Difficulty distribution",
         labels: ["Easy", "Medium", "Hard"],
         data: {
           easy: numberOfEasy,
@@ -301,7 +301,7 @@ function correctQuiz(theQuiz) {
 
 export {
   replaceItemAtIndex,
-  difficultieAlternatives,
+  difficultyAlternatives,
   topicAlternatives,
   questionAternatives,
   categorySummery,

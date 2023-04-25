@@ -9,7 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { activeQuizState } from "../../models/atoms";
 import { correctQuiz, replaceItemAtIndex } from "../../models/utilities";
 
-function ActiveQuizPresenter(props) {
+function ActiveQuizPresenter() {
   const [activeQuiz, setActiveQuiz] = useRecoilState(activeQuizState);
   const [start, setStart] = useState(false);
   const [index, setIndex] = useState(0);
@@ -63,7 +63,8 @@ function ActiveQuizPresenter(props) {
   }
 
   function checkQuestionsError() {
-    return activeQuiz.numberOfQuestions !== activeQuiz.questions.length ? true : false;
+    
+    return Number.parseInt(activeQuiz.numberOfQuestions) !== Number.parseInt(activeQuiz.questions.length);
   }
   
   useEffect(() => {

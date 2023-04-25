@@ -1,11 +1,11 @@
 import RateWidget from "../rateWidgetView/RateWidgetView";
 import DataWidget from "../dataWidgetView/DataWidgetView";
-import "./difficultieSummaryView.scss";
+import "./difficultySummaryView.scss";
 function DiffifultieSummaryView(props) {
   return (
     <div className="diff">
       <label htmlFor="" className="info">
-        {props.data.difficultie}
+        {props.data.difficulty}
       </label>
       <RateWidget
         info={"Succes Rate"}

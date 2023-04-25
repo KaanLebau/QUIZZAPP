@@ -13,7 +13,7 @@ function UserCardView(props) {
         setChartData(props.data.topicDistributionData);
         break;
       case "1":
-        setChartData(props.data.difficultieDistributionData);
+        setChartData(props.data.difficultyDistributionData);
         break;
       case "2":
         setChartData(props.data.resultData);
@@ -52,11 +52,11 @@ function UserCardView(props) {
           </span>
           <span
             className={active !== "1" ? "theTab" : "selected"}
-            title="Difficultie"
+            title="Difficulty"
             id={1}
             onClick={(e) => handelTab(e.target.id)}
           >
-            Difficultie
+            Difficulty
           </span>
           <span
             className={active !== "2" ? "theTab" : "selected"}
