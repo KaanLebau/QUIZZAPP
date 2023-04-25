@@ -19,6 +19,7 @@ import {
 function LoginPresenter() {
   //tools
   const navigate = useNavigate();
+
   //global state hooks
   const [, setAuth] = useRecoilState(authState);
   const [, setCurentUser] = useRecoilState(activeUser);
@@ -27,7 +28,6 @@ function LoginPresenter() {
   const [, setDockerState] = useRecoilState(dockerState);
   const [, setLinuxState] = useRecoilState(linuxState);
   const [, setCodeState] = useRecoilState(codeState);
-  const theBasicUserData = useSetRecoilState(basicUserData);
   //user input hooks
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
@@ -56,8 +56,8 @@ function LoginPresenter() {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(setLoading(true))
       .then((userCredential) => {
-        setUser({ ...user, firebase: userCredential.user });
         const firebaseUser = userCredential.user;
+
         getData(firebaseUser);
       })
       .catch((error) => {
@@ -66,11 +66,9 @@ function LoginPresenter() {
       .finally(navigate("/user"));
   }
 
-  async function getData(id) {
-    console.log(user);
-    const docRef = doc(db, "users", id.uid);
+  async function getData(firebaseUser) {
+    const docRef = doc(db, "users", firebaseUser.uid);
     const docSnap = await getDoc(docRef);
-
     setAuth(true);
     setCurentUser(docSnap.data().basic);
     setSqlState(docSnap.data().sql);
@@ -78,7 +76,6 @@ function LoginPresenter() {
     setLinuxState(docSnap.data().linux);
     setCodeState(docSnap.data().code);
     setFavoritesState(docSnap.data().favorites);
-    //setCurentUser(docSnap.data().basic);
     //console.log(docSnap.data());
   }
   function handleSignup() {

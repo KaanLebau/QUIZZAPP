@@ -1,12 +1,12 @@
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, setDoc, onSnapshot  } from "firebase/firestore";
 import UserModel from "./UserModel";
 import { activeUser, authState } from "./atoms";
 import { favoritesState } from "./atoms";
 import { useRecoilState } from "recoil";
 
 async function updateModelFromFirebase(id) {
-  const docRef = doc(db, "test", id);
+  const docRef = doc(db, "user", id);
   const docSnap = await getDoc(docRef);
 
   updateFavorites(docSnap.data().favorites);
@@ -44,14 +44,17 @@ async function updateModelFromFirebase(id) {
 
 */
 
+
+const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
+  console.log("Current data: ", doc.data());
+});
+
+
   async function updateFavorites() {
     const favoritesToUpload = {};
   }
 
-  function updateModelFromFirebase(user) {
-    //const [userBasic, setUserBasic] = useRecoilState(activeUser);
-    //setUserBasic(user.userBasic);
-  }
+  
 
   async function updatedModel(payload) {
     if (payload) {

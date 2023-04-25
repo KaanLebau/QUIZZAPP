@@ -4,7 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { InitialUserData } from "../../models/initialUserdata";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { addDoc, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import { useRecoilState } from "recoil";
+import {
+  activeUser,
+  authState,
+  sqlState,
+  dockerState,
+  linuxState,
+  codeState,
+  favoritesState,
+} from "../../models/atoms";
 
 function RegistrationPresenter() {
   const navigate = useNavigate();
@@ -14,9 +24,16 @@ function RegistrationPresenter() {
   const [passwordControll, setPasswordControll] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [err, setErr] = useState(false);
-
   const [basic, setBasic] = useState({});
   const [userInit, setUserInit] = useState(InitialUserData);
+  const [, setAuth] = useRecoilState(authState);
+  const [, setCurentUser] = useRecoilState(activeUser);
+  const [, setSqlState] = useRecoilState(sqlState);
+  const [, setDockerState] = useRecoilState(dockerState);
+  const [, setLinuxState] = useRecoilState(linuxState);
+  const [, setCodeState] = useRecoilState(codeState);
+  const [, setFavoritesState] = useRecoilState(favoritesState);
+
   function handleCancel() {
     navigate("../");
   }
@@ -76,16 +93,25 @@ function RegistrationPresenter() {
   }
 
   async function handleCreate() {
-    userInit.basic = basic;
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
-        userInit.basic.email,
-        userInit.basic.password
+        basic.email,
+        basic.password
       );
+      userInit.basic = basic;
+      userInit.basic.uid = res.user.uid;
       await setDoc(doc(db, "users", res.user.uid), {
         ...userInit,
       });
+      setAuth(true);
+      setCurentUser(userInit.basic);
+      setSqlState(userInit.sql);
+      setDockerState(userInit.docker);
+      setLinuxState(userInit.linux);
+      setCodeState(userInit.code);
+      setFavoritesState(userInit.favorites);
+      navigate("../user");
     } catch (err) {
       console.log(err);
     }

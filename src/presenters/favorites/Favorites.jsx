@@ -12,6 +12,7 @@ function Favorites(props) {
   const [loading, setLoading] = useState(true);
   const favorites = useRecoilValue(favoritesState);
   const navigate = useNavigate();
+  
   async function theQuiz(query) {
     const quiz = await getQuestions({ query });
     console.log(quiz);
@@ -23,21 +24,16 @@ function Favorites(props) {
   return (
     <div className="favorites">
       <label htmlFor="">Favorites</label>
-
-      {loading ? (
-        <LoadPagePresenter info={"Loading user"} />
-      ) : (
-        <div className="cards">
-          {favorites.map((theCard, index) => (
-            <QuizCardPresenter
-              card={theCard}
-              key={index}
-              selectedCard={theQuiz}
-              index={index}
-            />
-          ))}
-        </div>
-      )}
+      <div className="cards">
+        {favorites.map((theCard, index) => (
+          <QuizCardPresenter
+            card={theCard}
+            key={index}
+            selectedCard={theQuiz}
+            index={index}
+          />
+        ))}
+      </div>
     </div>
   );
 }

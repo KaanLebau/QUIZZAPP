@@ -13,6 +13,8 @@ import {
   sqlState,
   activeUser,
 } from "../../models/atoms";
+import { onSnapshot, doc, query, collection, where } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Dashboard(props) {
   const [loading, setLoading] = useState(false);
@@ -33,6 +35,13 @@ function Dashboard(props) {
     authState: userAuth,
   };
 
+  const unsub = onSnapshot(
+    doc(db, "users", "PFwkAesP5xMHrqpRKSlWkn3tFqB3"),
+    (doc) => {
+      //console.log("Current data: ", doc.data());
+    }
+  );
+
   useEffect(() => {
     setTimeout(setLoading, 2000, true);
     //console.log(theList);
@@ -52,3 +61,11 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
+
+/*
+     
+
+
+
+
+*/

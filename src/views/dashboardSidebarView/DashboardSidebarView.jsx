@@ -4,6 +4,13 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { useRecoilValue } from "recoil";
 import { activeUser } from "../../models/atoms";
 function TopicSidebar(props) {
+  const theUser = useRecoilValue(activeUser);
+  function getusername() {
+    if (theUser === null) {
+      return "";
+    }
+    return theUser.displayName;
+  }
   return (
     <div className="sidebar">
       <div
@@ -15,7 +22,7 @@ function TopicSidebar(props) {
         }}
       >
         <AccountCircleOutlinedIcon className="icon" />
-        {/*<h3>{user.displayName}</h3>*/}
+        <h3>{getusername()}</h3>
       </div>
       <div
         className="button"
