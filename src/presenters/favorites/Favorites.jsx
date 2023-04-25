@@ -12,6 +12,7 @@ function Favorites(props) {
   const [loading, setLoading] = useState(true);
   const favorites = useRecoilValue(favoritesState);
   const navigate = useNavigate();
+  
   async function theQuiz(query) {
     const quiz = await getQuestions({ query });
     console.log(quiz);

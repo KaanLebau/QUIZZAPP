@@ -23,7 +23,6 @@ function QuizCardPresenter(props) {
   //QiuzCardCreator functions
   function editingOn() {
     setTheCard({ ...theCard, edit: true });
-    reRender({});
   }
   function handleInput(input) {
     setTheCard({ ...theCard, [input.id]: input.value });
@@ -37,11 +36,9 @@ function QuizCardPresenter(props) {
   }
   function handleCancel() {
     setTheCard({ empty: true, edit: false });
-    reRender({});
-    console.log(theCard.empty);
-    //const list = userFavorites;
-    //const newList = replaceItemAtIndex(list, props.index, theCard);
-    //setUserFavorites(newList);
+    const list = userFavorites;
+    const newList = replaceItemAtIndex(list, props.index, theCard);
+    setUserFavorites(newList);
   }
 
   return (
@@ -54,6 +51,7 @@ function QuizCardPresenter(props) {
           card={handleInput}
           create={handleNewFavorite}
           cancelCreate={handleCancel}
+          key={props.index}
         />
       ) : (
         <QuizCardView
@@ -65,6 +63,7 @@ function QuizCardPresenter(props) {
           update={handleUpdate}
           take={handleTakeQuiz}
           remove={handleCancel}
+          key={props.index}
         />
       )}
     </div>

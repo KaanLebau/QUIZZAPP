@@ -15,7 +15,6 @@ import {
 } from "../../models/atoms";
 import { onSnapshot, doc, query, collection, where } from "firebase/firestore";
 import { db } from "../../firebase";
-import TestView from "../../views/testview/TestView";
 
 function Dashboard(props) {
   const [loading, setLoading] = useState(false);
