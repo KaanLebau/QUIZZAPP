@@ -1,60 +1,16 @@
 import { db } from "../firebase";
-import { doc, getDoc, updateDoc, setDoc, onSnapshot  } from "firebase/firestore";
-import UserModel from "./UserModel";
+import { doc, getDoc, updateDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { activeUser, authState } from "./atoms";
 import { favoritesState } from "./atoms";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 async function updateModelFromFirebase(id) {
   const docRef = doc(db, "user", id);
   const docSnap = await getDoc(docRef);
 
-  updateFavorites(docSnap.data().favorites);
-
-  /*
-  async function firebaseModelPromise(id) {
-    const docRef = doc(db, "users", id);
-    const docSnap = await getDoc(docRef);
-
-
-
-
-    function makeBigPromiseACB(docSnap) {
-      if (!docSnap.exists()) {
-        return new UserModel();
-      }
-
-
-
-      function makeDishPromiseACB(id) {
-        return getDishDetails(id);
-      }
-      const dishesInFirebasePromise = Object.keys(
-        firebaseData.val().dishes || []
-      ).map(makeDishPromiseACB);
-
-      function createModelACB(dishes) {
-        return new DinnerModel(firebaseData.val().numberOfGuests || 2, dishes);
-      }
-      return Promise.all(dishesInFirebasePromise).then(createModelACB);
-    }
-
-    return firebase.database().ref(REF).once("value").then(makeBigPromiseACB);
-  }
-
-*/
-
-
-const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
-  console.log("Current data: ", doc.data());
-});
-
-
-  async function updateFavorites() {
-    const favoritesToUpload = {};
-  }
-
-  
+  const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
+    console.log("Current data: ", doc.data());
+  });
 
   async function updatedModel(payload) {
     if (payload) {
@@ -95,8 +51,45 @@ const unsub = onSnapshot(doc(db, "users", "SF"), (doc) => {
       }
     }
   }
-  //model.addObserver(updatedModel);
 }
 
-//function updateModel(model) {}
-export { updateModelFromFirebase };
+async function updateFirebase(uid, { key, value }) {
+  console.log(uid);
+  const favRef = doc(db, "users", uid);
+  switch (key) {
+    case "favorites":
+      await updateDoc(favRef, {
+        favorites: value,
+      });
+      break;
+    case "sql":
+      await updateDoc(favRef, {
+        sql: value,
+      });
+      break;
+    case "code":
+      await updateDoc(favRef, {
+        code: value,
+      });
+      break;
+    case "linux":
+      await updateDoc(favRef, {
+        linux: value,
+      });
+      break;
+    case "docker":
+      await updateDoc(favRef, {
+        docker: value,
+      });
+      break;
+    default:
+      break;
+  }
+}
+async function UpdateFavorites() {
+  //const docRef = doc(db, "user", user.uid);
+  //const docSnap = await getDoc(docRef);
+  //console.log(favorites);
+}
+
+export { UpdateFavorites, updateFirebase };

@@ -15,5 +15,14 @@
     flex: 10;
     gap: 20px;
     height: fit-content;
+    .updater {
+      display: flex;
+      background-color: aliceblue;
+      padding: 10px;
+      gap: 15px;
+      button {
+        color: aqua;
+      }
+    }
   }
 }

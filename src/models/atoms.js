@@ -3,6 +3,8 @@ import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { atom, selector, useRecoilValue } from "recoil";
 import { InitialUserData } from "./initialUserdata";
 import UserModel from "./UserModel";
+import { UpdateFavorites } from "../models/firebaseModel";
+import { async } from "@firebase/util";
 //const model = new UserModel();
 
 export async function FirestoreStorage(key) {
@@ -80,7 +82,9 @@ export const activeUser = atom({
   effects: [
     localStorageEffect("activeUser"),
     ({ onSet }) => {
-      onSet((user) => {});
+      onSet((user) => {
+        console.log(user);
+      });
     },
   ],
 });
@@ -160,7 +164,7 @@ export const registredState = atom({
 });
 
 export const activeQuizState = atom({
-  key:'activeQuizState',
+  key: "activeQuizState",
   default: null,
-  effects: [localStorageEffect('activeQuizState')],
+  effects: [localStorageEffect("activeQuizState")],
 });

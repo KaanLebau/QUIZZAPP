@@ -76,7 +76,6 @@ function LoginPresenter() {
     setLinuxState(docSnap.data().linux);
     setCodeState(docSnap.data().code);
     setFavoritesState(docSnap.data().favorites);
-    //console.log(docSnap.data());
   }
   function handleSignup() {
     navigate("../registration");
