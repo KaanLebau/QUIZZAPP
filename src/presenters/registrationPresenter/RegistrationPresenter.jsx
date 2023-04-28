@@ -15,9 +15,11 @@ import {
   codeState,
   favoritesState,
 } from "../../models/atoms";
+import { FirebaseActions } from "../../models/firebaseaActions";
 
 function RegistrationPresenter() {
   const navigate = useNavigate();
+  const fireAction = FirebaseActions();
   const [nameControll, setNameControll] = useState(false);
   const [displayNameControll, setDisplayNameControll] = useState(false);
   const [emailControll, setEmailControll] = useState(false);
@@ -93,28 +95,7 @@ function RegistrationPresenter() {
   }
 
   async function handleCreate() {
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        basic.email,
-        basic.password
-      );
-      userInit.basic = basic;
-      userInit.basic.uid = res.user.uid;
-      await setDoc(doc(db, "users", res.user.uid), {
-        ...userInit,
-      });
-      setAuth(true);
-      setCurentUser(userInit.basic);
-      setSqlState(userInit.sql);
-      setDockerState(userInit.docker);
-      setLinuxState(userInit.linux);
-      setCodeState(userInit.code);
-      setFavoritesState(userInit.favorites);
-      navigate("../user");
-    } catch (err) {
-      console.log(err);
-    }
+    await fireAction.create(basic);
   }
   return (
     <UserSettings
