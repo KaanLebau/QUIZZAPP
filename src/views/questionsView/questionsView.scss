@@ -71,4 +71,12 @@
     background-color: lightgoldenrodyellow;
     max-width: 50px;
   }
+  .correctAnswer {
+    @extend .question;
+    background-color: green;
+  }
+  .wrongAnswer {
+    @extend .question;
+    background-color: red;
+  }
 }
