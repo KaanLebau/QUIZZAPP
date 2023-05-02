@@ -17,9 +17,6 @@ function UserSettingsView(props) {
 
   return (
     <div className="settings">
-      <div className="webapp" onClick={props.cancel} title={"To welcome page"}>
-        QuizIt
-      </div>
       <div className="form">
         <div className="type">Enter your credentials and sign up!</div>
         <div className="row">

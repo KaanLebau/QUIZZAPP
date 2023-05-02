@@ -1,5 +1,5 @@
 import "./dashboard.scss";
-import Head from "../../components/head/Head";
+import HeadPresenter from "../../presenters/headPresenter/HeadPresenter";
 import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
 import { useState, useEffect } from "react";
 import DashboardPresenter from "../../presenters/dashboardPresenter/DashboardPresenter";
@@ -12,7 +12,7 @@ function Dashboard() {
   }, []);
   return (
     <div className="dashboard">
-      <Head currentUser={true} />
+      <HeadPresenter />
       <div className="content">
         {!loading ? (
           <LoadPagePresenter info={"Loading user"} />

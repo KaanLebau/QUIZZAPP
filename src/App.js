@@ -14,8 +14,8 @@ import Result from "./pages/result/Result";
 import UserModel from "./models/UserModel";
 function App(props) {
   const model = new UserModel();
-  const theUser = useRecoilValue(activeUser);
-  const registredUser = true; //useRecoilValue(registredState);
+ 
+  const registredUser = true; 
   const Authenticated = ({ children }) => {
     return registredUser ? children : <Navigate to="/" />;
   };

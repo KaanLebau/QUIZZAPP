@@ -16,7 +16,7 @@ function TabPanelPresenter(props) {
   }
   useEffect(() => {
     update();
-  }, [activeTab]);
+  }, [activeTab, props.data]);
 
   return (
     <div className="tabPanelPresenter">
