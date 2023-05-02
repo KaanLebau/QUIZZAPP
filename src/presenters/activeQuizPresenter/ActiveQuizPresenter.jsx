@@ -14,61 +14,63 @@ function ActiveQuizPresenter() {
   const [start, setStart] = useState(false);
   const [index, setIndex] = useState(0);
   const [activeQuestion, setActiveQuestion] = useState(activeQuiz.questions[index]);
-  
+  const [activeAnswer, setActiveAnswer] = useState(activeQuestion.answer);
+ 
   function handleNext() {
     if (index === activeQuiz.questions.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
     }
-    setActiveQuestion(activeQuiz.questions[index])
+    setActiveQuestion(activeQuiz.questions[index]);
+    setActiveAnswer(activeQuiz.questions[index].answer);
   }
-
+  
   function handlePrev() {
     if (index === 0) {
-      setIndex(activeQuiz.questions.questions.length);
+      setIndex(activeQuiz.questions.length - 1);
     } else {
       setIndex(index - 1);
     }
-    setActiveQuestion(activeQuiz.questions[index])
+    setActiveQuestion(activeQuiz.questions[index]);
+    setActiveAnswer(activeQuiz.questions[index].answer);
   }
-
+  
   function newQuestion(e) {
-    setIndex(Number.parseInt(e.target.id));
-    setActiveQuestion(activeQuiz.questions[index])
-  }
+    setIndex(Number.parseInt(e));
+    setActiveQuestion(activeQuiz.questions[index]);
+    setActiveAnswer(activeQuiz.questions[index].answer);
+  } 
 
   function beginQuiz() {
     setStart(true);
-    setActiveQuestion(activeQuiz.questions[index]);
   }
 
-  function activateAnswer(e) {
-    if (!activeQuiz.questions[index].answered) {
-      let y = 1;
-    }
-    activeQuestion.answer = Number.parseInt(e.target.id)
-    updateQuestions();
+  function activateAnswer(answerIndex) {
+    const updatedQuestion = { ...activeQuestion, answer: Number.parseInt(answerIndex), answered: true };
+    setActiveQuestion(updatedQuestion);
+    setActiveAnswer(updatedQuestion.answer);
+    updateCurrentQuiz(updatedQuestion);
+  }  
+  
+  function updateCurrentQuiz(updatedQuestion) {  
+    const updatedQuestions = replaceItemAtIndex(activeQuiz.questions, index, updatedQuestion);
+    const updatedQuiz = { ...activeQuiz, questions: updatedQuestions };
+    setActiveQuiz(updatedQuiz);
   }
-
-  function updateQuestions(){
-    let list = activeQuiz.questions;
-    let newlist = replaceItemAtIndex(list, index, activeQuestion)
-    setActiveQuiz(newlist)
-  }
-
+    
   function handleSubmit() {
-    let result = correctQuiz(activeQuiz.questions)
+    let result = correctQuiz(activeQuiz);
     console.log(result)
   }
 
   function checkQuestionsError() {
-    
     return Number.parseInt(activeQuiz.numberOfQuestions) !== Number.parseInt(activeQuiz.questions.length);
   }
   
   useEffect(() => {
     setActiveQuestion(activeQuiz.questions[index]);
+    setActiveAnswer(activeQuiz.questions[index].answer);
   }, [index]);
 
   return (
@@ -77,7 +79,7 @@ function ActiveQuizPresenter() {
         {start ? (
           <CurrentQuestion
             question={activeQuestion}
-            givenAnswer={activeQuiz.questions[index].answer}
+            givenAnswer={activeAnswer}
             chooseAnswer={activateAnswer}
             next={handleNext}
             submit={handleSubmit}
