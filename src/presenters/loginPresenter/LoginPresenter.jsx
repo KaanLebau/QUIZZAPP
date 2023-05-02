@@ -1,40 +1,22 @@
 import React, { useState } from "react";
 import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  activeUser,
-  authState,
-  sqlState,
-  dockerState,
-  linuxState,
-  codeState,
-  favoritesState,
-  basicUserData,
-} from "../../models/atoms";
+import { RemoteAuth } from "../../integration/RemoteAuth";
+import { useRecoilState } from "recoil";
+import { userUidState } from "../../models/atoms";
+import { RemoteStorage } from "../../integration/RemoteStorage"; //TODO remove
 
 function LoginPresenter() {
   //tools
   const navigate = useNavigate();
 
-  //global state hooks
-  const [, setAuth] = useRecoilState(authState);
-  const [, setCurentUser] = useRecoilState(activeUser);
-  const [, setFavoritesState] = useRecoilState(favoritesState);
-  const [, setSqlState] = useRecoilState(sqlState);
-  const [, setDockerState] = useRecoilState(dockerState);
-  const [, setLinuxState] = useRecoilState(linuxState);
-  const [, setCodeState] = useRecoilState(codeState);
   //user input hooks
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
   const [passwordControll, setPasswordControll] = useState(false);
-  // firebase respons hooks
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState(false);
+  const auth = RemoteAuth();
+  const storage = RemoteStorage(); //TODO remove
+  const [, setRemoteUserData] = useRecoilState(userUidState);
 
   function handleInput(e) {
     const id = e.id;
@@ -53,31 +35,17 @@ function LoginPresenter() {
     setUser({ ...user, [id]: value });
   }
   async function handleLogin() {
-    signInWithEmailAndPassword(auth, user.email, user.password)
-      .then(setLoading(true))
-      .then((userCredential) => {
-        const firebaseUser = userCredential.user;
-
-        getData(firebaseUser);
-      })
-      .catch((error) => {
-        setErr(true);
-      })
-      .finally(navigate("/user"));
+    try {
+      const id = await auth.SignIn(user);
+      const test = id.user.uid;
+      setRemoteUserData(test);
+      const db = await storage.getRemoteData();
+      console.log(db);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  async function getData(firebaseUser) {
-    const docRef = doc(db, "users", firebaseUser.uid);
-    const docSnap = await getDoc(docRef);
-    setAuth(true);
-    setCurentUser(docSnap.data().basic);
-    setSqlState(docSnap.data().sql);
-    setDockerState(docSnap.data().docker);
-    setLinuxState(docSnap.data().linux);
-    setCodeState(docSnap.data().code);
-    setFavoritesState(docSnap.data().favorites);
-    //console.log(docSnap.data());
-  }
   function handleSignup() {
     navigate("../registration");
   }
@@ -87,7 +55,6 @@ function LoginPresenter() {
       handleLogin={handleLogin}
       handleSignup={handleSignup}
       controll={passwordControll && emailcontroll}
-      error={err}
     />
   );
 }

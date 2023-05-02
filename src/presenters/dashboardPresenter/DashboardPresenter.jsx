@@ -4,6 +4,8 @@ import DashboardSidebarView from "../../views/dashboardSidebarView/DashboardSide
 import CardView from "../../views/cardView/CardView";
 import TabPanelPresenter from "../tabPanelPresenter/TabPanelPresenter";
 import { categorySummery, userSummary } from "../../models/utilities";
+import { doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 import { useRecoilValue } from "recoil";
 import {
@@ -13,12 +15,9 @@ import {
   linuxState,
   sqlState,
 } from "../../models/atoms";
+import { updateFirebase } from "../../models/firebaseModel";
 
-//import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
-//import UserCardView from "../../views/userCardView/UserCardView";
-//import TopicCardView from "../../views/topicCardView/TopicCardView";
-
-function DashboardPresenter(props) {
+function DashboardPresenter() {
   const currentSql = useRecoilValue(sqlState);
   const currentDocker = useRecoilValue(dockerState);
   const currentCode = useRecoilValue(codeState);
@@ -30,10 +29,10 @@ function DashboardPresenter(props) {
     categorySummery(currentDocker),
     categorySummery(currentLinux),
     categorySummery(currentCode)
-    );
+  );
   const [selectedData, setSelectedData] = useState("User");
   const [theTopic, setTheTopic] = useState(user);
-    
+
   function handleshow(input) {
     setSelectedData(input);
   }
@@ -64,6 +63,80 @@ function DashboardPresenter(props) {
     }
   }
 
+  function updateFavoritesFirebase() {
+    var updatedFavorites = [
+      {
+        empty: false,
+        edit: false,
+        category: "sql",
+        difficulty: "medium",
+        numberOfQuestions: 10,
+      },
+      {
+        empty: false,
+        edit: false,
+        category: "docker",
+        difficulty: "easy",
+        numberOfQuestions: 5,
+      },
+      {
+        empty: false,
+        edit: false,
+        category: "linux",
+        difficulty: "hard",
+        numberOfQuestions: 15,
+      },
+      {
+        empty: false,
+        edit: false,
+        category: "code",
+        difficulty: "easy",
+        numberOfQuestions: 20,
+      },
+      {
+        empty: false,
+        edit: false,
+        category: "sql",
+        difficulty: "easy",
+        numberOfQuestions: 15,
+      },
+    ];
+    updateFirebase(theUser.uid, { key: "favorites", value: updatedFavorites });
+  }
+
+  async function updateSqlFirebase() {
+    var updatedSql = {
+      easy: {
+        correct: 103,
+        wrong: 7,
+        noAnswer: 0,
+        pass: 10,
+        failed: 1,
+        category: "SQL",
+        difficulty: "Easy",
+      },
+      medium: {
+        correct: 50,
+        wrong: 19,
+        noAnswer: 1,
+        pass: 5,
+        failed: 2,
+        category: "SQL",
+        difficulty: "Medium",
+      },
+      hard: {
+        correct: 20,
+        wrong: 30,
+        noAnswer: 20,
+        pass: 2,
+        failed: 5,
+        category: "SQL",
+        difficulty: "Hard",
+      },
+    };
+    updateFirebase(theUser.uid, { key: "sql", value: updatedSql });
+  }
+
   return (
     <div className="parentPresenter">
       <div className="dashSidebar">
@@ -73,6 +146,18 @@ function DashboardPresenter(props) {
         <div className="dashContent">
           <CardView data={theTopic} />
           <TabPanelPresenter data={theTopic} />
+          <div className="updater">
+            <button id="favorites" onClick={updateFavoritesFirebase}>
+              Update favorites
+            </button>
+            <button onClick={updateSqlFirebase}>Update sql </button>
+
+            <button>Update code </button>
+
+            <button>Update linux </button>
+
+            <button>Update docker </button>
+          </div>
         </div>
       }
     </div>

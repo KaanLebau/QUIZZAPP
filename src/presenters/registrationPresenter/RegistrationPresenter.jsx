@@ -1,23 +1,29 @@
 import UserSettings from "../../views/userSettingsView/UserSettingsView";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { InitialUserData } from "../../models/initialUserdata";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { useRecoilState } from "recoil";
-import {
-  activeUser,
-  authState,
-  sqlState,
-  dockerState,
-  linuxState,
-  codeState,
-  favoritesState,
-} from "../../models/atoms";
+//import { InitialUserData } from "../../models/initialUserdata";
+//import { createUserWithEmailAndPassword } from "firebase/auth";
+//import { db } from "../../firebase";
+//import { doc, setDoc } from "firebase/firestore";
+//import { useRecoilState } from "recoil";
+//import {
+//  activeUser,
+//  authState,
+//  sqlState,
+//  dockerState,
+//  linuxState,
+//  codeState,
+//  favoritesState,
+//} from "../../models/atoms";
+import { RemoteAuth } from "../../integration/RemoteAuth";
 
 function RegistrationPresenter() {
+  // react-router-dom tools
   const navigate = useNavigate();
+
+  const auth = RemoteAuth();
+
+  //user kinput check
   const [nameControll, setNameControll] = useState(false);
   const [displayNameControll, setDisplayNameControll] = useState(false);
   const [emailControll, setEmailControll] = useState(false);
@@ -25,14 +31,18 @@ function RegistrationPresenter() {
   const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [err, setErr] = useState(false);
   const [basic, setBasic] = useState({});
-  const [userInit, setUserInit] = useState(InitialUserData);
-  const [, setAuth] = useRecoilState(authState);
-  const [, setCurentUser] = useRecoilState(activeUser);
-  const [, setSqlState] = useRecoilState(sqlState);
-  const [, setDockerState] = useRecoilState(dockerState);
-  const [, setLinuxState] = useRecoilState(linuxState);
-  const [, setCodeState] = useRecoilState(codeState);
-  const [, setFavoritesState] = useRecoilState(favoritesState);
+
+  // basic data
+  //const [userInit, setUserInit] = useState(InitialUserData);
+
+  //recoli tools
+  //const [, setAuth] = useRecoilState(authState);
+  //const [, setCurentUser] = useRecoilState(activeUser);
+  //const [, setSqlState] = useRecoilState(sqlState);
+  //const [, setDockerState] = useRecoilState(dockerState);
+  //const [, setLinuxState] = useRecoilState(linuxState);
+  //const [, setCodeState] = useRecoilState(codeState);
+  //const [, setFavoritesState] = useRecoilState(favoritesState);
 
   function handleCancel() {
     navigate("../");
@@ -93,28 +103,7 @@ function RegistrationPresenter() {
   }
 
   async function handleCreate() {
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        basic.email,
-        basic.password
-      );
-      userInit.basic = basic;
-      userInit.basic.uid = res.user.uid;
-      await setDoc(doc(db, "users", res.user.uid), {
-        ...userInit,
-      });
-      setAuth(true);
-      setCurentUser(userInit.basic);
-      setSqlState(userInit.sql);
-      setDockerState(userInit.docker);
-      setLinuxState(userInit.linux);
-      setCodeState(userInit.code);
-      setFavoritesState(userInit.favorites);
-      navigate("../user");
-    } catch (err) {
-      console.log(err);
-    }
+    await auth.signUp(basic);
   }
   return (
     <UserSettings

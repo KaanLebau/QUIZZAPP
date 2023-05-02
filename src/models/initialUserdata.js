@@ -1,4 +1,4 @@
-export const InitialUserData = {
+export var InitialUserData = {
   basic: {},
   favorites: [
     {
