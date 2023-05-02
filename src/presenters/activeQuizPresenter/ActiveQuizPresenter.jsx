@@ -8,6 +8,7 @@ import { type } from "@testing-library/user-event/dist/type";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { activeQuizState } from "../../models/atoms";
 import { correctQuiz, replaceItemAtIndex } from "../../models/utilities";
+import { useNavigate } from "react-router-dom";
 
 function ActiveQuizPresenter() {
   const [activeQuiz, setActiveQuiz] = useRecoilState(activeQuizState);
@@ -15,6 +16,7 @@ function ActiveQuizPresenter() {
   const [index, setIndex] = useState(0);
   const [activeQuestion, setActiveQuestion] = useState(activeQuiz.questions[index]);
   const [activeAnswer, setActiveAnswer] = useState(activeQuestion.answer);
+  const navigate = useNavigate();
  
   function handleNext() {
     if (index === activeQuiz.questions.length - 1) {
@@ -63,7 +65,7 @@ function ActiveQuizPresenter() {
     
   function handleSubmit() {
     let result = correctQuiz(activeQuiz);
-    console.log(result)
+    navigate("../result", { state: result });
   }
 
   function checkQuestionsError() {
@@ -94,7 +96,6 @@ function ActiveQuizPresenter() {
       <QuestionsView  questions={activeQuiz.questions}
                       questionSelection={newQuestion}
                       activeIndex={index}
-                      beenAnswered={activeQuestion.answered}
                       quizActive={start}/>
     </div>
   );
