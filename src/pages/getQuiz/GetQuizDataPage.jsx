@@ -1,12 +1,12 @@
 import CustomQuiz from "../../presenters/customQuiz/CustomQuiz";
 import Favorites from "../../presenters/favorites/Favorites";
 import "./getQuizDataPage.scss";
-import Head from "../../components/head/Head";
+import HeadPresenter from "../../presenters/headPresenter/HeadPresenter";
 
 function GetQuizDataPage() {
   return (
     <div className="getQuiz">
-      <Head currentUser={true} />
+      <HeadPresenter />
       <div className="right">
         <div className="options">
           <Favorites />

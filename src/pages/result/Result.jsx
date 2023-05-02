@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import LoadPage from "../../presenters/loadPagePresenter/LoadPagePresenter";
-import Head from "../../components/head/Head";
+import HeadPresenter from "../../presenters/headPresenter/HeadPresenter";
+
 import ResultPresenter from "../../presenters/resultPresenter/ResultPresenter";
 import { useState } from "react";
 
@@ -11,7 +12,7 @@ function Result() {
     correct: 12,
     wrong: 22,
     noAnswer: 5,
-    passed: false
+    passed: false,
   };
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +22,7 @@ function Result() {
 
   return (
     <div className="dashboard">
-      <Head currentUser={true} />
+      <HeadPresenter />
       <div className="content">
         {!loading ? (
           <LoadPage info={"Calculating result"} />
