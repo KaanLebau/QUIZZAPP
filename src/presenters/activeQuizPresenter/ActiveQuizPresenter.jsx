@@ -22,8 +22,7 @@ function ActiveQuizPresenter() {
     } else {
       setIndex(index + 1);
     }
-    setActiveQuestion(activeQuiz.questions[index]);
-    setActiveAnswer(activeQuiz.questions[index].answer);
+    updateCurrentQuestion();
   }
   
   function handlePrev() {
@@ -32,15 +31,18 @@ function ActiveQuizPresenter() {
     } else {
       setIndex(index - 1);
     }
-    setActiveQuestion(activeQuiz.questions[index]);
-    setActiveAnswer(activeQuiz.questions[index].answer);
+    updateCurrentQuestion();
   }
   
   function newQuestion(e) {
     setIndex(Number.parseInt(e));
+    updateCurrentQuestion();
+  }
+
+  function updateCurrentQuestion() {
     setActiveQuestion(activeQuiz.questions[index]);
     setActiveAnswer(activeQuiz.questions[index].answer);
-  } 
+  }
 
   function beginQuiz() {
     setStart(true);
