@@ -307,5 +307,6 @@ export {
   categorySummery,
   userSummary,
   addQuestions,
-  correctQuiz
+  correctQuiz,
+  Question
 };

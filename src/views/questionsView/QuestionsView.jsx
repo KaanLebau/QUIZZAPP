@@ -3,7 +3,7 @@ import { AiOutlineQuestionCircle, AiOutlineCheckCircle } from "react-icons/ai";
 
 function QuestionsView(props) {
   function selection(e) {
-    props.questionSelection(e);
+    props.questionSelection(e.target.id);
   }
   return (
     <div className="questions">

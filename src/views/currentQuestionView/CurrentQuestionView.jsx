@@ -11,7 +11,8 @@ function CurrentQuestionView(props) {
           <div
             className={key === props.givenAnswer ? "selected" : "alt"}
             id={key}
-            onClick={props.chooseAnswer}
+            onClick={() => props.chooseAnswer(key)}
+            key={key}
           >
             {a.answer}
           </div>
