@@ -1,11 +1,11 @@
 import "./editUser.scss";
-import Head from "../../components/head/Head";
 import EditUserPresenter from "../../presenters/editUserPresenter/EditUserPresenter";
+import HeadPresenter from "../../presenters/headPresenter/HeadPresenter";
 
 function EditUser(props) {
   return (
     <div>
-      <Head />
+      <HeadPresenter />
       <EditUserPresenter />
     </div>
   );
