@@ -304,7 +304,11 @@ function updateCategory(category, result) {
     difficulty.correct += result.correct;
     difficulty.wrong += result.wrong;
     difficulty.noAnswer += result.noAnswers;
-    difficulty.pass += result.passed;
+    if (result.passed) {
+      difficulty.pass += 1;
+    } else {
+      difficulty.failed += 1;
+    }
   }
   switch (result.difficulty) {
     case "easy":
