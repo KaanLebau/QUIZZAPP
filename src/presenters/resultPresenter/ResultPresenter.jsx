@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import ResultView from "../../views/resultView/ResultView";
 import { useLocation } from 'react-router-dom';
 import QuestionsView from "../../views/questionsView/QuestionsView";
-import { useRecoilValue } from "recoil";
-import { activeQuizState } from "../../models/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { activeQuizState, activeUser } from "../../models/atoms";
+import { updateUser } from "../../models/utilities";
 import "./resultPresenter.scss"
 
 function ResultPresenter(props) {
   const takenQuiz = useRecoilValue(activeQuizState);
+  const [userData, setUserData] = useRecoilState(activeUser);
   const result = useLocation().state;
   const answerDistribution = {
     correct: result.correct,
@@ -17,9 +19,12 @@ function ResultPresenter(props) {
   };
 
   const navigate = useNavigate();
+
   function handleResult() {
-    navigate("../../");
-    console.log("submit result to model");
+    let updatedUser = updateUser(userData, result)
+    setUserData(updatedUser);
+    console.log(userData);
+    //navigate("../../");
   }
   return (
     <div className="resultPresenter">
