@@ -248,12 +248,12 @@ class Question {
   setAnswer(index) {
     this.answer = index;
   }
-};
+}
 
 function addQuestions(listOfQuestions) {
   return listOfQuestions.map((theQ) => {
     const { id, question, answers, correct_answers, category, difficulty } =
-    theQ;
+      theQ;
     return new Question(
       id,
       question,
@@ -261,7 +261,7 @@ function addQuestions(listOfQuestions) {
       correct_answers,
       category,
       difficulty
-      );
+    );
   });
 }
 
@@ -272,7 +272,7 @@ function correctQuiz(theQuiz) {
   let passedQuiz = false;
   let ratio = 0.0;
 
-  theQuiz.questions.forEach(q => {
+  theQuiz.questions.forEach((q) => {
     if (q.answered) {
       if (q.answers[q.answer].isCorrect === "true") {
         correct += 1;
@@ -284,18 +284,40 @@ function correctQuiz(theQuiz) {
     }
   });
 
-  ratio = correct / theQuiz.questions.length
+  ratio = correct / theQuiz.questions.length;
   if (ratio >= 0.8) {
     passedQuiz = true;
   }
   return {
-            category: theQuiz.category,
-            difficulty: theQuiz.difficulty,
-            correct: correct,
-            wrong: wrong,
-            noAnswers: noAnswer,
-            passed: passedQuiz,
-            successRatio: ratio
+    category: theQuiz.category,
+    difficulty: theQuiz.difficulty,
+    correct: correct,
+    wrong: wrong,
+    noAnswers: noAnswer,
+    passed: passedQuiz,
+    successRatio: ratio,
+  };
+}
+
+function updateCategory(category, result) {
+  function updateDifficulty(difficulty) {
+    difficulty.correct += result.correct;
+    difficulty.wrong += result.wrong;
+    difficulty.noAnswer += result.noAnswers;
+    difficulty.pass += result.passed;
+  }
+  switch (result.difficulty) {
+    case "easy":
+      updateDifficulty(category.easy);
+      break;
+    case "medium":
+      updateDifficulty(category.medium);
+      break;
+    case "hard":
+      updateDifficulty(category.hard);
+      break;
+    default:
+      break;
   }
 }
 
@@ -308,5 +330,6 @@ export {
   userSummary,
   addQuestions,
   correctQuiz,
-  Question
+  Question,
+  updateCategory,
 };
