@@ -1,8 +1,8 @@
 .headPresenter {
   padding: 10px;
   display: flex;
+  min-height: 80px;
   flex-direction: column;
-  align-items: center;
   .appName {
     text-align: center;
     background-color: transparent;
@@ -11,10 +11,5 @@
     font-size: 40px;
     font-weight: bolder;
     cursor: pointer;
-  }
-  .options {
-    width: 100%;
-
- 
   }
 }
