@@ -10,7 +10,7 @@ function CardView(props) {
     if (theUser === null) {
       return "";
     }
-    return theUser.displayName;
+    return theUser.basic.displayName;
   }
   function topicIcon(topic) {
     switch (topic) {

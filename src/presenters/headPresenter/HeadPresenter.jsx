@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function HeadPresenter() {
   const theUser = useRecoilValue(activeUser);
   const navigate = useNavigate();
+
   function home() {
     navigate("/");
   }
@@ -28,7 +29,7 @@ function HeadPresenter() {
         QUIZIT
       </div>
       <div className="options">
-        {theUser ? (
+        {theUser !== null ? (
           <UserLoggedIn
             user={theUser}
             toDashboard={toDashboard}

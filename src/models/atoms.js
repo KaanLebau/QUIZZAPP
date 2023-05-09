@@ -20,13 +20,35 @@ const localStorageEffect =
     });
   };
 
+const localForageEffect =
+  (key) =>
+  ({ setSelf, onSet, trigger }) => {
+
+    const loadPersisted = async () => {
+      const savedValue = await RemoteStorage.updateModelFromRemoteStrorage(key);
+      if (savedValue != null) {
+        setSelf(savedValue);
+      }
+    };
+
+    // Asynchronously set the persisted data
+    if (trigger === "get") {
+      loadPersisted();
+    }
+
+   
+
+  };
+
 export const activeUser = atom({
   key: "activeUser",
   default: null,
   effects: [
     localStorageEffect("activeUser"),
     ({ onSet }) => {
-      onSet((user) => {});
+      onSet((user) => {
+        console.log(user);
+      });
     },
   ],
 });

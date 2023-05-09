@@ -1,52 +1,26 @@
-import UserSettings from "../../views/userSettingsView/UserSettingsView";
+import UserSettingsView from "../../views/userSettingsView/UserSettingsView";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { InitialUserData } from "../../models/initialUserdata";
-//import { createUserWithEmailAndPassword } from "firebase/auth";
-//import { db } from "../../firebase";
-//import { doc, setDoc } from "firebase/firestore";
-//import { useRecoilState } from "recoil";
-//import {
-//  activeUser,
-//  authState,
-//  sqlState,
-//  dockerState,
-//  linuxState,
-//  codeState,
-//  favoritesState,
-//} from "../../models/atoms";
+
 import { RemoteAuth } from "../../integration/RemoteAuth";
+import { RemoteStorage } from "../../integration/RemoteStorage";
 
 function RegistrationPresenter() {
   // react-router-dom tools
   const navigate = useNavigate();
-
+  //Integration layer
   const auth = RemoteAuth();
+  const db = RemoteStorage();
+  //user Info hook
+  const [basic, setBasic] = useState({});
 
-  //user kinput check
+  //user input check
   const [nameControll, setNameControll] = useState(false);
   const [displayNameControll, setDisplayNameControll] = useState(false);
   const [emailControll, setEmailControll] = useState(false);
   const [passwordControll, setPasswordControll] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [err, setErr] = useState(false);
-  const [basic, setBasic] = useState({});
-
-  // basic data
-  //const [userInit, setUserInit] = useState(InitialUserData);
-
-  //recoli tools
-  //const [, setAuth] = useRecoilState(authState);
-  //const [, setCurentUser] = useRecoilState(activeUser);
-  //const [, setSqlState] = useRecoilState(sqlState);
-  //const [, setDockerState] = useRecoilState(dockerState);
-  //const [, setLinuxState] = useRecoilState(linuxState);
-  //const [, setCodeState] = useRecoilState(codeState);
-  //const [, setFavoritesState] = useRecoilState(favoritesState);
-
-  function handleCancel() {
-    navigate("../");
-  }
 
   function handleInput(input) {
     const id = input.id;
@@ -103,17 +77,26 @@ function RegistrationPresenter() {
   }
 
   async function handleCreate() {
-    await auth.signUp(basic);
+    try {
+      const theUser = await auth.signUp(basic);
+      await db.populateData(theUser);
+    } catch (err) {
+      setErr(true);
+    } finally {
+      navigate("../user");
+    }
   }
   return (
-    <UserSettings
+    <UserSettingsView
       input={handleInput}
       nameValidate={nameControll}
       displayNameValidate={displayNameControll}
       emailValidate={emailControll}
       passwordValidate={passwordControll}
       confirm={passwordConfirm}
-      cancel={handleCancel}
+      cancel={() => {
+        navigate("../");
+      }}
       create={handleCreate}
       err={err}
     />

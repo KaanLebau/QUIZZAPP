@@ -13,7 +13,6 @@ import { addQuestions } from "../../models/utilities";
 function Favorites(props) {
   const [loading, setLoading] = useState(true);
   const favorites = useRecoilValue(favoritesState);
-  console.table(favorites);
   const navigate = useNavigate();
   const [, setActiveQuiz] = useRecoilState(activeQuizState);
   async function theQuiz(query) {
@@ -48,8 +47,3 @@ function Favorites(props) {
 }
 
 export default Favorites;
-/*
-{mockCards.map((theCard) => {
-  <QuizCard card={theCard} />;
-})}
-*/

@@ -1,11 +1,12 @@
 import { db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { InitialUserData as userInit } from "../models/initialUserdata";
-import { useRecoilValue } from "recoil";
-import { userUidState } from "../models/atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { activeUser } from "../models/atoms";
 
 function RemoteStorage() {
-  const uid = useRecoilValue(userUidState);
+  const [userData, setUserData] = useRecoilState(activeUser);
+
   return {
     populateData,
     updateModelFromRemoteStrorage,
@@ -14,19 +15,20 @@ function RemoteStorage() {
 
   async function populateData(basic) {
     userInit.basic = basic;
-    await setDoc(doc(db, "users", uid), {
+    await setDoc(doc(db, "users", basic.uid), {
       ...userInit,
     });
+    setUserData(userInit);
   }
 
-  async function updateModelFromRemoteStrorage() {
-    const docRef = doc(db, "users", uid);
+  async function updateModelFromRemoteStrorage(id) {
+    const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }
 
   async function updateRemoteStorageFromModel(toUpdate) {
-    const docRef = doc(db, "users", uid);
+    const docRef = doc(db, "users", userData.basic.uid);
     const docSnap = await getDoc(docRef);
     switch (toUpdate.category) {
       case "sql":

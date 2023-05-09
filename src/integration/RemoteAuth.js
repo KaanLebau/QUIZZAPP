@@ -5,6 +5,7 @@ import {
 import { useSetRecoilState } from "recoil";
 import { auth } from "../firebase";
 import { userUidState } from "../models/atoms";
+import { RemoteStorage } from "./RemoteStorage";
 
 function RemoteAuth() {
   return {
@@ -19,7 +20,8 @@ function RemoteAuth() {
         basic.email,
         basic.password
       );
-      return res;
+      basic.uid = res.user.uid;
+      return basic;
     } catch (err) {
       console.log(err);
     }
