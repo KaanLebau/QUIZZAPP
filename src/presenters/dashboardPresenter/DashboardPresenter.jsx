@@ -10,18 +10,18 @@ import { db } from "../../firebase";
 import { useRecoilValue } from "recoil";
 import {
   activeUser,
-  codeState,
-  dockerState,
-  linuxState,
-  sqlState,
+  codeSelectorState,
+  dockerSelectorState,
+  linuxSelectorState,
+  sqlSelectorState,
 } from "../../models/atoms";
 import { updateFirebase } from "../../models/firebaseModel";
 
 function DashboardPresenter() {
-  const currentSql = useRecoilValue(sqlState);
-  const currentDocker = useRecoilValue(dockerState);
-  const currentCode = useRecoilValue(codeState);
-  const currentLinux = useRecoilValue(linuxState);
+  const currentSql = useRecoilValue(sqlSelectorState);
+  const currentDocker = useRecoilValue(dockerSelectorState);
+  const currentCode = useRecoilValue(codeSelectorState);
+  const currentLinux = useRecoilValue(linuxSelectorState);
   const theUser = useRecoilValue(activeUser);
   var user = userSummary(
     theUser,
@@ -32,7 +32,6 @@ function DashboardPresenter() {
   );
   const [selectedData, setSelectedData] = useState("User");
   const [theTopic, setTheTopic] = useState(user);
-
   function handleshow(input) {
     setSelectedData(input);
   }

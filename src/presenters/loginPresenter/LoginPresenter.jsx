@@ -3,7 +3,7 @@ import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
 import { useRecoilState } from "recoil";
-import { userUidState } from "../../models/atoms";
+import { activeUser, userUidState } from "../../models/atoms";
 import { RemoteStorage } from "../../integration/RemoteStorage"; //TODO remove
 
 function LoginPresenter() {
@@ -17,6 +17,7 @@ function LoginPresenter() {
   const auth = RemoteAuth();
   const storage = RemoteStorage(); //TODO remove
   const [, setRemoteUserData] = useRecoilState(userUidState);
+  const [active, setActiveUser] = useRecoilState(activeUser);
 
   function handleInput(e) {
     const id = e.id;
@@ -39,10 +40,13 @@ function LoginPresenter() {
       const id = await auth.SignIn(user);
       const test = id.user.uid;
       setRemoteUserData(test);
-      const db = await storage.getRemoteData();
-      console.log(db);
+      const db = await storage.getRemoteData(); //TODO remove
+      setActiveUser(db);
+      console.log(active); //TODO remove
     } catch (err) {
-      console.log(err);
+      console.error("not in logged" + err);
+    } finally {
+      navigate("../user");
     }
   }
 

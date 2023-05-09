@@ -1,7 +1,7 @@
 //import { db } from "../firebase";
 //import { getDoc, doc, updateDoc } from "firebase/firestore";
 
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { RemoteStorage } from "../integration/RemoteStorage";
 //import { InitialUserData } from "./initialUserdata";
 //import UserModel from "./UserModel";
@@ -26,12 +26,12 @@ export const activeUser = atom({
   effects: [
     localStorageEffect("activeUser"),
     ({ onSet }) => {
-      onSet((user) => {
-        console.log(user);
-      });
+      onSet((user) => {});
     },
   ],
 });
+
+//TODO attribudes as atoms
 
 export const sqlState = atom({
   key: "sqlState",
@@ -95,6 +95,37 @@ export const favoritesState = atom({
     },
   ],
   effects: [localStorageEffect("favoritesState")],
+});
+
+//TODO attribudes as selectors
+export const basicSelectorState = selector({
+  key: "basicSelectorState",
+  get: ({ get }) => get(activeUser).basic,
+});
+
+export const sqlSelectorState = selector({
+  key: "sqlSelectorState",
+  get: ({ get }) => get(activeUser).sql,
+});
+
+export const dockerSelectorState = selector({
+  key: "dockerSelectorState",
+  get: ({ get }) => get(activeUser).docker,
+});
+
+export const linuxSelectorState = selector({
+  key: "linuxSelectorState",
+  get: ({ get }) => get(activeUser).linux,
+});
+
+export const codeSelectorState = selector({
+  key: "codeSelectorState",
+  get: ({ get }) => get(activeUser).code,
+});
+
+export const favoritesSelectorState = selector({
+  key: "favoritesSelectorState",
+  get: ({ get }) => get(activeUser).favorites,
 });
 
 export const authState = atom({
