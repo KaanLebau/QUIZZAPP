@@ -35,7 +35,14 @@ function DashboardPresenter() {
 
   useEffect(() => {
     update();
-  }, [selectedData]);
+  }, [
+    selectedData,
+    currentSql,
+    currentDocker,
+    currentCode,
+    currentLinux,
+    theUser,
+  ]);
 
   function update() {
     switch (selectedData) {

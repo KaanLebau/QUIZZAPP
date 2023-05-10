@@ -1,12 +1,16 @@
-//import { db } from "../firebase";
-//import { getDoc, doc, updateDoc } from "firebase/firestore";
-
-import { atom, selector } from "recoil";
-import { RemoteStorage } from "../integration/RemoteStorage";
-//import { InitialUserData } from "./initialUserdata";
-//import UserModel from "./UserModel";
-//import { UpdateFavorites } from "../models/firebaseModel";
-//const model = new UserModel();
+import {
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+import {
+  RemoteStorage,
+  UpdateRemoteStorageFromModelFunction,
+} from "../integration/RemoteStorage";
+import { updateFirebase } from "./firebaseModel";
+import { InitialUserData } from "./initialUserdata";
 
 const localStorageEffect =
   (key) =>
@@ -19,140 +23,84 @@ const localStorageEffect =
       localStorage.setItem(key, JSON.stringify(newValue));
     });
   };
-
-const localForageEffect =
+const remoteStorageEffect =
   (key) =>
-  ({ setSelf, onSet, trigger }) => {
-
-    const loadPersisted = async () => {
-      const savedValue = await RemoteStorage.updateModelFromRemoteStrorage(key);
-      if (savedValue != null) {
-        setSelf(savedValue);
-      }
-    };
-
-    // Asynchronously set the persisted data
-    if (trigger === "get") {
-      loadPersisted();
-    }
-
-   
-
+  ({ onSet }) => {
+    onSet((newValue) => {
+      console.log("before");
+      updateFirebase(newValue);
+      console.log("after");
+    });
   };
 
 export const activeUser = atom({
   key: "activeUser",
-  default: null,
-  effects: [
-    localStorageEffect("activeUser"),
-    ({ onSet }) => {
-      onSet((user) => {
-        console.log(user);
-      });
-    },
-  ],
-});
-
-//TODO attribudes as atoms
-
-export const sqlState = atom({
-  key: "sqlState",
-  default: null,
-  effects: [localStorageEffect("sqlState")],
-});
-
-export const dockerState = atom({
-  key: "dockerState",
-  default: null,
-  effects: [localStorageEffect("dockerState")],
-});
-export const linuxState = atom({
-  key: "linuxState",
-  default: null,
-  effects: [localStorageEffect("linuxState")],
-});
-export const codeState = atom({
-  key: "codeState",
-  default: null,
-  effects: [localStorageEffect("codeState")],
-});
-
-export const favoritesState = atom({
-  key: "favoritesState",
-  default: [
-    {
-      empty: true,
-      edit: false,
-      category: "",
-      difficulty: "",
-      numberOfQuestions: 5,
-    },
-    {
-      empty: true,
-      edit: false,
-      category: "",
-      difficulty: "",
-      numberOfQuestions: 5,
-    },
-    {
-      empty: true,
-      edit: false,
-      category: "",
-      difficulty: "",
-      numberOfQuestions: 5,
-    },
-    {
-      empty: true,
-      edit: false,
-      category: "",
-      difficulty: "",
-      numberOfQuestions: 5,
-    },
-    {
-      empty: true,
-      edit: false,
-      category: "",
-      difficulty: "",
-      numberOfQuestions: 5,
-    },
-  ],
-  effects: [localStorageEffect("favoritesState")],
+  default: InitialUserData,
+  effects: [localStorageEffect("activeUser")],
 });
 
 //TODO attribudes as selectors
 export const basicSelectorState = selector({
   key: "basicSelectorState",
   get: ({ get }) => get(activeUser).basic,
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, sql: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const sqlSelectorState = selector({
   key: "sqlSelectorState",
-  get: ({ get }) => get(activeUser).sql,
+  get: ({ get }) => {
+    const userState = get(activeUser);
+    return userState.sql;
+  },
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, sql: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const dockerSelectorState = selector({
   key: "dockerSelectorState",
   get: ({ get }) => get(activeUser).docker,
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, docker: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const linuxSelectorState = selector({
   key: "linuxSelectorState",
   get: ({ get }) => get(activeUser).linux,
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, docker: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const codeSelectorState = selector({
   key: "codeSelectorState",
   get: ({ get }) => get(activeUser).code,
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, code: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const favoritesSelectorState = selector({
   key: "favoritesSelectorState",
   get: ({ get }) => get(activeUser).favorites,
-});
-
-export const authState = atom({
-  key: "authState",
-  default: false,
+  set: ({ get, set }, newValue) => {
+    let userState = get(activeUser);
+    userState = { ...userState, favorites: newValue };
+    set(activeUser, userState);
+  },
 });
 
 export const activeQuizState = atom({
@@ -161,33 +109,34 @@ export const activeQuizState = atom({
   effects: [localStorageEffect("activeQuizState")],
 });
 
-export const userUidState = atom({
-  key: "userUidState",
-  default: null,
-  effects: [
-    localStorageEffect("userUidState"),
-
-    ({ onSet }) => {
-      onSet((user) => {
-        getRemoteStorageData(user);
-      });
-    },
-  ],
+export const basicAtom = atom({
+  key: "basicAtom",
+  default: {},
+  effects: [localStorageEffect("basicAtom")],
 });
-const dbData = async () => {
-  const remoteDB = RemoteStorage();
-  const data = await remoteDB.getRemoteData();
-  return data;
-};
 
-const getRemoteStorageData =
-  (key) =>
-  async ({ setSelf, onSet, set }) => {
-    const data = await dbData();
-    console.log(data);
-    set("sqlState", data.sql);
-    set("linuxState", data.sql);
-    set("dockerState", data.sql);
-    set("codeState", data.sql);
-    set("favoritesState", data.favorites);
-  };
+export const sqlAtom = atom({
+  key: "sqlAtom",
+  default: {},
+  effects: [localStorageEffect("sqlAtom"), remoteStorageEffect("sqlAtom")],
+});
+export const codeAtom = atom({
+  key: "codeAtom",
+  default: {},
+  effects: [localStorageEffect("codeAtom")],
+});
+export const linuxAtom = atom({
+  key: "linuxAtom",
+  default: {},
+  effects: [localStorageEffect("linuxAtom"), remoteStorageEffect("linuxAtom")],
+});
+export const dockerAtom = atom({
+  key: "docerAtom",
+  default: {},
+  effects: [localStorageEffect("docerAtom")],
+});
+export const favoAtom = atom({
+  key: "favoAtom",
+  default: [],
+  effects: [localStorageEffect("favoAtom")],
+});

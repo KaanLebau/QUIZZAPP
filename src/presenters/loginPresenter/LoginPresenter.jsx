@@ -3,7 +3,16 @@ import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
 import { useSetRecoilState } from "recoil";
-import { activeUser } from "../../models/atoms";
+import {
+  activeUser,
+  basicAtom,
+  codeAtom,
+  dockerAtom,
+  favoAtom,
+  Initialize,
+  linuxAtom,
+  sqlAtom,
+} from "../../models/atoms";
 import { RemoteStorage } from "../../integration/RemoteStorage"; //TODO remove
 
 function LoginPresenter() {
@@ -21,8 +30,15 @@ function LoginPresenter() {
 
   const auth = RemoteAuth();
   const storage = RemoteStorage();
+
   //Global state
   const authenticatedUser = useSetRecoilState(activeUser);
+  const basic = useSetRecoilState(basicAtom);
+  const sql = useSetRecoilState(sqlAtom);
+  const docker = useSetRecoilState(dockerAtom);
+  const linux = useSetRecoilState(linuxAtom);
+  const code = useSetRecoilState(codeAtom);
+  const favorites = useSetRecoilState(favoAtom);
 
   function handleInput(e) {
     const id = e.id;
@@ -44,6 +60,13 @@ function LoginPresenter() {
     try {
       const id = await auth.SignIn(user);
       const db = await storage.updateModelFromRemoteStrorage(id.user.uid);
+      basic(db.basic);
+      sql(db.sql);
+      docker(db.docker);
+      linux(db.linux);
+      code(db.code);
+      favorites(db.favorites);
+
       authenticatedUser(db);
       toDashboard();
     } catch (err) {

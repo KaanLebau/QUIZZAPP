@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { InitialUserData as userInit } from "../models/initialUserdata";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { activeUser } from "../models/atoms";
@@ -27,25 +27,12 @@ function RemoteStorage() {
     return docSnap.data();
   }
 
-  async function updateRemoteStorageFromModel(toUpdate) {
+  async function updateRemoteStorageFromModel(resultToUpdate) {
     const docRef = doc(db, "users", userData.basic.uid);
-    const docSnap = await getDoc(docRef);
-    switch (toUpdate.category) {
-      case "sql":
-        docSnap.sql.update(toUpdate.data);
-        break;
-      case "docker":
-        docSnap.docker.update(toUpdate.data);
-        break;
-      case "linux":
-        docSnap.linux.update(toUpdate.data);
-        break;
-      case "code":
-        docSnap.code.update(toUpdate.data);
-        break;
-      default:
-        break;
-    }
+    console.log(resultToUpdate);
+    await updateDoc(docRef, { [resultToUpdate.field]: resultToUpdate.data });
   }
 }
+
+
 export { RemoteStorage };
