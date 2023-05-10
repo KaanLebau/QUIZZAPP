@@ -11,7 +11,7 @@ import {
 import { useRecoilState } from "recoil";
 import { activeQuizState } from "../../models/atoms";
 
-function CustomQuiz(props) {
+function CustomQuiz() {
   const [customQuiz, setCustomQuiz] = useState({
     category: "",
     difficulty: "",

@@ -8,8 +8,8 @@ import { activeQuizState, activeUser } from "../../models/atoms";
 import { updateUser } from "../../models/utilities";
 import "./resultPresenter.scss"
 
-function ResultPresenter(props) {
-  const takenQuiz = useRecoilValue(activeQuizState);
+function ResultPresenter() {
+  const [takenQuiz, setTakenQuiz] = useRecoilState(activeQuizState);
   const [userData, setUserData] = useRecoilState(activeUser);
   const result = useLocation().state;
   const answerDistribution = {
@@ -24,7 +24,8 @@ function ResultPresenter(props) {
     let updatedUser = updateUser(userData, result)
     setUserData(updatedUser);
     console.log(userData);
-    //navigate("../../");
+    setTakenQuiz({})
+    navigate("../../");
   }
   return (
     <div className="resultPresenter">
