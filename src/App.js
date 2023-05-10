@@ -8,11 +8,15 @@ import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
 import DemoPage from "./pages/demoPage/DemoPage";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeUser } from "./models/atoms";
+import { activeUser, registeredUserStateAtom } from "./models/atoms";
 import Result from "./pages/result/Result";
 import { useEffect } from "react";
+import { RemoteStorage } from "./integration/RemoteStorage";
 
 function App(props) {
+  const userLoggedIn = useRecoilValue(registeredUserStateAtom);
+  const db = RemoteStorage();
+  //db.useActiveUserListener();
   //const currentUser = useRecoilValue(activeUser);
   const Authenticated = ({ children }) => {
     return true !== null ? children : <Navigate to="/" />;

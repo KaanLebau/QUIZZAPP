@@ -47,7 +47,7 @@ function ChartInfoPresenter(props) {
   }
 
   useEffect(() => {
-    //db.updateRemoteStorageFromModel({ field: "sql", data: user.sql });
+    db.updateRemoteStorageFromModel({ field: "sql", data: user.sql });
   }, [user]);
 
   return <ChartInfoView info={props.info} test={update} />;

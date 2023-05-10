@@ -3,10 +3,12 @@ import UserLoggedIn from "../../views/userLoggedInView/UserLoggedIn";
 import { useRecoilValue } from "recoil";
 import { activeUser } from "../../models/atoms";
 import { useNavigate } from "react-router-dom";
+import { RemoteAuth } from "../../integration/RemoteAuth";
 
 function HeadPresenter() {
   const theUser = useRecoilValue(activeUser);
   const navigate = useNavigate();
+  const auth = RemoteAuth();
 
   function home() {
     navigate("/");
@@ -16,7 +18,7 @@ function HeadPresenter() {
     navigate("/user");
   }
   function toLogout() {
-    console.log("logoutuser");
+    auth.Logout();
     navigate("/");
   }
   function toGetQuiz() {

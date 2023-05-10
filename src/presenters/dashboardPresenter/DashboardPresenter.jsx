@@ -20,6 +20,7 @@ function DashboardPresenter() {
   const currentCode = useRecoilValue(codeSelectorState);
   const currentLinux = useRecoilValue(linuxSelectorState);
   const theUser = useRecoilValue(activeUser);
+
   var user = userSummary(
     theUser,
     categorySummery(currentSql),
