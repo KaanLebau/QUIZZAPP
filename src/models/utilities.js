@@ -302,42 +302,63 @@ function correctQuiz(theQuiz) {
 function updateUser(user, result) {
   function selectCategory() {
     switch (result.category) {
-      case "sql":
+      case "SQL":
         return user.sql;
-      case "code":
+      case "Code":
         return user.code;
-      case "docker":
+      case "Docker":
         return user.docker;
       case "linux":
         return user.linux;
       default:
+        console.log("went into default selecting category!!")
         break;
     }
   }
   function updateDifficulty(difficulty) {
-    difficulty.correct += result.correct;
-    difficulty.wrong += result.wrong;
-    difficulty.noAnswer += result.noAnswers;
+    let correct = difficulty.correct + result.correct;
+    let wrong = difficulty.wrong + result.wrong;
+    let noAnswer = difficulty.noAnswer + result.noAnswers;
+    let pass = difficulty.pass;
+    let failed = difficulty.failed;
     if (result.passed) {
-      difficulty.pass += 1;
+      pass += 1;
     } else {
-      difficulty.failed += 1;
+      failed += 1;
+    }
+    return {
+      correct: correct,
+      wrong: wrong,
+      noAnswer: noAnswer,
+      pass: pass,
+      failed: failed,
+      category: difficulty.category,
+      difficulty: difficulty.difficulty
     }
   }
   let category = selectCategory();
+  let updatedStats;
+  let updatedCategory;
+  let updatedDifficulty;
   switch (result.difficulty) {
-    case "easy":
-      updateDifficulty(category.easy);
+    case "Easy":
+      updatedDifficulty = updateDifficulty(category.easy);
+      updatedCategory = {...category, easy: updatedDifficulty};
       break;
-    case "medium":
-      updateDifficulty(category.medium);
+    case "Medium":
+      updatedDifficulty = updateDifficulty(category.medium);
+      updatedCategory = {...category, medium: updatedDifficulty};
       break;
-    case "hard":
-      updateDifficulty(category.hard);
+    case "Hard":
+      updatedDifficulty = updateDifficulty(category.hard);
+      updatedCategory = {...category, hard: updatedDifficulty};
       break;
     default:
+      console.log("went into default checking difficulty!!")
       break;
   }
+  updatedStats = {...user, [result.category.toLowerCase()]: updatedCategory};
+  return updatedStats;
 }
 
 export {

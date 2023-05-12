@@ -96,7 +96,9 @@ function ActiveQuizPresenter() {
       <QuestionsView  questions={activeQuiz.questions}
                       questionSelection={newQuestion}
                       activeIndex={index}
-                      quizActive={start}/>
+                      quizActive={start}
+                      quizIsSubmitted={false}
+      />
     </div>
   );
 }
