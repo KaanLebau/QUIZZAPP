@@ -10,11 +10,11 @@ function CardView(props) {
     if (theUser === null) {
       return "";
     }
-    return theUser.displayName;
+    return theUser.basic.displayName;
   }
   function topicIcon(topic) {
     switch (topic) {
-      case "SQL":
+      case "Sql":
         return <FaDatabase className="icon" />;
       case "Docker":
         return <FaDocker className="icon" />;

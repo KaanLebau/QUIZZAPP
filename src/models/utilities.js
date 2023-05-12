@@ -299,13 +299,32 @@ function correctQuiz(theQuiz) {
   };
 }
 
-function updateCategory(category, result) {
+function updateUser(user, result) {
+  function selectCategory() {
+    switch (result.category) {
+      case "sql":
+        return user.sql;
+      case "code":
+        return user.code;
+      case "docker":
+        return user.docker;
+      case "linux":
+        return user.linux;
+      default:
+        break;
+    }
+  }
   function updateDifficulty(difficulty) {
     difficulty.correct += result.correct;
     difficulty.wrong += result.wrong;
     difficulty.noAnswer += result.noAnswers;
-    difficulty.pass += result.passed;
+    if (result.passed) {
+      difficulty.pass += 1;
+    } else {
+      difficulty.failed += 1;
+    }
   }
+  let category = selectCategory();
   switch (result.difficulty) {
     case "easy":
       updateDifficulty(category.easy);
@@ -331,5 +350,5 @@ export {
   addQuestions,
   correctQuiz,
   Question,
-  updateCategory,
+  updateUser,
 };

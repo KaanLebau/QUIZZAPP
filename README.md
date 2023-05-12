@@ -31,7 +31,7 @@ This project consists of building and deploying a webpage being an online quiz a
     - [x] Create basic ui
     - [x] Get data from user
     - [x] authenticate user with firebase/auth
-    - [] Redirect the user to the user's dashboard
+    - [x] Redirect the user to the user's dashboard
   - [] user/dashboard
     - [x] Create basic ui
     - [x] display user data

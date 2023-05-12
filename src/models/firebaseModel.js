@@ -3,6 +3,7 @@ import { doc, getDoc, updateDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { activeUser, authState } from "./atoms";
 import { favoritesState } from "./atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { DataArraySharp } from "@mui/icons-material";
 
 async function updateModelFromFirebase(id) {
   const docRef = doc(db, "user", id);
@@ -53,8 +54,9 @@ async function updateModelFromFirebase(id) {
   }
 }
 
-async function updateFirebase(uid, { key, value }) {
-  console.log(uid);
+async function updateFirebase(data) {
+  console.log(data);
+  /*
   const favRef = doc(db, "users", uid);
   switch (key) {
     case "favorites":
@@ -84,7 +86,7 @@ async function updateFirebase(uid, { key, value }) {
       break;
     default:
       break;
-  }
+  }*/
 }
 async function UpdateFavorites() {
   //const docRef = doc(db, "user", user.uid);

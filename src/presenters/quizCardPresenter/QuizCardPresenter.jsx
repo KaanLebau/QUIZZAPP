@@ -3,12 +3,14 @@ import QuizCardView from "../../views/quizCardView/QuizCardView";
 
 import QuizCardCreator from "../../views/quizCardCreatorView/QuizCardCreatorView";
 import { useRecoilState } from "recoil";
-import { favoritesState } from "../../models/atoms";
+import { favoritesSelectorState } from "../../models/atoms";
 import { replaceItemAtIndex } from "../../models/utilities";
 function QuizCardPresenter(props) {
   const [theCard, setTheCard] = useState(props.card);
-  const [, reRender] = useState();
-  const [userFavorites, setUserFavorites] = useRecoilState(favoritesState);
+
+  const [userFavorites, setUserFavorites] = useRecoilState(
+    favoritesSelectorState
+  );
 
   function editingOff() {
     setTheCard({ ...theCard, edit: false });

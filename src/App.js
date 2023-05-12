@@ -1,6 +1,5 @@
 import "./app.scss";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-//import Welcome from "./pages/welcomePage/Welcome";
 import LoginPage from "./pages/loginPage/LoginPage";
 import Registration from "./pages/registration/Registration";
 import GetQuizDataPage from "./pages/getQuiz/GetQuizDataPage";
@@ -9,15 +8,18 @@ import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
 import DemoPage from "./pages/demoPage/DemoPage";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeUser, registredState } from "./models/atoms";
+import { activeUser, registeredUserStateAtom } from "./models/atoms";
 import Result from "./pages/result/Result";
-import UserModel from "./models/UserModel";
+import { useEffect } from "react";
+import { RemoteStorage } from "./integration/RemoteStorage";
+
 function App(props) {
-  const model = new UserModel();
- 
-  const registredUser = true; 
+  const userLoggedIn = useRecoilValue(registeredUserStateAtom);
+  const db = RemoteStorage();
+  //db.useActiveUserListener();
+  //const currentUser = useRecoilValue(activeUser);
   const Authenticated = ({ children }) => {
-    return registredUser ? children : <Navigate to="/" />;
+    return true !== null ? children : <Navigate to="/" />;
   };
 
   return (
@@ -36,7 +38,7 @@ function App(props) {
                     index
                     element={
                       <Authenticated>
-                        <Dashboard model={model} />
+                        <Dashboard />
                       </Authenticated>
                     }
                   />
@@ -49,7 +51,10 @@ function App(props) {
                     }
                   />
                   <Route path="quiz">
-                    <Route index element={<GetQuizDataPage quiz={props.quiz} />} />
+                    <Route
+                      index
+                      element={<GetQuizDataPage quiz={props.quiz} />}
+                    />
                     <Route
                       path="active"
                       element={

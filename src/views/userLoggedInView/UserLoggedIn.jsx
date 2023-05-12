@@ -26,9 +26,9 @@ function UserLoggedIn(props) {
         </div>
       </div>
       <div className="right">
-        <div className="selectRight" title={props.user.name}>
+        <div className="selectRight" title={props.user.basic.name}>
           <AccountCircleOutlinedIcon className="icon" />
-          {props.user.name}
+          {props.user.basic.name}
         </div>
         <div className="selectRight" title="logout" onClick={props.toLogout}>
           <LogoutOutlinedIcon className="icon" />

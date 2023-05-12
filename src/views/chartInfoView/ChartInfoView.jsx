@@ -10,6 +10,10 @@ function ChartInfoView(props) {
         <p className="title">Chart type: </p>
         <p className="data">{props.info.chartType}</p>
       </div>
+      <div>
+        {/*TODO remove this div*/}
+        <button onClick={props.test}>update firebase</button>
+      </div>
       <div className="row"></div>
     </div>
   );

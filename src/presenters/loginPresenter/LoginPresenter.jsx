@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
-import { useRecoilState } from "recoil";
-import { activeUser, userUidState } from "../../models/atoms";
+import { useSetRecoilState } from "recoil";
+import { activeUser, registeredUserStateAtom } from "../../models/atoms";
 import { RemoteStorage } from "../../integration/RemoteStorage"; //TODO remove
 
 function LoginPresenter() {
@@ -14,10 +14,17 @@ function LoginPresenter() {
   const [user, setUser] = useState({});
   const [emailcontroll, setEmailControll] = useState(false);
   const [passwordControll, setPasswordControll] = useState(false);
+
+  //Error handling
+  const [errMsg, setErrMsg] = useState("");
+  const [err, setErr] = useState(false);
+
   const auth = RemoteAuth();
-  const storage = RemoteStorage(); //TODO remove
-  const [, setRemoteUserData] = useRecoilState(userUidState);
-  const [active, setActiveUser] = useRecoilState(activeUser);
+  const storage = RemoteStorage();
+
+  //Global state
+  const authenticatedUser = useSetRecoilState(activeUser);
+  const UserLoggedIn = useSetRecoilState(registeredUserStateAtom);
 
   function handleInput(e) {
     const id = e.id;
@@ -38,16 +45,31 @@ function LoginPresenter() {
   async function handleLogin() {
     try {
       const id = await auth.SignIn(user);
-      const test = id.user.uid;
-      setRemoteUserData(test);
-      const db = await storage.getRemoteData(); //TODO remove
-      setActiveUser(db);
-      console.log(active); //TODO remove
+      const db = await storage.updateModelFromRemoteStrorage(id.user.uid);
+      authenticatedUser(db);
+      UserLoggedIn(true);
+      toDashboard();
     } catch (err) {
-      console.error("not in logged" + err);
-    } finally {
-      navigate("../user");
+      setErr(true);
+      switch (err.message) {
+        case "Firebase: Error (auth/user-not-found).":
+          setErrMsg("User not found. Please check your email and try again.");
+          break;
+        case "Firebase: Error (auth/wrong-password).":
+          setErrMsg("Incorrect password. Please try again.");
+          break;
+        case "Firebase: Error (auth/invalid-email).":
+          setErrMsg(
+            "Invalid email address. Please check your email and try again."
+          );
+          break;
+        default:
+          setErrMsg("An error occurred. Please try again later.");
+      }
     }
+  }
+  function toDashboard() {
+    navigate("../user");
   }
 
   function handleSignup() {
@@ -59,6 +81,8 @@ function LoginPresenter() {
       handleLogin={handleLogin}
       handleSignup={handleSignup}
       controll={passwordControll && emailcontroll}
+      err={err}
+      errMsg={errMsg}
     />
   );
 }

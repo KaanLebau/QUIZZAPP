@@ -48,7 +48,6 @@ function LoginView(props) {
               />
             </div>
           </div>
-          {props.error && <span>Please enter correct email and password</span>}
           <button
             disabled={props.controll ? false : true}
             title={props.controll ? "Login" : "Email and password is requared"}
@@ -56,6 +55,7 @@ function LoginView(props) {
           >
             Log in
           </button>
+          {props.err && <span>{props.errMsg}</span>}
         </div>
         <div className="left">
           <h1>Sign up today</h1>

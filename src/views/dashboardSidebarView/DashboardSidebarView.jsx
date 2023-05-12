@@ -9,7 +9,7 @@ function TopicSidebar(props) {
     if (theUser === null) {
       return "";
     }
-    return theUser.displayName;
+    return theUser.basic.displayName;
   }
   return (
     <div className="sidebar">
