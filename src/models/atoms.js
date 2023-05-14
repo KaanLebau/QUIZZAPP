@@ -1,16 +1,4 @@
-import {
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-import {
-  RemoteStorage,
-  UpdateRemoteStorageFromModelFunction,
-} from "../integration/RemoteStorage";
-import { updateFirebase } from "./firebaseModel";
-import { InitialUserData } from "./initialUserdata";
+import { atom, selector } from "recoil";
 
 const localStorageEffect =
   (key) =>
@@ -23,12 +11,11 @@ const localStorageEffect =
       localStorage.setItem(key, JSON.stringify(newValue));
     });
   };
-const remoteStorageEffect = (key) => {};
 
 export const activeUser = atom({
   key: "activeUser",
-  default: InitialUserData,
-  effect: [localStorageEffect("activeUser")],
+  default: null,
+  effects: [localStorageEffect("activeUser")],
 });
 
 //TODO attribudes as selectors
@@ -102,4 +89,5 @@ export const activeQuizState = atom({
 export const registeredUserStateAtom = atom({
   key: "registeredUserStateAtom",
   default: false,
+  effects: [localStorageEffect("registeredUserStateAtom")],
 });

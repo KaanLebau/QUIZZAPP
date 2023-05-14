@@ -7,19 +7,26 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import EditUser from "./pages/editUser/EditUser";
 import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
 import DemoPage from "./pages/demoPage/DemoPage";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { activeUser, registeredUserStateAtom } from "./models/atoms";
+import { useRecoilValue } from "recoil";
+import { registeredUserStateAtom } from "./models/atoms";
 import Result from "./pages/result/Result";
 import { useEffect } from "react";
 import { RemoteStorage } from "./integration/RemoteStorage";
 
 function App(props) {
-  const userLoggedIn = useRecoilValue(registeredUserStateAtom);
+  const Authenticated = useRecoilValue(registeredUserStateAtom);
   const db = RemoteStorage();
   //db.useActiveUserListener();
   //const currentUser = useRecoilValue(activeUser);
-  const Authenticated = ({ children }) => {
-    return true !== null ? children : <Navigate to="/" />;
+
+  useEffect(() => {
+    if (Authenticated) {
+      //db.useActiveUserListener();
+      console.log("registred user logged in");
+    }
+  }, [Authenticated]);
+  const AuthRequired = ({ children }) => {
+    return Authenticated ? children : <Navigate to="/" />;
   };
 
   return (
@@ -37,38 +44,42 @@ function App(props) {
                   <Route
                     index
                     element={
-                      <Authenticated>
+                      <AuthRequired>
                         <Dashboard />
-                      </Authenticated>
+                      </AuthRequired>
                     }
                   />
                   <Route
                     path="edit"
                     element={
-                      <Authenticated>
+                      <AuthRequired>
                         <EditUser />
-                      </Authenticated>
+                      </AuthRequired>
                     }
                   />
                   <Route path="quiz">
                     <Route
                       index
-                      element={<GetQuizDataPage quiz={props.quiz} />}
+                      element={
+                        <AuthRequired>
+                          <GetQuizDataPage />
+                        </AuthRequired>
+                      }
                     />
                     <Route
                       path="active"
                       element={
-                        <Authenticated>
-                          <ActiveQuiz quiz={props.quiz} />
-                        </Authenticated>
+                        <AuthRequired>
+                          <ActiveQuiz />
+                        </AuthRequired>
                       }
                     />
                     <Route
                       path="result"
                       element={
-                        <Authenticated>
+                        <AuthRequired>
                           <Result />
-                        </Authenticated>
+                        </AuthRequired>
                       }
                     />
                   </Route>

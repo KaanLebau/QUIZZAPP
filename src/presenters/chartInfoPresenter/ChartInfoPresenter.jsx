@@ -45,12 +45,15 @@ function ChartInfoPresenter(props) {
     //console.table(user.sql);
     //db.updateRemoteStorageFromModel({ field: "sql", data: user.sql });
   }
+  function populate(){
+    db.populateData({name: "kaan", displayName: "Lebau"})
+  }
 
   useEffect(() => {
     db.updateRemoteStorageFromModel({ field: "sql", data: user.sql });
   }, [user]);
 
-  return <ChartInfoView info={props.info} test={update} />;
+  return <ChartInfoView info={props.info} test={update} populte={populate}/>;
 }
 
 export default ChartInfoPresenter;

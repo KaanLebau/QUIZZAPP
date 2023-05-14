@@ -13,6 +13,7 @@ function ChartInfoView(props) {
       <div>
         {/*TODO remove this div*/}
         <button onClick={props.test}>update firebase</button>
+        <button onClick={props.populte}>populate test</button>
       </div>
       <div className="row"></div>
     </div>

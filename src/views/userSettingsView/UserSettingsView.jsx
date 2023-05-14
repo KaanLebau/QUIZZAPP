@@ -230,6 +230,7 @@ function UserSettingsView(props) {
           </button>
         </div>
       </div>
+      {props.err && <span>{props.errMsg}</span>}
     </div>
   );
 }

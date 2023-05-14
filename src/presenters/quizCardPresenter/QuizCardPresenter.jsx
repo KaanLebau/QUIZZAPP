@@ -5,7 +5,9 @@ import QuizCardCreator from "../../views/quizCardCreatorView/QuizCardCreatorView
 import { useRecoilState } from "recoil";
 import { favoritesSelectorState } from "../../models/atoms";
 import { replaceItemAtIndex } from "../../models/utilities";
+import { RemoteStorage } from "../../integration/RemoteStorage";
 function QuizCardPresenter(props) {
+  const db = RemoteStorage();
   const [theCard, setTheCard] = useState(props.card);
 
   const [userFavorites, setUserFavorites] = useRecoilState(
@@ -34,12 +36,20 @@ function QuizCardPresenter(props) {
     theCard.edit = false;
     const list = userFavorites;
     const newList = replaceItemAtIndex(list, props.index, theCard);
+    db.updateRemoteStorageFromModel({
+      field: "favorites",
+      data: newList,
+    });
     setUserFavorites(newList);
   }
   function handleCancel() {
     setTheCard({ empty: true, edit: false });
     const list = userFavorites;
     const newList = replaceItemAtIndex(list, props.index, theCard);
+    db.updateRemoteStorageFromModel({
+      field: "favorites",
+      data: newList,
+    });
     setUserFavorites(newList);
   }
 

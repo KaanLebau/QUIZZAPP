@@ -9,6 +9,7 @@ import { activeUser } from "../../models/atoms";
 function Dashboard() {
   const user = useRecoilValue(activeUser);
 
+
   return (
     <div className="dashboard">
       <HeadPresenter />

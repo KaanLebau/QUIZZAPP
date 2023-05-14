@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import ActiveQuizPresenter from "../../presenters/activeQuizPresenter/ActiveQuizPresenter";
 import "./activeQuiz.scss";
-import LoadPage from "../../presenters/loadPagePresenter/LoadPagePresenter";
+import LoadPagePresenter from "../../presenters/loadPagePresenter/LoadPagePresenter";
 import HeadPresenter from "../../presenters/headPresenter/HeadPresenter";
 
 function ActiveQuiz(props) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setTimeout(setLoading, 800, true);
+    setTimeout(setLoading, 200, true);
   }, [props.quiz]);
 
   return (
@@ -15,7 +15,7 @@ function ActiveQuiz(props) {
       <HeadPresenter />
       <div className="content">
         {!loading ? (
-          <LoadPage info={"Loading quiz"} />
+          <LoadPagePresenter info={"Loading quiz"} />
         ) : (
           <ActiveQuizPresenter quiz={props.quiz} />
         )}
