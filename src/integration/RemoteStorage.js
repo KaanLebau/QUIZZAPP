@@ -2,7 +2,7 @@ import { db } from "../firebase";
 import { doc, getDoc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import { InitialUserData } from "../models/initialUserdata";
 import { useRecoilState } from "recoil";
-import { activeUser } from "../models/atoms";
+import { activeUser } from "../models/appModel";
 import { useEffect, useState } from "react";
 
 /**

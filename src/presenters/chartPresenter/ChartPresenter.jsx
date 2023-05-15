@@ -165,4 +165,3 @@ function ChartPresenter(props) {
 }
 
 export default ChartPresenter;
-//<Pie className="pieChart" data={input} options={options} />

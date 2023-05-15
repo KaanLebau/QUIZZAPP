@@ -3,7 +3,7 @@ import LoginView from "../../views/loginView/LoginView";
 import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
 import { useRecoilState } from "recoil";
-import { activeUser, registeredUserStateAtom } from "../../models/atoms";
+import { activeUser, registeredUserStateAtom } from "../../models/appModel";
 import { RemoteStorage } from "../../integration/RemoteStorage"; 
 function LoginPresenter() {
   //tools

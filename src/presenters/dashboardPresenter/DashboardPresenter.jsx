@@ -12,7 +12,7 @@ import {
   dockerSelectorState,
   linuxSelectorState,
   sqlSelectorState,
-} from "../../models/atoms";
+} from "../../models/appModel";
 
 function DashboardPresenter() {
   const currentSql = useRecoilValue(sqlSelectorState);

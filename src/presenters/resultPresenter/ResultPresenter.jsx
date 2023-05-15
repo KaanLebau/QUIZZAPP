@@ -4,9 +4,11 @@ import ResultView from "../../views/resultView/ResultView";
 import { useLocation } from "react-router-dom";
 import QuestionsView from "../../views/questionsView/QuestionsView";
 import { useRecoilState } from "recoil";
-import { activeQuizState, activeUser } from "../../models/atoms";
+import { activeQuizState, activeUser } from "../../models/appModel";
 import { updateUser } from "../../models/utilities";
 import { RemoteStorage } from "../../integration/RemoteStorage";
+import ChartPresenter from "../chartPresenter/ChartPresenter";
+
 import "./resultPresenter.scss";
 
 function ResultPresenter() {
@@ -32,6 +34,7 @@ function ResultPresenter() {
     setTakenQuiz({});
     navigate("../../");
   }
+
   return (
     <div className="resultPresenter">
       <ResultView
@@ -40,6 +43,10 @@ function ResultPresenter() {
         chartData={answerDistribution}
         submit={handleResult}
       />
+      <div className="chart">
+        <h3 className="title">{result.chartData.title}</h3>
+        <ChartPresenter chartData={result.chartData} />
+      </div>
       <QuestionsView
         questions={takenQuiz.questions}
         questionSelection={() => console.log("Not implemented here!")}
@@ -47,6 +54,11 @@ function ResultPresenter() {
         quizActive={false}
         quizIsSubmitted={true}
       />
+      <div className="bottom">
+        <button title="To Dashboard" onClick={handleResult}>
+          To Dashboard
+        </button>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "./cardView.scss";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useRecoilValue } from "recoil";
-import { activeUser } from "../../models/atoms";
+import { activeUser } from "../../models/appModel";
 
 function CardView(props) {
   const theUser = useRecoilValue(activeUser);

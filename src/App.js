@@ -1,30 +1,18 @@
 import "./app.scss";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./pages/loginPage/LoginPage";
-import Registration from "./pages/registration/Registration";
-import GetQuizDataPage from "./pages/getQuiz/GetQuizDataPage";
-import Dashboard from "./pages/dashboard/Dashboard";
-import EditUser from "./pages/editUser/EditUser";
-import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
-import DemoPage from "./pages/demoPage/DemoPage";
+import RegistrationPage from "./pages/registrationPage/RegistrationPage";
+import GetQuizDataPage from "./pages/getQuizPage/GetQuizDataPage";
+import DashboardPage from "./pages/dashboardPage/DashboardPage";
+import EditUserPage from "./pages/editUserPage/EditUserPage";
+import ActiveQuizPage from "./pages/activeQuizPage/ActiveQuizPage";
 import { useRecoilValue } from "recoil";
-import { registeredUserStateAtom } from "./models/atoms";
-import Result from "./pages/result/Result";
-import { useEffect } from "react";
-import { RemoteStorage } from "./integration/RemoteStorage";
+import { registeredUserStateAtom } from "./models/appModel";
+import ResultPage from "./pages/resultPage/ResultPage";
 
-function App(props) {
+function App() {
   const Authenticated = useRecoilValue(registeredUserStateAtom);
-  const db = RemoteStorage();
-  //db.useActiveUserListener();
-  //const currentUser = useRecoilValue(activeUser);
 
-  useEffect(() => {
-    if (Authenticated) {
-      //db.useActiveUserListener();
-      console.log("registred user logged in");
-    }
-  }, [Authenticated]);
   const AuthRequired = ({ children }) => {
     return Authenticated ? children : <Navigate to="/" />;
   };
@@ -37,15 +25,14 @@ function App(props) {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<DemoPage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route path="registration" element={<Registration />} />
+                <Route index element={<LoginPage />} />
+                <Route path="registration" element={<RegistrationPage />} />
                 <Route path="/user">
                   <Route
                     index
                     element={
                       <AuthRequired>
-                        <Dashboard />
+                        <DashboardPage />
                       </AuthRequired>
                     }
                   />
@@ -53,7 +40,7 @@ function App(props) {
                     path="edit"
                     element={
                       <AuthRequired>
-                        <EditUser />
+                        <EditUserPage />
                       </AuthRequired>
                     }
                   />
@@ -70,7 +57,7 @@ function App(props) {
                       path="active"
                       element={
                         <AuthRequired>
-                          <ActiveQuiz />
+                          <ActiveQuizPage />
                         </AuthRequired>
                       }
                     />
@@ -78,7 +65,7 @@ function App(props) {
                       path="result"
                       element={
                         <AuthRequired>
-                          <Result />
+                          <ResultPage />
                         </AuthRequired>
                       }
                     />

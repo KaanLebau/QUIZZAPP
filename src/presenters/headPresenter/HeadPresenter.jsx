@@ -1,7 +1,7 @@
 import "./headPresenter.scss";
-import UserLoggedIn from "../../views/userLoggedInView/UserLoggedIn";
+import UserLoggedIn from "../../views/userLoggedInView/UserLoggedInView";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeUser, registeredUserStateAtom } from "../../models/atoms";
+import { activeUser, registeredUserStateAtom } from "../../models/appModel";
 import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
 
@@ -21,7 +21,7 @@ function HeadPresenter() {
     navigate("/user");
   }
   function toLogout() {
-    auth.Logout();
+    auth.logout();
     setAuthenticatedUser(false);
     localStorage.clear();
     navigate("/");

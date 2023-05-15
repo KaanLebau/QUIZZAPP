@@ -3,7 +3,7 @@ import QuizCardView from "../../views/quizCardView/QuizCardView";
 
 import QuizCardCreator from "../../views/quizCardCreatorView/QuizCardCreatorView";
 import { useRecoilState } from "recoil";
-import { favoritesSelectorState } from "../../models/atoms";
+import { favoritesSelectorState } from "../../models/appModel";
 import { replaceItemAtIndex } from "../../models/utilities";
 import { RemoteStorage } from "../../integration/RemoteStorage";
 function QuizCardPresenter(props) {
@@ -84,16 +84,3 @@ function QuizCardPresenter(props) {
 
 export default QuizCardPresenter;
 
-/*<QuizCardView
-      category={topicAlternatives}
-      difficulty={difficultyAlternatives}
-      numberOfQuestions={difficultyAlternatives}
-      edit={edit}
-      mode={() => setEdit(!edit)}
-      card={theCard}
-      saveFavorite={handleSaveFavorite}
-      update={handleUpdate}
-      take={handleTakeQuiz}
-      remove={handleRemove}
-    />
-    */

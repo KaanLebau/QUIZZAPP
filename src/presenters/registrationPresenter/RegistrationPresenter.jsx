@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RemoteAuth } from "../../integration/RemoteAuth";
 import { RemoteStorage } from "../../integration/RemoteStorage";
 import { useSetRecoilState } from "recoil";
-import { activeUser, registeredUserStateAtom } from "../../models/atoms";
+import { activeUser, registeredUserStateAtom } from "../../models/appModel";
 
 function RegistrationPresenter() {
   // react-router-dom tools

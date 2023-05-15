@@ -204,6 +204,7 @@ function userSummary(basic, sql, code, docker, linux) {
       {
         chartType: "pie",
         title: "Answers distribution",
+        labels: ["Correct", "Wrong", "No answer"],
         data: {
           correct: numberOfCorrect,
           wrong: numberOfWrong,
@@ -296,6 +297,16 @@ function correctQuiz(theQuiz) {
     noAnswers: noAnswer,
     passed: passedQuiz,
     successRatio: ratio,
+    chartData: {
+      chartType: "pie",
+      title: "Answers distribution",
+      labels: ["Correct", "Wrong", "No answer"],
+      data: {
+        correct: correct,
+        wrong: wrong,
+        noAnswer: noAnswer,
+      },
+    },
   };
 }
 
@@ -311,7 +322,7 @@ function updateUser(user, result) {
       case "linux":
         return user.linux;
       default:
-        console.log("went into default selecting category!!")
+        console.log("went into default selecting category!!");
         break;
     }
   }
@@ -333,8 +344,8 @@ function updateUser(user, result) {
       pass: pass,
       failed: failed,
       category: difficulty.category,
-      difficulty: difficulty.difficulty
-    }
+      difficulty: difficulty.difficulty,
+    };
   }
   let category = selectCategory();
   let updatedStats;
@@ -343,21 +354,21 @@ function updateUser(user, result) {
   switch (result.difficulty) {
     case "Easy":
       updatedDifficulty = updateDifficulty(category.easy);
-      updatedCategory = {...category, easy: updatedDifficulty};
+      updatedCategory = { ...category, easy: updatedDifficulty };
       break;
     case "Medium":
       updatedDifficulty = updateDifficulty(category.medium);
-      updatedCategory = {...category, medium: updatedDifficulty};
+      updatedCategory = { ...category, medium: updatedDifficulty };
       break;
     case "Hard":
       updatedDifficulty = updateDifficulty(category.hard);
-      updatedCategory = {...category, hard: updatedDifficulty};
+      updatedCategory = { ...category, hard: updatedDifficulty };
       break;
     default:
-      console.log("went into default checking difficulty!!")
+      console.log("went into default checking difficulty!!");
       break;
   }
-  updatedStats = {...user, [result.category.toLowerCase()]: updatedCategory};
+  updatedStats = { ...user, [result.category.toLowerCase()]: updatedCategory };
   return updatedStats;
 }
 

@@ -5,7 +5,7 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import { FaLinux, FaDocker, FaDatabase, FaCode } from "react-icons/fa";
-import PieChart from "../pieChartView/PieChartView";
+//import PieChart from "../pieChartView/PieChartView";
 
 function ResultView(props) {
   function topicIcon(topic) {
@@ -36,35 +36,25 @@ function ResultView(props) {
   }
   return (
     <div className="result">
-      <div className="top">
-        <div className="main" title={props.result.category}>
-          {topicIcon(props.result.category)}
-          <h1>{props.result.category}</h1>
+      <div className="main" title={props.result.category}>
+        {topicIcon(props.result.category)}
+        <h1>{props.result.category}</h1>
+      </div>
+      <div className="main" title={props.result.difficulty}>
+        {Diff(props.result.difficulty)}
+        <h1>{props.result.difficulty}</h1>
+      </div>
+      {props.result.passed ? (
+        <div className="main" title="Pass">
+          <TrendingUpIcon className="icon" />
+          <h1>Passed</h1>
         </div>
-        <div className="main" title={props.result.difficulty}>
-          {Diff(props.result.difficulty)}
-          <h1>{props.result.difficulty}</h1>
+      ) : (
+        <div className="main" title="Failed">
+          <TrendingDownIcon className="icon" />
+          <h1>Failed</h1>
         </div>
-        {props.result.passed ? (
-          <div className="main" title="Pass">
-            <TrendingUpIcon className="icon" />
-            <h1>Passed</h1>
-          </div>
-        ) : (
-          <div className="main" title="Failed">
-            <TrendingDownIcon className="icon" />
-            <h1>Failed</h1>
-          </div>
-        )}
-      </div>
-      <div className="middle">
-        <PieChart chartData={props.chartData} chartTitle={props.chartTitle} />
-      </div>
-      <div className="bottom">
-        <button title="To Dashboard" onClick={props.submit}>
-          To Dashboard
-        </button>
-      </div>
+      )}
     </div>
   );
 }

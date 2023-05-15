@@ -1,0 +1,15 @@
+.getQuiz {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  color: #dbd8e3;
+
+  .options {
+    background: transparent;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+}
