@@ -1,11 +1,19 @@
 import { db } from "../firebase";
 import { doc, getDoc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
-import { InitialUserData as userInit } from "../models/initialUserdata";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { activeUser } from "../models/atoms";
-import { useEffect } from "react";
+import { InitialUserData } from "../models/initialUserdata";
+import { useRecoilState } from "recoil";
+import { activeUser } from "../models/appModel";
+import { useEffect, useState } from "react";
 
+/**
+ * This function was created to use recoil related hooks along with database related calls.
+ * This function is responsible for writing, reading and updating the firestore database
+ * @returns various functions for communicating with the database
+ */
 function RemoteStorage() {
+  /**
+   * Global variable active user
+   */
   const [userData, setUserData] = useRecoilState(activeUser);
 
   return {
@@ -13,71 +21,75 @@ function RemoteStorage() {
     updateModelFromRemoteStrorage,
     updateRemoteStorageFromModel,
     useActiveUserListener,
-    updateModelFieldFromRemoteStorage,
   };
 
-  async function populateData(basic) {
-    userInit.basic = basic;
-    await setDoc(doc(db, "users", basic.uid), {
-      ...userInit,
+  /**
+   * This function is used when a new user is created.
+   * The parameter in the function call is the registration form that the new user has filled in.
+   * InitialUserData contains the default value for application.
+   * The function updates basic user information and creates and writes a new documentation for firestore.
+   * Document primary key is same as firebase auth uid.
+   * @param {*} userBasic
+   * @returns firestore doc
+   */
+  async function populateData(userBasic) {
+    const docRef = doc(db, "users", userBasic.uid);
+    await setDoc(docRef, {
+      ...InitialUserData,
+      basic: userBasic,
     });
-    setUserData(userInit);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
   }
 
+  /**
+   * This function is used when a user logs in with email and password in the application.
+   * Retrieves and returns the user's document in firestore
+   * @param {*} id user.basic.uid
+   * @returns
+   */
   async function updateModelFromRemoteStrorage(id) {
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }
 
-  async function updateModelFieldFromRemoteStorage(id, field) {
-    const docRef = doc(db, "users", id);
-    const docSnap = await getDoc(docRef);
-    switch (field) {
-      case "basic":
-        return docSnap.basic;
-      case "sql":
-        return docSnap.sql;
-      case "linux":
-        return docSnap.linux;
-      case "docker":
-        return docSnap.docker;
-      case "code":
-        return docSnap.code;
-      case "favorites":
-        return docSnap.favorites;
-      default:
-        break;
-    }
-  }
-
+  /**
+   * This function is used when one of the files in the user's document is changed, eg updated favorites or a new quiz result.
+   * The function receives an obj with two attributes {field: "" , data: {}},
+   * the filed attribute contains the file to be updated
+   * data attribute the updated data.
+   * @param {*} resultToUpdate
+   */
   async function updateRemoteStorageFromModel(resultToUpdate) {
     const docRef = doc(db, "users", userData.basic.uid);
     await updateDoc(docRef, { [resultToUpdate.field]: resultToUpdate.data });
   }
 
-  // Set up a listener for the activeUser document in Firestore
+  /**
+   * This function is used to sync firestore and application model. The function uses firestore's onSnabshot() function.
+   * This takes a snapshot of the document and when something changes in documentation and firestore the document no longer syncs with snapshot.
+   * Takes a new snapshot of the document and writes the document to a temporer constant data.
+   * Then this data variable was written to the active user Atomen.
+   * @returns activeUser atom
+   */
   function useActiveUserListener() {
     useEffect(() => {
       const unsub = onSnapshot(doc(db, "users", userData.basic.uid), (doc) => {
         if (doc.exists) {
-          // Update the activeUser atom with the new document data
           const data = {
-            basic: doc.data().basic || userInit.basic,
-            code: doc.data().code || userInit.code,
-            sql: doc.data().sql || userInit.sql,
-            docker: doc.data().docker || userInit.docker,
-            linux: doc.data().linux || userInit.linux,
-            favorites: doc.data().favorites || userInit.favorites,
+            basic: doc.data().basic || InitialUserData.basic,
+            code: doc.data().code || InitialUserData.code,
+            sql: doc.data().sql || InitialUserData.sql,
+            docker: doc.data().docker || InitialUserData.docker,
+            linux: doc.data().linux || InitialUserData.linux,
+            favorites: doc.data().favorites || InitialUserData.favorites,
           };
           setUserData(data);
         } else {
-          // Document doesn't exist, so clear the activeUser atom
-          setUserData(userInit);
+          setUserData(InitialUserData);
         }
       });
-
-      // Unsubscribe from the listener when the component unmounts
     }, [activeUser]);
 
     // Return the current value of the activeUser atom

@@ -1,62 +1,33 @@
 .result {
+  display: flex;
   margin: 20px;
   width: fit-content;
   height: fit-content;
   padding: 10px;
-  background-color: #5c5470;
+  background: transparent;
+  -webkit-box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
+  box-shadow: 5px 5px 22px 7px rgba(219, 216, 227, 0.24);
   border-radius: 20px;
   align-self: center;
-  .top {
-    padding: 20px;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    gap: 20px;
+  gap: 40px;
 
-    .main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 20px;
-      min-width: 120px;
-      gap: 5px;
-      .icon {
-        font-size: xx-large;
-      }
-    }
-  }
-  .middle {
-    margin-top: 20px;
-    padding-top: 0;
-    padding: 20px;
-    border-radius: 20px;
-  }
-  .bottom {
-    padding: 20px;
+  .main {
     background: transparent;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    button {
-      border-radius: 8px;
-      justify-self: flex-end;
-      align-self: center;
-      background-color: #352f44;
-      color: #dbd8e3;
-      padding: 5px;
-      width: 20%;
-      cursor: pointer;
-      margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 120px;
+    gap: 5px;
+    border: 2px inset #2a2438;
+    .icon {
+      font-size: xx-large;
+      background: transparent;
     }
-    button:hover {
-      color: #352f44;
-      background-color: #dbd8e3;
-    }
-    button:disabled {
-      cursor: not-allowed;
+    h1 {
+      background: transparent;
     }
   }
 }

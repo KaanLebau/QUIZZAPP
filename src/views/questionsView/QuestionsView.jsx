@@ -7,18 +7,17 @@ function QuestionsView(props) {
   }
   function getClassName(question, index) {
     if (props.quizIsSubmitted) {
-      if (question.answer === -1 || question.answers[question.answer].isCorrect === "false") {
+      if (
+        question.answer === -1 ||
+        question.answers[question.answer].isCorrect === "false"
+      ) {
         return "wrongAnswer";
       } else {
         return "correctAnswer";
       }
-    } 
-    
-    else if (props.activeIndex === index && props.quizActive) {
+    } else if (props.activeIndex === index && props.quizActive) {
       return "activeQuestion";
-    } 
-    
-    else {
+    } else {
       return "question";
     }
   }
@@ -57,10 +56,3 @@ function QuestionsView(props) {
 }
 
 export default QuestionsView;
-
-/*
-
-<AiOutlineQuestionCircle className="questionIcon" />
-        <AiOutlineCheckCircle className="questionIcon" />
-
-*/
