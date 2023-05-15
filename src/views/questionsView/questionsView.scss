@@ -16,7 +16,7 @@
   justify-content: center;
   animation: mounth 1s ease-in 0s 1 normal forwards;
   flex: 2;
-  
+
   label {
     background: transparent;
     position: absolute;
@@ -67,7 +67,7 @@
     }
   }
   .activeQuestion {
-    @extend .question; 
+    @extend .question;
     background-color: lightgoldenrodyellow;
     max-width: 50px;
   }

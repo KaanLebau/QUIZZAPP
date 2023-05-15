@@ -14,7 +14,7 @@ function TopicSidebar(props) {
   return (
     <div className="sidebar">
       <div
-        className="button"
+        className={props.selectedData === "user" ? "active" : "button"}
         id="user"
         title="User"
         onClick={(e) => {
@@ -25,7 +25,7 @@ function TopicSidebar(props) {
         <h3>{getusername()}</h3>
       </div>
       <div
-        className="button"
+        className={props.selectedData === "linux" ? "active" : "button"}
         id="linux"
         title="Linux"
         onClick={(e) => {
@@ -36,7 +36,7 @@ function TopicSidebar(props) {
         <h3>Linux</h3>
       </div>
       <div
-        className="button"
+        className={props.selectedData === "docker" ? "active" : "button"}
         id="docker"
         title="Docker"
         onClick={(e) => {
@@ -47,7 +47,7 @@ function TopicSidebar(props) {
         <h3>Docker</h3>
       </div>
       <div
-        className="button"
+        className={props.selectedData === "sql" ? "active" : "button"}
         id="sql"
         title="SQL"
         onClick={(e) => {
@@ -58,7 +58,7 @@ function TopicSidebar(props) {
         <h3>SQL</h3>
       </div>
       <div
-        className="button"
+        className={props.selectedData === "code" ? "active" : "button"}
         id="code"
         title="Code"
         onClick={(e) => {

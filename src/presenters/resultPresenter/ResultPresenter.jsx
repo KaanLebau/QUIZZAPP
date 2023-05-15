@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ResultView from "../../views/resultView/ResultView";
 import { useLocation } from "react-router-dom";
 import QuestionsView from "../../views/questionsView/QuestionsView";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { activeQuizState, activeUser } from "../../models/appModel";
 import { updateUser } from "../../models/utilities";
 import { RemoteStorage } from "../../integration/RemoteStorage";
@@ -12,7 +12,7 @@ import ChartPresenter from "../chartPresenter/ChartPresenter";
 import "./resultPresenter.scss";
 
 function ResultPresenter() {
-  const [takenQuiz, setTakenQuiz] = useRecoilState(activeQuizState);
+  const takenQuiz = useRecoilValue(activeQuizState);
   const [userData, setUserData] = useRecoilState(activeUser);
   const result = useLocation().state;
   const db = RemoteStorage();
@@ -31,7 +31,8 @@ function ResultPresenter() {
       field: result.category.toLowerCase(),
       data: updatedUser[result.category.toLowerCase()],
     });
-    setTakenQuiz({});
+
+    localStorage.removeItem("activeQuizState");
     navigate("../../");
   }
 
