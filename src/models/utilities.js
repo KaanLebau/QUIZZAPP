@@ -322,7 +322,6 @@ function updateUser(user, result) {
       case "linux":
         return user.linux;
       default:
-        console.log("went into default selecting category!!");
         break;
     }
   }
@@ -365,7 +364,6 @@ function updateUser(user, result) {
       updatedCategory = { ...category, hard: updatedDifficulty };
       break;
     default:
-      console.log("went into default checking difficulty!!");
       break;
   }
   updatedStats = { ...user, [result.category.toLowerCase()]: updatedCategory };

@@ -17,7 +17,6 @@ function HeadPresenter() {
     navigate("/");
   }
   function toDashboard() {
-    console.log("to the dashboard");
     navigate("/user");
   }
   function toLogout() {
@@ -27,7 +26,6 @@ function HeadPresenter() {
     navigate("/");
   }
   function toGetQuiz() {
-    console.log("to get quiz");
     navigate("/user/quiz");
   }
 

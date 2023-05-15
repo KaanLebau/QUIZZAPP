@@ -74,9 +74,17 @@
   .correctAnswer {
     @extend .question;
     background-color: green;
+    &:hover {
+      cursor: default;
+      background-color: green;
+    }
   }
   .wrongAnswer {
     @extend .question;
     background-color: red;
+    &:hover {
+      cursor: default;
+      background-color: red;
+    }
   }
 }
