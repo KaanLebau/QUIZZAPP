@@ -1,0 +1,46 @@
+.resultPresenter {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  background-color: #5c5470;
+  border-radius: 20px;
+  padding: 30px;
+  .chart {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      background: transparent;
+    }
+  }
+
+  .bottom {
+    padding: 10px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    button {
+      border-radius: 8px;
+      justify-self: flex-end;
+      align-self: center;
+      background-color: #352f44;
+      color: #dbd8e3;
+      padding: 5px;
+      width: 20%;
+      cursor: pointer;
+      margin: 20px;
+    }
+    button:hover {
+      color: #352f44;
+      background-color: #dbd8e3;
+    }
+    button:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

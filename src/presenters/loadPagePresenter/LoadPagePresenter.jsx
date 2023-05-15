@@ -1,14 +1,14 @@
 import React from "react";
-import Spinner from "../../views/loadpageView/LoadpageView";
+import LoadpageView from "../../views/loadpageView/LoadpageView";
 import { ImSpinner10 } from "react-icons/im";
 
-function LoadPage(props) {
+function LoadPagePresenter(props) {
   return (
-    <Spinner>
+    <LoadpageView>
       <p className="loadingInfo">{props.info}</p>
       <ImSpinner10 className="rotate" />
-    </Spinner>
+    </LoadpageView>
   );
 }
 
-export default LoadPage;
+export default LoadPagePresenter;

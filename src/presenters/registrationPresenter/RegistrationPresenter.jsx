@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { RemoteAuth } from "../../integration/RemoteAuth";
 import { RemoteStorage } from "../../integration/RemoteStorage";
+import { useSetRecoilState } from "recoil";
+import { activeUser, registeredUserStateAtom } from "../../models/appModel";
 
 function RegistrationPresenter() {
   // react-router-dom tools
@@ -21,6 +23,11 @@ function RegistrationPresenter() {
   const [passwordControll, setPasswordControll] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState(false);
   const [err, setErr] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+
+  //Recoil
+  const user = useSetRecoilState(activeUser);
+  const userLoggedIn = useSetRecoilState(registeredUserStateAtom);
 
   function handleInput(input) {
     const id = input.id;
@@ -79,9 +86,15 @@ function RegistrationPresenter() {
   async function handleCreate() {
     try {
       const theUser = await auth.signUp(basic);
-      await db.populateData(theUser);
+      const userData = await db.populateData(theUser);
+      if (!userData && !theUser) {
+        throw new Error("failed");
+      }
+      user(userData);
+      userLoggedIn(true);
     } catch (err) {
       setErr(true);
+      setErrMsg(err.message);
     } finally {
       navigate("../user");
     }
@@ -99,6 +112,7 @@ function RegistrationPresenter() {
       }}
       create={handleCreate}
       err={err}
+      errMsg={errMsg}
     />
   );
 }

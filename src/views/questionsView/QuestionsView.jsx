@@ -5,13 +5,29 @@ function QuestionsView(props) {
   function selection(e) {
     props.questionSelection(e.target.id);
   }
+  function getClassName(question, index) {
+    if (props.quizIsSubmitted) {
+      if (
+        question.answer === -1 ||
+        question.answers[question.answer].isCorrect === "false"
+      ) {
+        return "wrongAnswer";
+      } else {
+        return "correctAnswer";
+      }
+    } else if (props.activeIndex === index && props.quizActive) {
+      return "activeQuestion";
+    } else {
+      return "question";
+    }
+  }
   return (
     <div className="questions">
       <label className="containerLabel">Questions</label>
       {props.questions.map((question, index) => {
         return (
           <div
-            className={props.activeIndex === index && props.quizActive? "activeQuestion" : "question"}
+            className={getClassName(question, index)}
             id={index}
             key={index}
             onClick={selection}
@@ -40,10 +56,3 @@ function QuestionsView(props) {
 }
 
 export default QuestionsView;
-
-/*
-
-<AiOutlineQuestionCircle className="questionIcon" />
-        <AiOutlineCheckCircle className="questionIcon" />
-
-*/

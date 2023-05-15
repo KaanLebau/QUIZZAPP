@@ -1,25 +1,20 @@
 import "./app.scss";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./pages/loginPage/LoginPage";
-import Registration from "./pages/registration/Registration";
-import GetQuizDataPage from "./pages/getQuiz/GetQuizDataPage";
-import Dashboard from "./pages/dashboard/Dashboard";
-import EditUser from "./pages/editUser/EditUser";
-import ActiveQuiz from "./pages/activeQuiz/ActiveQuiz";
-import DemoPage from "./pages/demoPage/DemoPage";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { activeUser, registeredUserStateAtom } from "./models/atoms";
-import Result from "./pages/result/Result";
-import { useEffect } from "react";
-import { RemoteStorage } from "./integration/RemoteStorage";
+import RegistrationPage from "./pages/registrationPage/RegistrationPage";
+import GetQuizDataPage from "./pages/getQuizPage/GetQuizDataPage";
+import DashboardPage from "./pages/dashboardPage/DashboardPage";
+import EditUserPage from "./pages/editUserPage/EditUserPage";
+import ActiveQuizPage from "./pages/activeQuizPage/ActiveQuizPage";
+import { useRecoilValue } from "recoil";
+import { registeredUserStateAtom } from "./models/appModel";
+import ResultPage from "./pages/resultPage/ResultPage";
 
-function App(props) {
-  const userLoggedIn = useRecoilValue(registeredUserStateAtom);
-  const db = RemoteStorage();
-  //db.useActiveUserListener();
-  //const currentUser = useRecoilValue(activeUser);
-  const Authenticated = ({ children }) => {
-    return true !== null ? children : <Navigate to="/" />;
+function App() {
+  const Authenticated = useRecoilValue(registeredUserStateAtom);
+
+  const AuthRequired = ({ children }) => {
+    return Authenticated ? children : <Navigate to="/" />;
   };
 
   return (
@@ -30,45 +25,48 @@ function App(props) {
           <BrowserRouter>
             <Routes>
               <Route path="/">
-                <Route index element={<DemoPage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route path="registration" element={<Registration />} />
+                <Route index element={<LoginPage />} />
+                <Route path="registration" element={<RegistrationPage />} />
                 <Route path="/user">
                   <Route
                     index
                     element={
-                      <Authenticated>
-                        <Dashboard />
-                      </Authenticated>
+                      <AuthRequired>
+                        <DashboardPage />
+                      </AuthRequired>
                     }
                   />
                   <Route
                     path="edit"
                     element={
-                      <Authenticated>
-                        <EditUser />
-                      </Authenticated>
+                      <AuthRequired>
+                        <EditUserPage />
+                      </AuthRequired>
                     }
                   />
                   <Route path="quiz">
                     <Route
                       index
-                      element={<GetQuizDataPage quiz={props.quiz} />}
+                      element={
+                        <AuthRequired>
+                          <GetQuizDataPage />
+                        </AuthRequired>
+                      }
                     />
                     <Route
                       path="active"
                       element={
-                        <Authenticated>
-                          <ActiveQuiz quiz={props.quiz} />
-                        </Authenticated>
+                        <AuthRequired>
+                          <ActiveQuizPage />
+                        </AuthRequired>
                       }
                     />
                     <Route
                       path="result"
                       element={
-                        <Authenticated>
-                          <Result />
-                        </Authenticated>
+                        <AuthRequired>
+                          <ResultPage />
+                        </AuthRequired>
                       }
                     />
                   </Route>
