@@ -1,5 +1,26 @@
 # Welcome to QuizzIt!
 
+#### Setup:
+
+- install node (version 8.19.2)
+- clone repository
+
+```
+git clone git@github.com:KaanLebau/QUIZZAPP.git
+```
+
+- install dependency
+
+```
+npm install
+```
+
+- start development server
+
+```
+npm start
+```
+
 #### Description:
 
 This project consists of building and deploying a webpage being an online quiz application. Users will be able to create their own profile using an alias, email and password to be able take different quizzes about different programming languages. Results from quizzes will saved to firebase and shown at a specific statistics page. Questions for each quiz are fetched from the API [QuizAPI](https://quizapi.io).
@@ -41,7 +62,7 @@ This project consists of building and deploying a webpage being an online quiz a
     - [x] Create basic ui
     - [x] Get quiz data from api response
     - [x] implement quiz mechanism (choose an answer, submit quiz etc)
-  - [] user/quiz/result
-  - [] user/edit (optional)
+  - [x] user/quiz/result
+  - [x] user/edit (optional)
 
 #### File structure:
