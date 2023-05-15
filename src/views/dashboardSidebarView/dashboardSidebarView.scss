@@ -8,6 +8,28 @@
   animation: mounth 1s ease-in 0s 1 normal forwards;
   -webkit-box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
   box-shadow: 2px 2px 22px 2px rgba(205, 202, 214, 0.05);
+  .active {
+    background-color: #2a2438;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    box-shadow: 5px 5px 22px 7px rgba(205, 202, 214, 0.75);
+    h3 {
+      font-size: x-large;
+      background: transparent;
+    }
+    .icon {
+      font-size: x-large;
+      background: transparent;
+      padding-right: 5px;
+    }
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
   .button {
     background-color: #5c5470;
     padding: 10px;
@@ -17,7 +39,7 @@
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
     box-shadow: 5px 5px 22px 7px rgba(53, 47, 68, 0.75);
-    
+
     h3 {
       font-size: x-large;
       background: transparent;

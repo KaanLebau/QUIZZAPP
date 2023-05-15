@@ -70,7 +70,10 @@ function DashboardPresenter() {
   return (
     <div className="parentPresenter">
       <div className="dashSidebar">
-        <DashboardSidebarView setCategory={handleshow} />
+        <DashboardSidebarView
+          setCategory={handleshow}
+          selectedData={selectedData}
+        />
       </div>
       {
         <div className="dashContent">
