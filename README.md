@@ -33,32 +33,32 @@ This project consists of building and deploying a webpage being an online quiz a
   - [x] Sent request
   - [x] Get response
   - [x] Show response in console
-- [] Firebase
+- [x] Firebase
   - [x] Firebase configuration
   - [x] Authentication configuratio
   - [x] Firestore configuration
-    - [] Firestore rules
+    - [x] Firestore rules
       - [x] (Temporary solution) all users have read and write permissions
-      - [] (Target solution) only the current user has read and write permission
+      - [x] (Target solution) only the current user has read and write permission
     - [x] Add user data with user UID to firestore
-    - [] Update firestore when user model is updated
-- [] Application
-  - [] login page
+    - [x] Update firestore when user model is updated
+- [x] Application
+  - [x] login page
     - [x] Create basic ui
     - [x] Get data from user
     - [x] authenticate user with firebase/auth
     - [x] Redirect the user to the user's dashboard
-  - [] Registration page
+  - [x] Registration page
     - [x] Create basic ui
     - [x] Get data from user
     - [x] authenticate user with firebase/auth
     - [x] Redirect the user to the user's dashboard
-  - [] user/dashboard
+  - [x] user/dashboard
     - [x] Create basic ui
     - [x] display user data
     - [x] Display user data in various graphs
     - [x] Redirect the user to the user's dashboard
-  - [] user/quiz/active
+  - [x] user/quiz/active
     - [x] Create basic ui
     - [x] Get quiz data from api response
     - [x] implement quiz mechanism (choose an answer, submit quiz etc)
